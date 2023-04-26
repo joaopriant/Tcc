@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Formulários em HTML5</title>
+ <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+<meta charset="UTF-8">
+</head>
+<body>
+ <main>
+
+
+<form method="post" action="controle_Funcionario_cadastro.php" class="cadastro">
+ <h1>cadastrar</h1>
+
+ <label for="Registro" class="label1">Registro de Funcionario</label>
+ <input class="input-form" type="text" name="txtRegistroFuncionario" autocomplete="off" >
+
+ <label for="nome" class="label1">Nome Completo</label>
+ <input class="input-form" type="text" name="txtNome" autocomplete="off">
+
+
+ <label for="email" class="label1">E-mail</label>
+ <input class="input-form" type="email" name="txtEmail" autocomplete="off">
+
+ <label for="senha1" class="label1">Data de Nascimento</label>
+ <input class="input-form" type="date" name="txtDatadeNasc" autocomplete="off" >
+
+ <button type="submit" action="">Cadastrar</button>
+
+ </form>
+
+
+ <form method="get" action="controle_Funcionario_view.php" class="view">
+    
+    <h1>view</h1>
+
+    <label for="Registro" class="label1">Registro de Funcionario</label>
+    <input class="input-form" type="text" name="txtRegistroFuncionario" autocomplete="off" >
+
+    <button type="submit" action="">Visualizar</button>
+    </form>
+
+    <form method="post" action="controle_Funcionario_delete.php" class="view">
+       
+        <h1>Deletar</h1>
+
+        <label for="Registro" class="label1">Registro de Funcionario</label>
+        <input class="input-form" type="text" name="txtRegistroFuncionario" autocomplete="off" >
+
+        <button type="submit" action="">Apagar</button>
+
+    </form>
+
+ </main>
+</body>
+</html>
