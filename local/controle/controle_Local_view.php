@@ -1,5 +1,5 @@
 <?php
-require_once "Local.php";
+require_once "../Local/Local.php";
 
 if(!isset($_GET['txtidSala'])){
     die("Id não encontrado\n");

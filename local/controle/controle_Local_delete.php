@@ -1,5 +1,5 @@
 <?php
-    require_once "../local/Local.php";
+    require_once "../Local/Local.php";
 
     if (!isset($_POST['txtidSala'])) {
         die("id Sala não encontrado\n");

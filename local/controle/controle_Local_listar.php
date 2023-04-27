@@ -1,5 +1,5 @@
 <?php
-    require_once "../local/Local.php";
+    require_once "../Local/Local.php";
    $Descricao = new Descricao();
    
    $objDescricao = $Descricao->listarDescricao();

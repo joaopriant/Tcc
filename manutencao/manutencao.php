@@ -1,22 +1,27 @@
 <?php
 include "../banco/banco.php";
-class manutencao implements JsonSerializable
+class Manutencao implements JsonSerializable
 {
-    private $idManutencao;
-    private $problema;
-    private $foto;
+    private $IdManutencao;
+    private $Problema;
+    private $Foto;
     private $DataInicio;
-    private $status;
-    private $Equipamento_IdEquipamento;
+    private $Status;
+    private $IdEquipamento;
     private $banco;
+    private $DataTermino;
+    private $Manutentor;
 
     public function jsonSerialize()
     {
-        $array["idManutencao"] = $this->getidManutencao();
+        $array["IdManutencao"] = $this->getIdManutencao();
         $array["DataInicio"] = $this->getDataInicio();
-        $array["foto"] = $this->getfoto();
-        $array["problema"] = $this->getproblema();
-
+        $array["Foto"] = $this->getFoto();
+        $array["Problema"] = $this->getProblema();
+        $array["Status"] = $this->getStatus();
+        $array["IdEquipamento"] = $this->getIdEquipamento();
+        $array["DataTermino"] = $this->getDataTermino();
+        $array["Manutentor"] = $this->getManutentor();
         return $array;
     }
     function __construct()
@@ -26,49 +31,59 @@ class manutencao implements JsonSerializable
 
     public function cadastrar()
     {
-        $problema = $this->problema;
-        $foto = $this->foto;
+
+        $IdManutencao = $this->IdManutencao;
+        $Problema = $this->Problema;
+        $Foto = $this->Foto;
         $DataInicio = $this->DataInicio;
-        $idequipamento = $this->Equipamento_IdEquipamento;
-        $status = $this->status;
+        $IdEquipamento = $this->IdEquipamento;
+        $Status = $this->Status;
+        $Manutentor = $this->Manutentor;
+        $DataTermino = $this->DataTermino;
 
-
-        $stmt = $this->banco->getConexao()->prepare("insert into manutencao(problema, foto, DataInicio,Equipamento_IdEquipamento, status)values(?, ?, ?,?,?)");
-        $stmt->bind_param("sss", $problema, $foto, $DataInicio, $idequipamento, $status);
+        $stmt = $this->banco->getConexao()->prepare("insert into manutencao(IdManutencao, Problema, Foto, DataInicio, IdEquipamento, Status, Manutentor, DataTermino)values(?, ?, ?,?,?,?,?,?)");
+        $stmt->bind_param("sss", $IdEquipamento, $Problema, $Foto, $DataInicio, $IdEquipamento, $Status, $Manutentor, $DataTermino);
         return $stmt->execute();
     }
 
     public function excluir()
     {
-        $idManutencao = $this->idManutencao;
-        $stmt = $this->banco->getConexao()->prepare("delete from manutencao where idManutencao = ?");
-        $stmt->bind_param("i", $idManutencao);
+        $IdManutencao = $this->IdManutencao;
+        $stmt = $this->banco->getConexao()->prepare("delete from manutencao where IdManutencao = ?");
+        $stmt->bind_param("i", $IdManutencao);
         return $stmt->execute();
     }
 
     public function atualizar()
     {
         $stmt = $this->banco->getConexao()->prepare("update manutencao    
-            set problema=?,
-            set foto=?,
+            set Problema=?,
+            set Foto=?,
             set DataInicio=?,
+            set DataTermino=?,
+            set Status=?,
+            set Manutentor=?,
             where idManutencao = ?");
 
-        $stmt->bind_param("sssi", $this->problema, $this->foto, $this->DataInicio, $this->idManutencao);
+        $stmt->bind_param("ssssssi", $this->Problema, $this->Foto, $this->DataInicio, $this->DataTermino, $this->Status, $this->Manutentor ,$this->IdManutencao);
         $stmt->execute();
     }
 
-    public function buscarmanutencaoPorId($idManutencao)
+    public function buscarmanutencaoPorId($IdManutencao)
     {
-        $stmt = $this->banco->getConexao()->prepare("select * from manutencao where idManutencao = ?");
-        $stmt->bind_param("i", $idManutencao);
+        $stmt = $this->banco->getConexao()->prepare("select * from manutencao where IdManutencao = ?");
+        $stmt->bind_param("i", $IdManutencao);
         $stmt->execute();
         $resultado = $stmt->get_result();
         while ($linha = $resultado->fetch_object()) {
-            $this->setidManutencao($linha->idManutencao);
-            $this->setproblema($linha->problema);
-            $this->setfoto($linha->foto);
+            $this->setIdManutencao($linha->IdManutencao);
+            $this->setProblema($linha->Problema);
+            $this->setFoto($linha->Foto);
             $this->setDataInicio($linha->DataInicio);
+            $this->setDataTermino($linha->DataTermino);
+            $this->setStatus($linha->Status);
+            $this->setManutentor($linha->Manutentor);
+            $this->setIdequipamento($linha->IdEquipamento);
 
         }
         return $this;
@@ -84,37 +99,41 @@ class manutencao implements JsonSerializable
         $i = 0;
         while ($linha = $resultado->fetch_object()) {
             $resultados[$i] = new manutencao();
-            $resultados[$i]->setidManutencao($linha->idManutencao);
-            $resultados[$i]->setproblema($linha->problema);
-            $resultados[$i]->setfoto($linha->foto);
+            $resultados[$i]->setIdManutencao($linha->IdManutencao);
+            $resultados[$i]->setProblema($linha->Problema);
+            $resultados[$i]->setFoto($linha->Foto);
             $resultados[$i]->setDataInicio($linha->DataInicio);
+            $resultados[$i]->setDataTermino($linha->DataTermino);
+            $resultados[$i]->setStatus($linha->Status);
+            $resultados[$i]->setManutentor($linha->Manutentor);
+            $resultados[$i]->setIdEquipamento($linha->IdEquipamento);
             $i++;
         }
         return $resultados;
     }
-    public function getidManutencao()
+    public function getIdManutencao()
     {
-        return $this->idManutencao;
+        return $this->IdManutencao;
     }
-    public function setidManutencao($idManutencao)
+    public function setIdManutencao($IdManutencao)
     {
-        $this->idManutencao = $idManutencao;
+        $this->IdManutencao = $IdManutencao;
     }
-    public function getproblema()
+    public function getProblema()
     {
-        return $this->problema;
+        return $this->Problema;
     }
-    public function setproblema($problema)
+    public function setProblema($Problema)
     {
-        $this->problema = $problema;
+        $this->Problema = $Problema;
     }
-    public function getfoto()
+    public function getFoto()
     {
-        return $this->foto;
+        return $this->Foto;
     }
-    public function setfoto($foto)
+    public function setFoto($Foto)
     {
-        $this->foto = $foto;
+        $this->Foto = $Foto;
     }
     public function getDataInicio()
     {
@@ -124,22 +143,40 @@ class manutencao implements JsonSerializable
     {
         $this->DataInicio = $DataInicio;
     }
-    public function getstatus()
+    public function getStatus()
     {
-        return $this->status;
+        return $this->Status;
     }
-    public function setstatus($DataInicio)
+    public function setStatus($Status)
     {
-        $this->DataInicio = $DataInicio;
+        $this->Status = $Status;
     }
-    public function getIdequipamento()
+    public function getIdEquipamento()
     {
-        return $this->Equipamento_IdEquipamento;
+        return $this->IdEquipamento;
     }
-    public function setIdequipamento($Equipamento_IdEquipamento)
+    public function setIdEquipamento($IdEquipamento)
     {
-        $this->Equipamento_IdEquipamento = $Equipamento_IdEquipamento;
+        $this->IdEquipamento = $IdEquipamento;
     }
+    public function getDataTermino()
+    {
+        return $this->DataTermino;
+    }
+    public function setDataTermino($DataTermino)
+    {
+        $this->DataTermino = $DataTermino;
+    }
+
+    public function getManutentor()
+    {
+        return $this->Manutentor;
+    }
+    public function setManutentor($Manutentor)
+    {
+        $this->Manutentor = $Manutentor;
+    }
+
 }
 
 ?>

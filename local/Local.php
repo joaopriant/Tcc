@@ -1,5 +1,5 @@
 <?php
-require_once "banco.php";
+require_once "../banco/banco.php";
 class Local implements JsonSerializable
 {
     private $idSala;

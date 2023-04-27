@@ -10,23 +10,29 @@ if(!isset($_POST['txtdatainicio'])){
 }
 
 
-$problema = $_POST['txtproblema'];
-$foto = $_POST['txtimg'];
-$datainicio = $_POST['txtdatainicio'];
-$Equipamento_IdEquipamento = $_POST['cboIdequipamento'];
-$status = $_POST['txtstatus'];
+$Problema = $_POST['txtProblema'];
+$Foto = $_POST['txtImg'];
+$DataInicio = $_POST['txtDataInicio'];
+$IdEquipamento = $_POST['cboIdEquipamento'];
+$Status = $_POST[''];
+$DataTermino = $_POST[''];
+$Manutentor = $_POST['txtManutentor'];
 
-$problema = strip_tags($problema);
-$foto = strip_tags($foto);
-$status = strip_tags($status);
-
+$Problema = strip_tags($Problema);
+$Foto = strip_tags($Foto);
+$Status = strip_tags($Status);
+$DataInicio = strip_tags($DataInicio);
+$DataTermino = strip_tags($DataTermino);
+$Manutentor = strip_tags($Manutentor);
 
 $manutencao = new manutencao();
-$manutencao->setproblema($problema);
-$manutencao->setfoto($foto);
-$manutencao->setIdequipamento($Equipamento_IdEquipamento);
-$manutencao->setstatus($status);
-$manutencao->setDataInicio($datainicio);
+$manutencao->setProblema($Problema);
+$manutencao->setFoto($Foto);
+$manutencao->setIdEquipamento($IdEquipamento);
+$manutencao->setStatus($Status);
+$manutencao->setDataInicio($DataInicio);
+$manutencao->setDataTermino($DataTermino);
+$manutencao->setManutentor($Manutentor);
 
 
 $resultado = $manutencao->cadastrar();
