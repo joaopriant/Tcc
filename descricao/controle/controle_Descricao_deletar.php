@@ -1,10 +1,11 @@
 <?php
 
-    require_once "../descricao/Descricao.php";
+    require_once "../Descricao/Descricao.php";
 
     if(!isset($_POST['txtIdDescricao'])){
         die("ID não encontrado\n");
     }
+    
 
 
     $idDesc = $_POST['txtIdDescricao'];

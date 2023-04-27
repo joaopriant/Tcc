@@ -20,31 +20,32 @@ class Descricao implements JsonSerializable
 
     public function cadastrar()
     {
-        $Descricao = $this->Descricao;
+        $descricao = $this->Descricao;
 
         $stmt = $this->banco->getConexao()->prepare("insert into Descricao(Descricao)values(?)");
-        $stmt->bind_param("s", $Descricao);
+        $stmt->bind_param("s", $descricao);
         return $stmt->execute();
     }
 
     public function excluir()
     {
-        $idDescricao = $this-> idDescricao;
+        $iddescricao = $this-> idDescricao;
         $stmt = $this->banco->getConexao()->prepare("delete from Descricao where idDescricao = ?");
-        $stmt->bind_param("i", $idDescricao);
+        $stmt->bind_param("i", $iddescricao);
         return $stmt->execute();
     }
 
     public function atualizar()
     {   
-        $iddescricao = $this-> idDescricao;
+    
+        $idescricao = $this-> idDescricao;
         $descricao = $this->Descricao;
-        $stmt = $this->banco->getConexao()->prepare("update tipoequipamento    
+        $stmt = $this->banco->getConexao()->prepare("update Descricao    
             set Descricao=?,
             where idDescricao = ?");
 
-        $stmt->bind_param("si", $descricao, $iddescricao);
-        $stmt->execute();
+        $stmt->bind_param("si", $descricao, $idescricao);
+        return $stmt->execute();
     }
 
     public function buscarDescricaoPorId($idDescricao)

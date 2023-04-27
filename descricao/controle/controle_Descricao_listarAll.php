@@ -1,5 +1,5 @@
 <?php
-    require_once "../descricao/Descricao.php";
+    require_once "../Descricao/Descricao.php";
     $Descricao = new Descricao();
    
     $objDescricao = $Descricao->listarDescricao();
