@@ -8,12 +8,13 @@ class Local implements JsonSerializable
     private $Andar;
     private $banco;
 
-    public function jsonSerialize() {
+    public function jsonSerialize()
+    {
         $array["idSala"] = $this->getidSala();
         $array["Andar"] = $this->getAndar();
         $array["Bloco"] = $this->getBloco();
         $array["Numsala"] = $this->getNumsala();
-        
+
         return $array;
     }
     function __construct()
@@ -34,7 +35,7 @@ class Local implements JsonSerializable
 
     public function excluir()
     {
-        $idsala = $this-> idSala;
+        $idsala = $this->idSala;
         $stmt = $this->banco->getConexao()->prepare("delete from Local where idSala = ?");
         $stmt->bind_param("i", $idsala);
         return $stmt->execute();
@@ -42,14 +43,18 @@ class Local implements JsonSerializable
 
     public function atualizar()
     {
+        $numsala = $this->Numsala;
+        $bloco = $this->Bloco;
+        $andar = $this->Andar;
+        $idsala = $this->idSala;
         $stmt = $this->banco->getConexao()->prepare("update Local    
             set Numsala=?,
             set Bloco=?,
             set Andar=?,
             where idSala = ?");
 
-        $stmt->bind_param("sssi", $this->Numsala, $this->Bloco, $this->Andar, $this->idSala);
-        $stmt->execute();
+        $stmt->bind_param("sssi", $numsala, $bloco, $andar, $idsala);
+        return $stmt->execute();
     }
 
     public function buscarLocalPorId($idSala)
