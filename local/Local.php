@@ -47,6 +47,7 @@ class Local implements JsonSerializable
         $bloco = $this->Bloco;
         $andar = $this->Andar;
         $idsala = $this->idSala;
+        
         $stmt = $this->banco->getConexao()->prepare("update Local    
             set Numsala=?,
             set Bloco=?,

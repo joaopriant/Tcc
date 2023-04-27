@@ -6,6 +6,8 @@ class Funcionario
     private $Nome;
     private $DatadeNacimento;
     private $Email;
+    private $Senha;
+    private $Cargo;
     private $banco;
 
     function __construct()
@@ -20,30 +22,41 @@ class Funcionario
         $nome = $this->Nome;
         $data = $this->DatadeNacimento;
         $email = $this->Email;
+        $cargo = $this->Cargo;
+        $senha = $this->Senha;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNacimento, Email)values(?,?, ?, ?)");
-        $stmt->bind_param("isss", $registrofuncionario, $nome, $data, $email);
+        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNacimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isss", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
         return $stmt->execute();
     }
 
     public function excluir()
     {
         $registrofuncionario = $this->RegistroFuncionario;
-        $stmt = $this->banco->getConexao()->prepare("delete from funcionario where RegistroFuncionario = ?");
+        $stmt = $this->banco->getConexao()->prepare("delete from Funcionario where RegistroFuncionario = ?");
         $stmt->bind_param("i", $registrofuncionario);
         return $stmt->execute();
     }
 
     public function atualizar()
     {
-        $stmt = $this->banco->getConexao()->prepare("update Local    
+        $registrofuncionario = $this->RegistroFuncionario;
+        $nome = $this->Nome;
+        $data = $this->DatadeNacimento;
+        $email = $this->Email;
+        $cargo = $this->Cargo;
+        $senha = $this->Senha;
+
+        $stmt = $this->banco->getConexao()->prepare("update Funcionario    
             set Nome=?,
             set DatadeNacimento=?,
             set Email=?,
+            set Cargo=?,
+            set Senha=?,
             where RegistroFuncionario = ?");
 
-        $stmt->bind_param("sssi", $this->Nome, $this->DatadeNacimento, $this->Email, $this->RegistroFuncionario);
-        $stmt->execute();
+        $stmt->bind_param("sdsisi", $nome, $data, $email, $cargo, $senha, $registrofuncionario);
+        return $stmt->execute();
     }
 
     public function buscarFuncionarioPorId($RegistroFuncionario)

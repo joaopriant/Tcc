@@ -3,13 +3,14 @@ include "../banco/banco.php";
 class Equipamento implements JsonSerializable
 {
     private $IdEquipamento;
+
     private $numPatrimonio;
 
-    private $Descricao_idDescricao;
+    private $idDescricao;
 
-    private $Funcionario_RegistroFuncionario;
+    private $Responsavel;
 
-    private $Local_Idsala;
+    private $Idsala;
 
     private $banco;
 
@@ -17,9 +18,9 @@ class Equipamento implements JsonSerializable
     {
         $array["IdEquipamento"] = $this->getIdEquipamento();
         $array["numPatrimonio"] = $this->getnumPatrimonio();
-        $array["Descricao_idDescricao"] = $this->getidDescricao();
-        $array["Funcionario_RegistroFuncionario"] = $this->getRegistroFuncionario();
-        $array["Local_Idsala"] = $this->getIdsala();
+        $array["idDescricao"] = $this->getidDescricao();
+        $array["Responsavel"] = $this->getRegistroFuncionario();
+        $array["Idsala"] = $this->getIdsala();
 
         return $array;
     }
@@ -33,11 +34,11 @@ class Equipamento implements JsonSerializable
 
         $idequipamento = $this->IdEquipamento;
         $numpatri = $this->numPatrimonio;
-        $descricao = $this->Descricao_idDescricao;
-        $local = $this->Local_Idsala;
-        $funcionario = $this->Funcionario_RegistroFuncionario;
+        $descricao = $this->idDescricao;
+        $local = $this->Idsala;
+        $funcionario = $this->Responsavel;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into equipamento(numPatrimonio, Local_Idsala, Funcionario_RegistroFuncionario,Descricao_idDescricao)values(?,?,?,?)");
+        $stmt = $this->banco->getConexao()->prepare("insert into equipamento(numPatrimonio, Idsala, Responsavel,idDescricao)values(?,?,?,?)");
         $stmt->bind_param("ssss", $numpatri,  $local, $funcionario,$descricao);
         return $stmt->execute();
     }
@@ -54,18 +55,18 @@ class Equipamento implements JsonSerializable
     {
         $idequipamento = $this->IdEquipamento;
         $numpatri = $this->numPatrimonio;
-        $tipoequip = $this->Descricao_idDescricao;
-        $local = $this->Local_Idsala;
-        $funcionario = $this->Funcionario_RegistroFuncionario;
-        $stmt = $this->banco->getConexao()->prepare("update Local    
+        $tipoequip = $this->idDescricao;
+        $local = $this->Idsala;
+        $funcionario = $this->Responsavel;
+        $stmt = $this->banco->getConexao()->prepare("update Equipamento    
             set numPatrimonio=?,
             set TipoEquipamento_idDescricao=?,
-            set Local_Idsala=?,
-            set Funcionario_RegistroFuncionario=?,
+            set Idsala=?,
+            set Responsavel=?,
             where IdEquipamento = ?");
 
-        $stmt->bind_param("ssss", $numpatri, $tipoequip, $local, $funcionario);
-        $stmt->execute();
+        $stmt->bind_param("isiii", $numpatri, $tipoequip, $local, $funcionario,$idequipamento);
+        return $stmt->execute();
     }
 
     public function buscarequipamentoPorId($IdEquipamento)
@@ -79,9 +80,9 @@ class Equipamento implements JsonSerializable
         while ($linha = $resultado->fetch_object()) {
             $this->setIdEquipamento($linha->IdEquipamento);
             $this->setnumPatrimonio($linha->numPatrimonio);
-            $this->setIdsala($linha->Local_Idsala);
-            $this->setRegistroFuncionario($linha->Funcionario_RegistroFuncionario);
-            $this->setidDescricao($linha->Descricao_idDescricao);
+            $this->setIdsala($linha->Idsala);
+            $this->setRegistroFuncionario($linha->Responsavel);
+            $this->setidDescricao($linha->idDescricao);
         }
         return $this;
 
@@ -98,9 +99,9 @@ class Equipamento implements JsonSerializable
             $resultados[$i] = new Equipamento();
             $resultados[$i]->setIdEquipamento($linha->IdEquipamento);
             $resultados[$i]->setnumPatrimonio($linha->numPatrimonio);
-            $resultados[$i]->setIdsala($linha->Local_Idsala);
-            $resultados[$i]->setidDescricao($linha->Descricao_idDescricao);
-            $resultados[$i]->setRegistroFuncionario($linha->Funcionario_RegistroFuncionario);
+            $resultados[$i]->setIdsala($linha->Idsala);
+            $resultados[$i]->setidDescricao($linha->idDescricao);
+            $resultados[$i]->setRegistroFuncionario($linha->Responsavel);
             $i++;
         }
         return $resultados
@@ -124,27 +125,27 @@ class Equipamento implements JsonSerializable
     }
     public function getidDescricao()
     {
-        return $this->Descricao_idDescricao;
+        return $this->idDescricao;
     }
-    public function setidDescricao($Descricao_idDescricao)
+    public function setidDescricao($idDescricao)
     {
-        $this->Descricao_idDescricao = $Descricao_idDescricao;
+        $this->idDescricao = $idDescricao;
     }
     public function getRegistroFuncionario()
     {
-        return $this->Funcionario_RegistroFuncionario;
+        return $this->Responsavel;
     }
-    public function setRegistroFuncionario($Funcionario_RegistroFuncionario)
+    public function setRegistroFuncionario($Responsavel)
     {
-        $this->Funcionario_RegistroFuncionario = $Funcionario_RegistroFuncionario;
+        $this->Responsavel = $Responsavel;
     }
     public function getIdsala()
     {
-        return $this->Local_Idsala;
+        return $this->Idsala;
     }
-    public function setIdsala($Local_Idsala)
+    public function setIdsala($Idsala)
     {
-        $this->Local_Idsala = $Local_Idsala;
+        $this->Idsala = $Idsala;
     }
 
 }
