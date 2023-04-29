@@ -66,12 +66,12 @@ class Manutencao implements JsonSerializable
             where idManutencao = ?");
 
         $stmt->bind_param("ssssssi", $this->Problema, $this->Foto, $this->DataInicio, $this->DataTermino, $this->Status, $this->Manutentor ,$this->IdManutencao);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function buscarmanutencaoPorId($IdManutencao)
     {
-        $stmt = $this->banco->getConexao()->prepare("select * from manutencao where IdManutencao = ?");
+        $stmt = $this->banco->getConexao()->prepare("select * from Manutencao where IdManutencao = ?");
         $stmt->bind_param("i", $IdManutencao);
         $stmt->execute();
         $resultado = $stmt->get_result();
