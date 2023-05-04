@@ -9,7 +9,7 @@ $registrofuncionario = $_GET['txtRegistroFuncionario'];
 
 $registrofuncionario = strip_tags($registrofuncionario);
 
-$funcionario = new funcionario();
+$funcionario = new Funcionario();
 $funcionario->buscarFuncionarioPorId($registrofuncionario);
 
 $tabela="<table border='1'>";

@@ -35,7 +35,6 @@ nav ul{
     justify-content: left;
     height: 40px;
 }
-
 nav ul li{
     margin-top: 15px;
     list-style: none;
@@ -51,7 +50,6 @@ nav ul li a{
 nav ul li a::after{
     color: #ca0f0f;
 }
-
 nav ion-icon#iconuser{
     width: 45px;
     height: 45px;
@@ -64,13 +62,11 @@ nav ion-icon#iconuser:hover{
     color: #ca0f0f;
     cursor: pointer;
 }
-
 .cadastro{
 background: #fff;
 width: 40%;
 padding: 0px 20px 0 30px;
 }
-
 input, select {
     display: block;
     margin-top: 15px;
@@ -84,10 +80,9 @@ input, select {
     outline: none;
     height: 40px;
 }
-input:focus {
+input:focus,select:focus {
     border: 1px solid #417ec0;
 }
-
 button{
     background-color: #417ec0;
     height: 35px;

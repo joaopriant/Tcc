@@ -123,7 +123,22 @@ class Funcionario
     {
         $this->Email = $Email;
     }
-
+    public function getSenha()
+    {
+        return $this->Senha;
+    }
+    public function setSenha($Senha)
+    {
+        $this->Senha = $Senha;
+    }
+    public function getCargo()
+    {
+        return $this->Cargo;
+    }
+    public function setCargo($Cargo)
+    {
+        $this->Cargo = $Cargo;
+    }
 
 
 

@@ -1,5 +1,5 @@
 <?php
-require_once "../Descricao/Descricao.php";
+require_once "../Descricao";
 
 if (!isset($_POST['txtDescricao'])) {
     die("Descricao não encontrado\n");

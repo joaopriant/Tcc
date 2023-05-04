@@ -12,7 +12,7 @@ $registrofuncionario = $_POST['txtRegistroFuncionario'];
 $registrofuncionario = strip_tags($registrofuncionario);
 
 
-$funcionario = new funcionario();
+$funcionario = new Funcionario();
 $funcionario->setRegistroFuncionario($registrofuncionario);
 
 
