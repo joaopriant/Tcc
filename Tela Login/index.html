@@ -1,18 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Tela Login/assets/css/tipografia.css">
-    <link rel="stylesheet" type="text/css" href="../Tela Login/assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    
     <title>Login Dark/Light Mode</title>
 </head>
 <body>   
-    <section id="forms">
-            <input type="text">
-            <input type="password">
-            <button>Entra</button>
-        
-    </section>
+    <div class="page">
+        <img src=".//assets/image/recurso.png">
+        <form method="POST" class="formLogin">
+            <h2>Seja bem-vindo!</h2>
+            <p>Por favor identifique-se.</p>
+            <label for="email">E-mail</label>
+            <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
+            <label for="password">Senha</label>
+            <input type="password" placeholder="Digite seu e-mail" />
+            <input type="submit" value="Acessar" class="btn" />
+            <hr>
+            <p id="helpmsg">Use seu E-mail ou Registro <br>para efetuar o login.</p>
+        </form>
+    </div>
 </body>
 </html>
