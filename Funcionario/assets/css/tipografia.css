@@ -5,3 +5,6 @@ font-family: 'Pacifico', cursive;
 *{
     font-family: 'Mukta', sans-serif;
 }
+h1{
+    font-weight: 300;
+}

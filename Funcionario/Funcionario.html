@@ -16,7 +16,7 @@
         <nav>
                 <div id="logo"></div>
                 
-                <ul id="rigth">
+                <ul id="right">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Cadastrar</a></li>
                     <li><a href="#">Relatorios</a></li>
@@ -29,28 +29,44 @@
     </header>
     
     
-<form method="post" action="controle_Funcionario_cadastro.php" class="cadastro">
- <h1>cadastrar</h1>
+<form method="post" action="#" class="cadastro">
+ <h1>Cadastrar</h1>
+<div id="esquerda">
 
- <label for="Registro" class="label1">Registro de Funcionario</label>
- <input class="input-form" type="text" name="txtRegistroFuncionario" autocomplete="off" >
+    <label >Registro de Funcionario</label>
+    <input type="text" name="txtRegistro" autocomplete="off">
+    
+    <label >Senha</label>
+    <input type="text" name="txtSenha" autocomplete="off">
+    
+</div>
+    <label >Nome Completo</label>
+    <input type="text" name="txtNome" autocomplete="off">
+ 
+ <div id="direita">
+ 
+    <label >E-mail</label>
+    <input type="email" name="txtEmail" autocomplete="off">
 
- <label for="nome" class="label1">Nome Completo</label>
- <input class="input-form" type="text" name="txtNome" autocomplete="off">
-
-
- <label for="email" class="label1">E-mail</label>
- <input class="input-form" type="email" name="txtEmail" autocomplete="off">
-
- <label for="senha1" class="label1">Data de Nascimento</label>
- <input class="input-form" type="date" name="txtDatadeNasc" autocomplete="off" >
-
- <button type="submit" action="">Cadastrar</button>
- <button type="submit" action="">Atualizar</button>
- <button type="submit" action="">Deletar</button>
+    <label >Cargo</label>
+    <select>
+        
+    </select>
+    
+    <label >Data de Nascimento</label>
+    <input type="date" name="txtDatadeNasc" autocomplete="off" >
+</div>
+    
+    <button type="submit" action="">Cadastrar</button>
+    
+    <button type="submit" action="">Atualizar</button>
+    
+    <button type="submit" action="">Deletar</button>
 
  </form>
+
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
