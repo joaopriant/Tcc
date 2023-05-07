@@ -1,4 +1,6 @@
 <?php
+require_once "../banco/banco.php";
+
 class Cargo implements JsonSerializable
 {
     private $IdCargo;

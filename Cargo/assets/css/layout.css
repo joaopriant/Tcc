@@ -62,11 +62,11 @@ nav ion-icon#iconuser:hover{
     color: #ca0f0f;
     cursor: pointer;
 }
-.cadastro{
-background: #fff;
-width: 40%;
-padding: 0px 20px 0 30px;
-}
+form#forms{
+    background: #fff;
+    width: 40%;
+    padding: 0px 20px 0 30px;
+    }
 input, select {
     display: block;
     margin-top: 15px;
@@ -91,4 +91,7 @@ button{
     margin-top: 15px;
     border: 1.5px solid #213c5a;
     color: #fff;
+}
+button.bnt{
+    cursor: pointer;
 }

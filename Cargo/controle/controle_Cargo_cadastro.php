@@ -1,24 +1,15 @@
 <?php
 require_once "cargo.php";
 
-if (!isset($_POST['txtIdCargo'])) {
-    die("Cargo não encontrado\n");
-}
-
-if (!isset($_POST['txtCargo'])) {
+if (!isset($_POST['txtcargo'])) {
     echo ("Cargo não encontrado\n");
 }
 
+$cargo = $_POST['txtcargo'];
 
-$idcargo = $_POST['txtIdCargo'];
-$cargo = $_POST['txtCargo'];
-
-
-$idcargo = strip_tags($idcargo);
 $cargo = strip_tags($cargo);
 
 $Cargo = new Cargo();
-$Cargo->setIdCargo($idcargo);
 $Cargo->setCargo($cargo);
 
 
