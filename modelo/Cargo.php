@@ -1,11 +1,11 @@
 <?php
-require_once "../banco/banco.php";
+require_once "Banco.php";
 
 class Cargo implements JsonSerializable
 {
     private $IdCargo;
     private $Cargo;
-    
+    private $banco;
     public function jsonSerialize()
     {
         $array["IdCargo"] = $this->getIdCargo();

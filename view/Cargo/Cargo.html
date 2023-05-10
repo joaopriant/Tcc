@@ -28,27 +28,32 @@
         
     </header>
     
-<form method="post" action="#" id="forms">
+
     <h1>Cadastrar</h1>
 
 
         <label >Id Cargo</label>
-        <input type="text" name="txtid" autocomplete="new-password">
+        <input type="text" name="txtid" id ="txtid" autocomplete="new-password">
         
         <label >Cargo</label>
-        <input name="txtcargo" type="text" autocomplete="off">
+        <input name="txtcargo" id = "txtcargo" type="text" autocomplete="off">
 
     
-    <button type="submit" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
 
-    <button type="submit" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
     
-    <button type="submit" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
+    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
 
- </form>
+    <div id="divResposta"></div>
+    <div id="divListaCargos"></div>
 
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
  <script src="assets/js/controle_cargo.js"></script>
+ <script>
+     carregarCargos();
+     
+ </script>
 </body>
 </html>
