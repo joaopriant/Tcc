@@ -1,0 +1,10 @@
+/*
+font-family: 'Open Sans', sans-serif;
+font-family: 'Pacifico', cursive;
+*/
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    font-weight: 300;
+}

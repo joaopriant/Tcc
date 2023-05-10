@@ -1,0 +1,33 @@
+body{
+    background: #fff;
+    }
+    .cadastro{
+    background: #fff;
+    width: 30%;
+    padding: 0px;
+    margin: 0 auto;
+    }
+    .input-form{
+    display: block;
+    margin-top: 15px;
+    width: 70%;
+    }
+    .altura{
+    height: 300px;
+    }
+    input{
+        border-radius: 50px;
+        height: 35px;
+    }
+    .view{
+        background: #fff;
+        width: 30%;
+        padding: 0px;
+        margin: 0 auto;
+        }
+    button{
+        background: #fff;
+        border-radius: 50px;
+        height: 35px;
+        margin-top: 15px;
+    }

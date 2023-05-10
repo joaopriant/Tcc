@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Formulários em HTML5</title>
+ <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+<meta charset="UTF-8">
+<script>
+    function carregarEquipamento() {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            console.log(this.responseText);
+            let cboequipamento = document.getElementById("cboIdequipamento")
+            let objequipamento = JSON.parse(this.responseText);
+
+            //let document.
+            objequipamento.forEach(equipamento => {
+                let novaOpcao = document.createElement("option");
+                novaOpcao.value = equipamento.IdEquipamento;
+                novaOpcao.text = ("Tipo:")+equipamento;
+                cboequipamento.add(novaOpcao);
+            });
+        }
+        xmlhttp.open("GET", "../Equipamento/controle_Equipamento_listar.php");
+        xmlhttp.send();
+        xmlhttp.open("GET", "../Funcionario/controle_Funcionario_listar.php");
+        xmlhttp.send();
+
+    }
+    carregarLocal();
+    </script>
+</head>
+<body>
+ <main>
+
+
+<form method="post" action="controle_manutencao_cadastrar.php" class="cadastro">
+ <h1>cadastrar</h1>
+
+ <label>Problema</label>
+ <input class="input-form" type="text" name="txtproblema"  >
+
+ <label>Foto</label>
+ <input class="input-form" type="image" name="txtimg" >
+
+ <label>Data Inicio</label>
+ <input class="input-form" type="date" name="txtdatainicio" >
+
+ <label>Status</label>
+ <input class="input-form" type="text" name="txtstatus" >
+
+
+ <label >Equipamento</label>
+ <select id="equipamento" name="cboIdequipamento">
+
+ </select>
+
+ <button type="submit" action="">Cadastrar</button>
+
+ </form>
+
+
+
+ </main>
+</body>
+</html>
