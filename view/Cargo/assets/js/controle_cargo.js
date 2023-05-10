@@ -1,12 +1,69 @@
 
 forms = document.getElementById("forms");
 function btnupdate(){
-    forms.action = "../Cargo/controle/controle_Cargo_atualizar.php";
+
+    const idcargo = document.getElementById("txtid").value;
+    const nomecargo = document.getElementById("txtcargo").value;
+    let cargo = {
+        idcargo: idcargo,
+        nomecargo: nomecargo
+    }
+    fetch("../../controle/cargo/controle_Cargo_atualizar.php", {
+    method: 'post',
+    body: JSON.stringify(cargo),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    }).then((response) => {
+        return response.json()
+    }).then((res) => {
+     
+        const div = document.getElementById("divResposta");
+        if(res.cod==1){
+            div.innerHTML = "O campo não pode ser vazio";
+        }
+        console.log(res)
+
+        if (res.status === 200) {
+            console.log("Post successfully created!")
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
 }
 
+
 function btndelete(){
-    forms.action = "../Cargo/controle/controle_Cargo_delete.php";
+    const idDelete = document.getElementById("txtid").value;
+    let cargo = {
+        idcargo: idDelete
+    }
+    fetch("../../controle/cargo/controle_Cargo_delete.php", {
+    method: 'post',
+    body: JSON.stringify(cargo),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    }).then((response) => {
+        return response.json()
+    }).then((res) => {
+     
+        const div = document.getElementById("divResposta");
+        if(res.cod==1){
+            div.innerHTML = "O campo não pode ser vazio";
+        }
+        console.log(res)
+
+        if (res.status === 200) {
+            console.log("Post successfully created!")
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
 }
+
 
 function btncreate(){
     const novoCargo = document.getElementById("txtcargo").value;
@@ -38,10 +95,13 @@ function btncreate(){
     })
 }
 
+
 function preencherForm(id,cargo){
     document.getElementById("txtid").value = id;
     document.getElementById("txtcargo").value = cargo;
 }
+
+
 function carregarCargos(){
     const divListaCargos = document.getElementById("divListaCargos");
     fetch("../../controle/cargo/controle_Cargo_listarAll.php", {

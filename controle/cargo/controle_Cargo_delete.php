@@ -1,26 +1,38 @@
 <?php
-require_once "cargo.php";
-
-if(!isset($_POST['txtIdCargo'])){
-    die("Cargo não encontrado\n");
-}
-
-$idcargo = $_POST['txtIdCargo'];
+require_once "../../modelo/Cargo.php";
 
 
-$idcargo = strip_tags($idcargo);
+$request_raw = file_get_contents('php://input');
+$json_object = json_decode($request_raw);
 
 
-$Cargo = new Cargo();
-$Cargo ->setIdCargo($idcargo);
+if($json_object!=null){
+
+    $idcargo = $json_object->idcargo;
+    $idcargo  = strip_tags($idcargo);
 
 
+  
+    if ($idcargo=="") {
+        echo '{"cod":"1","msg":"O cargo não pode ser vazio!"}';
+        exit;
+    }
+    
+    
+    $Cargo = new Cargo();
+    $Cargo ->setIdCargo($idcargo);
+    
+ 
+    $resultado = $Cargo->excluir(); 
+        if ($resultado == true) {
+            echo '{"cod":"2","msg":"Deletado com seucesso"}';
+        } else {
+            echo '{"cod":"3","msg":"O Id não pode ser vazio!"}';
+        }
+    }else{
+    echo '{"cod":"4","msg":"O Id não pode ser nulo!"}';
+    exit;
+    }
 
-$resultado = $Cargo->excluir();
-if($resultado==true){
-echo "Apagado com sucesso";
-}else{
-echo "Erro ao apagar";
-}
 
 ?>
