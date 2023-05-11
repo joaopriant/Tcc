@@ -33,3 +33,4 @@ if($json_object!=null){
     echo '{"cod":"4","msg":"O cargo não pode ser nulo!"}';
     exit;
 }
+?>

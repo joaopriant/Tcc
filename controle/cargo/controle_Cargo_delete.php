@@ -33,6 +33,4 @@ if($json_object!=null){
     echo '{"cod":"4","msg":"O Id não pode ser nulo!"}';
     exit;
     }
-
-
 ?>
