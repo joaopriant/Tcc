@@ -4,7 +4,7 @@ require_once "../../modelo/Cargo.php";
 
 $request_raw = file_get_contents('php://input');
 $json_object = json_decode($request_raw);
-
+echo '{"cod":"1","msg":"O cargo não pode ser vazio!"}';
 
 if($json_object!=null){
 

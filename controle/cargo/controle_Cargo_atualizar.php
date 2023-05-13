@@ -32,9 +32,9 @@ if($json_object!=null){
 
     $resultado = $Cargo->atualizar();
     if($resultado == true){
-        echo "Atualizado com sucesso";
+         echo '{"cod":"1","msg":"Atualizado com sucesso!"}';
     }else{
-        echo "Erro ao atualizar";
+        echo '{"cod":"1","msg":"erro ao atualizar!"}';
     }
 }else{
     echo '{"cod":"4","msg":"O JSON não pode ser nulo!"}';
