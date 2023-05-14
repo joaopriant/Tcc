@@ -125,7 +125,7 @@ function carregarCargos(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>cod</th><th>cargo<th>";
+        let tabela = "<table><th>Id Cargo</th><th>Cargo</th>";
         for(var k in res) {
             const id = res[k].IdCargo;
              const cargo = res[k].Cargo
