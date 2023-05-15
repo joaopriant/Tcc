@@ -1,5 +1,5 @@
 <?php
-include "../banco/banco.php";
+include "banco.php";
 class Descricao implements JsonSerializable
 {
     private $idDescricao;
@@ -20,10 +20,11 @@ class Descricao implements JsonSerializable
 
     public function cadastrar()
     {
+        $idDescricao = $this->idDescricao;
         $descricao = $this->Descricao;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into Descricao(Descricao)values(?)");
-        $stmt->bind_param("s", $descricao);
+        $stmt = $this->banco->getConexao()->prepare("insert into Descricao(idDescricao, Descricao)values(?, ?)");
+        $stmt->bind_param("is", $idDescricao, $descricao);
         return $stmt->execute();
     }
 
