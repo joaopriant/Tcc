@@ -1,3 +1,5 @@
+forms = document.getElementById("forms");
+
 function atualizarpage(tempo){
     setInterval(function(){
         location.reload () 
@@ -6,17 +8,22 @@ function atualizarpage(tempo){
 
 function btnupdate(){
 
-    const iddesc = document.getElementById("txtid").value;
-    const desc = document.getElementById("txtDescricao").value;
-    let descricao = {
-        iddesc: iddesc,
-        desc: desc
+    const idlocal = document.getElementById("txtid").value;
+    const sala = document.getElementById("txtsala").value;
+    const andar = document.getElementById("txtandar").value;
+    const bloco = document.getElementById("txtbloco").value;
+
+    let local = {
+        idlocal: idlocal,
+        sala: sala,
+        andar: andar,
+        bloco: bloco
         
     }
-    console.log(descricao);
-    fetch("../../controle/descricao/controle_Descricao_atualizar.php", {
+    console.log(local);
+    fetch("../../controle/local/controle_Local_atualizar.php", {
     method: 'post',
-    body: JSON.stringify(descricao),
+    body: JSON.stringify(local),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -43,12 +50,12 @@ function btnupdate(){
 
 function btndelete(){
     const idDelete = document.getElementById("txtid").value;
-    let descricao = {
-        iddesc: idDelete
+    let local = {
+        idlocal: idDelete
     }
-    fetch("../../controle/descricao/controle_Descricao_deletar.php", {
+    fetch("../../controle/local/controle_Local_deletar.php", {
     method: 'post',
-    body: JSON.stringify(descricao),
+    body: JSON.stringify(local),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -74,13 +81,17 @@ function btndelete(){
 
 
 function btncreate(){
-    const novaDescricao = document.getElementById("txtDescricao").value;
-    let descricao = {
-        desc: novaDescricao
-    }
-    fetch("../../controle/descricao/controle_Descricao_cadastrar.php", {
+    const sala = document.getElementById("txtsala").value;
+    const andar = document.getElementById("txtandar").value;
+    const bloco = document.getElementById("txtbloco").value;
+    let local = {
+        sala: sala,
+        andar: andar,
+        bloco: bloco 
+       }
+    fetch("../../controle/local/controle_Local_cadastrar.php", {
     method: 'post',
-    body: JSON.stringify(descricao),
+    body: JSON.stringify(local),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -101,21 +112,22 @@ function btncreate(){
     }).catch((error) => {
         console.log(error)
     })
-    console.log(descricao)
-   // atualizarpage(200)
+    console.log(local)
 }
 
 
-function preencherForm(id,descricao){
-    descricao = descricao.toString()
+function preencherForm(id,sala,andar,bloco){
+    local = local.toString()
     document.getElementById("txtid").value = id;
-    document.getElementById("txtDescricao").value = descricao;
-    console.log(descricao)
+    document.getElementById("txtsala").value = sala;
+    document.getElementById("txtandar").value = andar;
+    document.getElementById("txtbloco").value = bloco;
+    console.log(local)
 }
 
-function carregarDescricao(){
-    const divListaDescricao = document.getElementById("divListaDescricao");
-    fetch("../../controle/descricao/controle_Descricao_listarAll.php", {
+function carregarLocal(){
+    const divListaCargos = document.getElementById("divListaCargos");
+    fetch("../../controle/local/controle_Local_listarAll.php", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -124,24 +136,29 @@ function carregarDescricao(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Id Descricao</th><th>Descricao</th>";
+        let tabela = "<table><th>Id Cargo</th><th>Cargo</th>";
         for(var k in res) {
-            const id = res[k].idDescricao;
-             const descricao = res[k].Descricao
+            const id = res[k].Idsala;
+            const sala = res[k].Sala;
+            const andar = res[k].Andar;
+            const bloco = res[k].Bloco;
+       
+             const meuClick = "onclick=preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')";
+
             tabela+="<tr>";
-                tabela+="<td onclick=preencherForm('"+id+"','"+descricao+"')>";
-                    tabela+= res[k].idDescricao;
+               tabela+="<td onclick=\""+meuClick  +"\">";
+                    tabela+= id;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=preencherForm('"+id+"','"+descricao+"')>";
-                    tabela+=res[k].Descricao;
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+local+"')\">";
+                    tabela+=local;
                 tabela+="</td>";
                 
             tabela+="</tr>";
             
          }
          tabela+="</table>";
-         divListaDescricao.innerHTML=tabela;
+         divListaCargos.innerHTML=tabela;
         console.log(res);
    
     }).catch((error) => {

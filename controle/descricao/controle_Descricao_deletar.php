@@ -1,29 +1,36 @@
 <?php
+require_once "../../modelo/Descricao.php";
 
-    require_once "../Descricao/Descricao.php";
 
-    if(!isset($_POST['txtIdDescricao'])){
-        die("ID não encontrado\n");
+$request_raw = file_get_contents('php://input');
+$json_object = json_decode($request_raw);
+echo '{"cod":"1","msg":"O Descricao não pode ser vazio!"}';
+
+if($json_object!=null){
+
+    $iddesc = $json_object->iddesc;
+    $iddesc  = strip_tags($iddesc);
+
+
+  
+    if ($iddesc=="") {
+        echo '{"cod":"1","msg":"O Descricao não pode ser vazio!"}';
+        exit;
     }
     
-
-
-    $idDesc = $_POST['txtIdDescricao'];
-
-
-    $idDesc = strip_tags($idDesc);
-
-
-    $descricao = new Descricao();
-    $descricao->setidDescricao($idDesc);
-
-
-
-    $resultado = $descricao->excluir();
-    if($resultado==true){
-    echo "Apagado com sucesso";
+    
+    $Descricao = new Descricao();
+    $Descricao ->setidDescricao($iddesc);
+    
+ 
+    $resultado = $Descricao->excluir(); 
+        if ($resultado == true) {
+            echo '{"cod":"2","msg":"Deletado com seucesso"}';
+        } else {
+            echo '{"cod":"3","msg":"O Id não pode ser vazio!"}';
+        }
     }else{
-    echo "Erro ao apagar";
+    echo '{"cod":"4","msg":"O Id não pode ser nulo!"}';
+    exit;
     }
-
-?>
+?> 

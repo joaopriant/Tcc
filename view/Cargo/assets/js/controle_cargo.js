@@ -48,7 +48,7 @@ function btndelete(){
     let cargo = {
         idcargo: idDelete
     }
-    fetch("../../controle/cargo/controle_Cargo_delete.php", {
+    fetch("../../controle/cargo/controle_Cargo_deletar.php", {
     method: 'post',
     body: JSON.stringify(cargo),
     headers: {
@@ -80,7 +80,7 @@ function btncreate(){
     let cargo = {
         nomecargo: novoCargo
     }
-    fetch("../../controle/cargo/controle_Cargo_cadastro.php", {
+    fetch("../../controle/cargo/controle_Cargo_cadastrar.php", {
     method: 'post',
     body: JSON.stringify(cargo),
     headers: {
@@ -104,6 +104,7 @@ function btncreate(){
         console.log(error)
     })
     atualizarpage(200)
+    console.log(cargo)
 }
 
 
@@ -129,13 +130,16 @@ function carregarCargos(){
         for(var k in res) {
             const id = res[k].IdCargo;
              const cargo = res[k].Cargo
+       
+             const meuClick = "onclick=preencherForm('"+id+"','"+cargo+"')";
+
             tabela+="<tr>";
-                tabela+="<td onclick=preencherForm('"+id+"','"+cargo+"')>";
-                    tabela+= res[k].IdCargo;
+               tabela+="<td onclick=\""+meuClick  +"\">";
+                    tabela+= id;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=preencherForm('"+id+"','"+cargo+"')>";
-                    tabela+=res[k].Cargo;
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+cargo+"')\">";
+                    tabela+=cargo;
                 tabela+="</td>";
                 
             tabela+="</tr>";

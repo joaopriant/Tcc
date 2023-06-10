@@ -98,24 +98,24 @@ button{
 button.bnt{
     cursor: pointer;
 }
-#divListaDescricao {
+#divListaCargos {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #divListaDescricao td, #divListaDescricao th {
+  #divListaCargos td, #divListaCargos th {
     border: 1px solid #000000;
     padding: 5px 10px;
     border-radius: 5px;
     
   }
   
-  #divListaDescricao tr:hover {
+  #divListaCargos tr:hover {
     background-color: #ddd;
 }
   
-  #divListaDescricao th {
+  #divListaCargos th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

@@ -5,7 +5,7 @@
     $json_object = json_decode($request_raw);
 
     if($json_object!=null){
-
+        
         $nomeNovoDescricao = $json_object->desc;
         $nomeNovoDescricao  = strip_tags($nomeNovoDescricao);
 
@@ -15,8 +15,8 @@
         }
 
         $Descricao = new Descricao();
-        $Descricao->setDescricao($Descricao);
-
+        $Descricao->setDescricao($nomeNovoDescricao );
+      
         $resultado = $Descricao->cadastrar();
 
         if ($resultado == true) {

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Descrição</title>
+    <title>Cargo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
@@ -33,11 +33,18 @@
     <h1>Cadastrar</h1>
     
     
-    <label >Id Descrição</label>
-    <input type="text" id ="txtid">
+    <label >Id Local</label>
+    <input type="text" name="txtid" id ="txtid">
     
-    <label >Descrição</label>
-    <input id = "txtDescricao" type="text">
+    <label >Sala</label>
+    <input name="txtsala" id = "txtsala" type="text" autocomplete="off">
+    <div id="divResposta"></div>
+
+    <label >Andar</label>
+    <input type="text" name="txtandar" id ="txtandar">
+    
+    <label >Bloco</label>
+    <input name="txtbloco" id = "txtbloco" type="text" autocomplete="off">
     <div id="divResposta"></div>
         
         
@@ -48,15 +55,15 @@
     <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
 
     
-    <div id="divListaDescricao"></div>
+    <div id="divListaLocal"></div>
 </div>
 
 
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
- <script src="assets/js/controle_descricao.js"></script>
+ <script src="assets/js/controle_local.js"></script>
  <script>
-    carregarDescricao();
+    carregarLocal();
      
  </script>
 </body>

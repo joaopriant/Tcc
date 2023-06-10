@@ -1,25 +1,42 @@
 <?php
-require_once "../Descricao";
+require_once "../../modelo/Descricao.php";
 
-if (!isset($_POST['txtDescricao'])) {
-    die("Descricao não encontrado\n");
-}
+$request_raw = file_get_contents('php://input');
+$json_object = json_decode($request_raw);
 
 
-$Desc = $_POST['txtDescricao'];
-$IdDesc = $_POST['txtIdDescricao'];
+if($json_object!=null){
 
-$Desc = strip_tags($Desc);
-$IdDesc = strip_tags($IdDesc);
 
-$descricao = new Descricao();
-$descricao->setDescricao($Desc);
-$descricao->setidDescricao($IdDesc);
+    $iddesc = $json_object->iddesc;
+    $iddesc  = strip_tags($iddesc);
+    $desc = $json_object->desc;
+    $desc  = strip_tags($desc);
+    
+    
+    if ($iddesc=="") {
+        echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
+        exit;
+    }
+    if ($desc=="") {
+        echo '{"cod":"1","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
 
-$resultado = $descricao->atualizar();
-if($resultado == true){
-    echo "Atualizado com sucesso";
-} else {
-    echo "Erro ao atualizar";
+
+    $Descricao = new Descricao();
+    $Descricao->setidDescricao($iddesc);
+    $Descricao->setDescricao($desc);
+
+
+    $resultado = $Descricao->atualizar();
+    if($resultado == true){
+         echo '{"cod":"1","msg":"Atualizado com sucesso!"}';
+    }else{
+        echo '{"cod":"1","msg":"erro ao atualizar!"}';
+    }
+}else{
+    echo '{"cod":"4","msg":"O JSON não pode ser nulo!"}';
+    exit;
 }
 ?>

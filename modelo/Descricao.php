@@ -20,11 +20,10 @@ class Descricao implements JsonSerializable
 
     public function cadastrar()
     {
-        $idDescricao = $this->idDescricao;
+      
         $descricao = $this->Descricao;
-
-        $stmt = $this->banco->getConexao()->prepare("insert into Descricao(idDescricao, Descricao)values(?, ?)");
-        $stmt->bind_param("is", $idDescricao, $descricao);
+        $stmt = $this->banco->getConexao()->prepare("insert into Descricao(Descricao)values(?)");
+        $stmt->bind_param("s", $descricao);
         return $stmt->execute();
     }
 
@@ -41,9 +40,7 @@ class Descricao implements JsonSerializable
     
         $idescricao = $this-> idDescricao;
         $descricao = $this->Descricao;
-        $stmt = $this->banco->getConexao()->prepare("update Descricao    
-            set Descricao=?,
-            where idDescricao = ?");
+        $stmt = $this->banco->getConexao()->prepare("update Descricao set Descricao=? where idDescricao = ?");
 
         $stmt->bind_param("si", $descricao, $idescricao);
         return $stmt->execute();
