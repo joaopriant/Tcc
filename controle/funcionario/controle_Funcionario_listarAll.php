@@ -1,5 +1,5 @@
 <?php
-    require_once "Funcionario.php";
+    require_once "../../modelo/Funcionario.php";
    $funcionario = new Funcionario();
    
    $objetoFuncionarios = $funcionario->listarFuncionario();

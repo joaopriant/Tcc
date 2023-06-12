@@ -1,52 +1,71 @@
 <?php
+require_once "../../modelo/Funcionario.php";
 
-include'Funcionario.php';
+$request_raw = file_get_contents('php://input');
+$json_object = json_decode($request_raw);
 
-if (!isset($_POST['txtnome'])) {
-    echo("Nome não encontrado\n");
-}
+if($json_object!=null){
 
-if (!isset($_POST['txtregistro'])) {
-    echo ("Registro f. não encontrado\n");
-}
-if (!isset($_POST['txtdata'])) {
-    echo("\nData não encontrado");
-}
-if (!isset($_POST['txtEmail'])) {
-    echo("\nEmail não encontrado");
-}
-if (!isset($_POST['txtcargo'])) {
-    echo("cargo não encontrado");
-}
-if (!isset($_POST['txtsenha'])) {
-    echo("senha nao encontrado ");
-}
+    $nome = $json_object->nome;
+    $nome  = strip_tags($nome);
 
-$nome = $_POST['txtnome'];
-$resgistro = $_POST['txtregistro'];
-$data = $_POST['txtdata'];
-$email = $_POST['txtEmail'];
-$senha = $_POST['txtsenha'];
-$cargo = $_POST['txtcargo'];
+    $email = $json_object->email;
+    $email  = strip_tags($email);
+    
+    $date = $json_object->date;
+    $date  = strip_tags($date);
+    
+    $senha = $json_object->senha;
+    $senha  = strip_tags($senha);
 
-$nome = strip_tags($nome);
-$resgistro = strip_tags($resgistro);
-$email = strip_tags($email);
-$senha = strip_tags($senha);
-$cargo = strip_tags($cargo);
+    $registro = $json_object->registro;
+    $registro  = strip_tags($registro);
+    
+    $cargo = $json_object->cargo;
+    $cargo  = strip_tags($cargo);
 
-$funcionario = new Funcionario();
-$funcionario->setNome($nome);
-$funcionario->setRegistroFuncionario($resgistro);
-$funcionario->setDatadeNasc($data);
-$funcionario->setEmail($email);
-$funcionario->setCargo($cargo);
-$funcionario->setSenha($senha);
+    if ($nome=="") {
+        echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
+        exit;
+    }
+    if ($registro=="") {
+        echo '{"cod":"2","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
 
-$resultado = $Funcionario->atualizar();
-if($resultado == true){
-    echo "Atualizado com sucesso";
-} else {
-    echo "Erro ao atualizar";
+    if ($senha=="") {
+        echo '{"cod":"3","msg":"O id não pode ser vazio!"}';
+        exit;
+    }
+    if ($email=="") {
+        echo '{"cod":"4","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
+    if ($date=="") {
+        echo '{"cod":"5","msg":"O id não pode ser vazio!"}';
+        exit;
+    }
+    if ($cargo=="") {
+        echo '{"cod":"6","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
+
+    $Funcionario = new Funcionario();
+    $Funcionario->setNome($nome);
+    $Funcionario->setRegistroFuncionario($registro);
+    $Funcionario->setDatadeNasc($date);
+    $Funcionario->setCargo($cargo);
+    $Funcionario->setSenha($senha);
+    $Funcionario->setEmail($email);
+
+    $resultado = $Funcionario->atualizar();
+    if($resultado == true){
+         echo '{"cod":"7","msg":"Atualizado com sucesso!"}';
+    }else{
+        echo '{"cod":"8","msg":"erro ao atualizar!"}';
+    }
+}else{
+    echo '{"cod":"9","msg":"O JSON não pode ser nulo!"}';
+    exit;
 }
 ?>
