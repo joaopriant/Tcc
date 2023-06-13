@@ -159,16 +159,20 @@ function btncreate(){
 }
 
 
-function preencherForm(id,cargo){
-    cargo = cargo.toString()
-    document.getElementById("txtid").value = id;
-    document.getElementById("txtcargo").value = cargo;
-    console.log(cargo)
+function preencherForm(registro,nome,email,cargo,senha,date){
+    funcionario = funcionario.toString()
+    document.getElementById("txtid").value = registro;
+    document.getElementById("txtnome").value = nome;
+    document.getElementById("txtemail").value = email;
+    document.getElementById("cbocargo").value = cargo;
+    document.getElementById("txtsenha").value = senha;
+    document.getElementById("date").value = date;
+    console.log(funcionario)
 }
 
-function carregarCargos(){
-    const divListaCargos = document.getElementById("divListaCargos");
-    fetch("../../controle/cargo/controle_Cargo_listarAll.php", {
+function carregarFuncionarios(){
+    const divListaCargos = document.getElementById("divListaFuncionarios");
+    fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -177,22 +181,38 @@ function carregarCargos(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Id Cargo</th><th>Cargo</th>";
+        let tabela = "<table><th>Registro Funcionario</th><th>Nome</th><th>Email</th><th>Data de Nacimento</th><th>Cargo</th>";
         for(var k in res) {
-            const id = res[k].IdCargo;
-             const cargo = res[k].Cargo
+            const registro = res[k].RegistroFuncionario;
+            const nome = res[k].Nome
+            const email = res[k].Email;
+            const senha = res[k].Senha;
+            const date = res[k].DatadeNacimento;
+            const cargo = res[k].Cargo
        
-             const meuClick = "onclick=preencherForm('"+id+"','"+cargo+"')";
+             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')";
 
             tabela+="<tr>";
                tabela+="<td onclick=\""+meuClick  +"\">";
-                    tabela+= id;
+                    tabela+= registro;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+id+"','"+cargo+"')\">";
-                    tabela+=cargo;
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
+                    tabela+=nome;
                 tabela+="</td>";
                 
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
+                    tabela+=email;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
+                    tabela+=cargo;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
+                    tabela+=date;
+                tabela+="</td>";
+                            
             tabela+="</tr>";
             
          }

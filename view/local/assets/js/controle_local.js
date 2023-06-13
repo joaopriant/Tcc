@@ -136,7 +136,7 @@ function carregarLocal(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Id Cargo</th><th>Cargo</th>";
+        let tabela = "<table><th>Id Sala</th><th>Sala</th><th>Andar</th><th>Bloco</th>";
         for(var k in res) {
             const id = res[k].Idsala;
             const sala = res[k].Sala;

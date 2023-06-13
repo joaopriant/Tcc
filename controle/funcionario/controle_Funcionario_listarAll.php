@@ -1,8 +1,8 @@
 <?php
-    require_once "../../modelo/Funcionario.php";
-   $funcionario = new Funcionario();
+    require_once "../../modelo/funcionario.php";
+    $funcionario = new Funcionario();
    
-   $objetoFuncionarios = $funcionario->listarFuncionario();
-   echo json_encode($objetoFuncionarios);
+   $objFuncionarios = $funcionario->listarFuncionario();
+   echo json_encode($objFuncionarios);
 
 ?>

@@ -43,7 +43,6 @@ class Cargo implements JsonSerializable
         $IdCargo = $this->IdCargo;
         $Cargo = $this->Cargo;
         
-        
         $stmt = $this->banco->getConexao()->prepare("update Cargo  set Cargo=? where idCargo=?");
 
         $stmt->bind_param("si",$Cargo , $IdCargo);

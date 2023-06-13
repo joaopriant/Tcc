@@ -40,22 +40,16 @@ class Funcionario
 
     public function atualizar()
     {
-        $registrofuncionario = $this->RegistroFuncionario;
+        $registro = $this->RegistroFuncionario;
         $nome = $this->Nome;
         $data = $this->DatadeNacimento;
         $email = $this->Email;
         $cargo = $this->Cargo;
         $senha = $this->Senha;
 
-        $stmt = $this->banco->getConexao()->prepare("update Funcionario    
-            set Nome=?,
-            set DatadeNacimento=?,
-            set Email=?,
-            set Cargo=?,
-            set Senha=?,
-            where RegistroFuncionario = ?");
+        $stmt = $this->banco->getConexao()->prepare("update Funcionario set Nome=?, DatadeNacimento=?, Email=?,Cargo=? Senha=? where RegistroFuncionario = ?");
 
-        $stmt->bind_param("ssssss", $nome, $data, $email, $cargo, $senha, $registrofuncionario);
+        $stmt->bind_param("sssiss", $nome, $data, $email, $cargo, $senha, $registro);
         return $stmt->execute();
     }
 
@@ -63,14 +57,15 @@ class Funcionario
     {   
         
         $stmt = $this->banco->getConexao()->prepare("select * from Funcionario where RegistroFuncionario = ?");
-        $stmt->bind_param("i", $RegistroFuncionario);
+        $stmt->bind_param("s", $RegistroFuncionario);
         $stmt->execute();
         $resultado = $stmt->get_result();
         while ($linha = $resultado->fetch_object()) {
-            $this->setRegistroFuncionario($linha->RegistroFuncionario);
-            $this->setNome($linha->Nome);
-            $this->setDatadeNasc($linha->DatadeNacimento);
+            $this->setRegistroFuncionario($linha->registro);
+            $this->setNome($linha->nome);
             $this->setEmail($linha->Email);
+            $this->setDatadeNasc($linha->cargo);
+            $this->setDatadeNasc($linha->date);
 
         }
         return $this;
@@ -78,26 +73,29 @@ class Funcionario
     }
     public function listarFuncionario()
     {
-        $stmt = $this->banco->getConexao()->prepare("Select * from Funcionario");
+        $stmt = $this->banco->getConexao()->prepare("Select * from funcionario");
         $stmt->execute();
-        $result = $stmt->get_result();
-        $vetor = array();
+        $resultado = $stmt->get_result();
+        $resultados = array();
         $i = 0;
-        while ($linha = mysqli_fetch_object($result)) {
-            $vetorFuncionario[$i] = new Funcionario();
-            $vetorFuncionario[$i]->setRegistroFuncionario($linha->RegistroFuncionario);
-            $vetorFuncionario[$i]->setNome($linha->Nome);
+        while ($linha = $resultado->fetch_object()) {
+            $resultados[$i] = new Funcionario();
+            $resultados[$i]->setRegistroFuncionario($linha->RegistroFuncionario);
+            $resultados[$i]->setNome($linha->Nome);
+            $resultados[$i]->setEmail($linha->Email);
+            $resultados[$i]->setDatadeNasc($linha->DatadeNacimento);
+            $resultados[$i]->setCargo($linha->Cargo);
             $i++;
         }
-        return $vetorFuncionario;
+        return $resultados;
     }
     public function getRegistroFuncionario()
     {
         return $this->RegistroFuncionario;
     }
-    public function setRegistroFuncionario($v)
+    public function setRegistroFuncionario($RegistroFuncionario)
     {
-        $this->RegistroFuncionario = $v;
+        $this->RegistroFuncionario = $RegistroFuncionario;
     }
     public function getNome()
     {
