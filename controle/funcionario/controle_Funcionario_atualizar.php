@@ -1,4 +1,4 @@
-<?php
+                                                                                                <?php
 require_once "../../modelo/Funcionario.php";
 
 $request_raw = file_get_contents('php://input');

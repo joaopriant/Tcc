@@ -26,7 +26,7 @@ class Funcionario
         $senha = $this->Senha;
 
         $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNacimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isss", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
+        $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
         return $stmt->execute();
     }
 
@@ -34,7 +34,7 @@ class Funcionario
     {
         $registrofuncionario = $this->RegistroFuncionario;
         $stmt = $this->banco->getConexao()->prepare("delete from Funcionario where RegistroFuncionario = ?");
-        $stmt->bind_param("i", $registrofuncionario);
+        $stmt->bind_param("s", $registrofuncionario);
         return $stmt->execute();
     }
 
@@ -55,7 +55,7 @@ class Funcionario
             set Senha=?,
             where RegistroFuncionario = ?");
 
-        $stmt->bind_param("sdsisi", $nome, $data, $email, $cargo, $senha, $registrofuncionario);
+        $stmt->bind_param("ssssss", $nome, $data, $email, $cargo, $senha, $registrofuncionario);
         return $stmt->execute();
     }
 

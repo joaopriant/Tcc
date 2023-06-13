@@ -1,3 +1,24 @@
+function carregarCargo() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function () {
+        console.log(this.responseText);
+        let cbocargo = document.getElementById("cbocargo")
+        let objcargo = JSON.parse(this.responseText);
+
+        //let document.
+        objcargo.forEach(cargo => {
+            let novaOpcao = document.createElement("option");
+            novaOpcao.value = cargo.IdCargo;
+            novaOpcao.text = cargo.Cargo;
+            cbocargo.add(novaOpcao);
+        });
+    }
+    xmlhttp.open("GET", "../../controle/cargo/controle_Cargo_listarAll.php");
+    xmlhttp.send();
+
+}
+carregarCargo();
+
 forms = document.getElementById("forms");
 
 function atualizarpage(tempo){
@@ -24,9 +45,9 @@ function btnupdate(){
         date: date
     }
     console.log(cargo);
-    fetch("../../controle/cargo/controle_Cargo_atualizar.php", {
+    fetch("../../controle/Funcionario/controle_Funcionario_atualizar.php", {
     method: 'post',
-    body: JSON.stringify(cargo),
+    body: JSON.stringify(funcionario),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -47,18 +68,29 @@ function btnupdate(){
     }).catch((error) => {
         console.log(error)
     })
-    atualizarpage(200);
+    //atualizarpage(200);
 }
 
 
 function btndelete(){
-    const idDelete = document.getElementById("txtid").value;
-    let cargo = {
-        idcargo: idDelete
+    const registro = document.getElementById("txtid").value;
+    const nome = document.getElementById("txtnome").value;
+    const email = document.getElementById("txtemail").value;
+    const cargo = document.getElementById("cbocargo").value;
+    const senha = document.getElementById("txtsenha").value;
+    const date = document.getElementById("date").value;
+
+    let funcionario = {
+        registro: registro,
+        nome: nome,
+        email: email,
+        cargo: cargo,
+        senha: senha,
+        date: date
     }
-    fetch("../../controle/cargo/controle_Cargo_deletar.php", {
+    fetch("../../controle/Funcionario/controle_Funcionario_deletar.php", {
     method: 'post',
-    body: JSON.stringify(cargo),
+    body: JSON.stringify(funcionario),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -84,13 +116,24 @@ function btndelete(){
 
 
 function btncreate(){
-    const novoCargo = document.getElementById("txtcargo").value;
-    let cargo = {
-        nomecargo: novoCargo
+    const registro = document.getElementById("txtid").value;
+    const nome = document.getElementById("txtnome").value;
+    const email = document.getElementById("txtemail").value;
+    const cargo = document.getElementById("cbocargo").value;
+    const senha = document.getElementById("txtsenha").value;
+    const date = document.getElementById("date").value;
+
+    let funcionario = {
+        registro: registro,
+        nome: nome,
+        email: email,
+        cargo: cargo,
+        senha: senha,
+        date: date
     }
-    fetch("../../controle/cargo/controle_Cargo_cadastrar.php", {
+    fetch("../../controle/Funcionario/controle_Funcionario_cadastrar.php", {
     method: 'post',
-    body: JSON.stringify(cargo),
+    body: JSON.stringify(funcionario),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -112,7 +155,7 @@ function btncreate(){
         console.log(error)
     })
     atualizarpage(200)
-    console.log(cargo)
+    console.log(funcionario)
 }
 
 

@@ -42,7 +42,7 @@ if($json_object!=null){
         exit;
     }
     if ($date=="") {
-        echo '{"cod":"5","msg":"O id não pode ser vazio!"}';
+        echo '{"cod":"5","msg":"Date não pode ser vazio!"}';
         exit;
     }
     if ($cargo=="") {
