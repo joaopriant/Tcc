@@ -1,6 +1,6 @@
 <?php
 include "Banco.php";
-class Funcionario
+class Funcionario implements JsonSerializable
 {
     private $RegistroFuncionario;
     private $Nome;
@@ -9,6 +9,18 @@ class Funcionario
     private $Senha;
     private $Cargo;
     private $banco;
+
+    public function jsonSerialize()
+    {
+        $array["Nome"] = $this->getNome();
+        $array["Cargo"] = $this->getCargo();
+        $array["Email"] = $this->getEmail();
+        $array["DatadeNacimento"] = $this->getDatadeNasc();
+        $array["senha"] = $this->getSenha();
+        $array["RegistroFuncionario"] = $this->getRegistroFuncionario();
+       
+        return $array;
+    }
 
     function __construct()
     {

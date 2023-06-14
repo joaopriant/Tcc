@@ -99,24 +99,25 @@ button{
 button.bnt{
     cursor: pointer;
 }
-#divListaCargos {
+#divListaFuncionarios {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    align-items: center;
   }
   
-  #divListaCargos td, #divListaCargos th {
+  #divListaFuncionarios td, #divListaFuncionarios th {
     border: 1px solid #000000;
     padding: 5px 10px;
     border-radius: 5px;
-    
+    text-align: center;
   }
   
-  #divListaCargos tr:hover {
+  #divListaFuncionarios tr:hover {
     background-color: #ddd;
 }
   
-  #divListaCargos th {
+  #divListaFuncionarios th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

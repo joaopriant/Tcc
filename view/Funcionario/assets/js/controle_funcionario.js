@@ -188,7 +188,7 @@ function carregarFuncionarios(){
             const email = res[k].Email;
             const senha = res[k].Senha;
             const date = res[k].DatadeNacimento;
-            const cargo = res[k].Cargo
+            const cargo = res[k].Cargo.Cargo
        
              const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')";
 
@@ -206,11 +206,11 @@ function carregarFuncionarios(){
                 tabela+="</td>";
 
                 tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
-                    tabela+=cargo;
+                    tabela+=date;
                 tabela+="</td>";
 
                 tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
-                    tabela+=date;
+                    tabela+=cargo;
                 tabela+="</td>";
                             
             tabela+="</tr>";
