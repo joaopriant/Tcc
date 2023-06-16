@@ -85,7 +85,7 @@ class Funcionario implements JsonSerializable
     }
     public function listarFuncionario()
     {
-        $stmt = $this->banco->getConexao()->prepare("Select * from funcionario");
+        $stmt = $this->banco->getConexao()->prepare("Select RegistroFuncionario, Nome, DatadeNacimento, Email, cargo.Cargo AS Cargo from funcionario JOIN cargo ON cargo.IdCargo=funcionario.Cargo");
         $stmt->execute();
         $resultado = $stmt->get_result();
         $resultados = array();
