@@ -11,6 +11,7 @@ if($json_object!=null){
 
     $idcargo = $json_object->idcargo;
     $idcargo  = strip_tags($idcargo);
+    
     $nomecargo = $json_object->nomecargo;
     $nomecargo  = strip_tags($nomecargo);
     

@@ -8,13 +8,13 @@ function atualizarpage(tempo){
 
 function btnupdate(){
 
-    const idlocal = document.getElementById("txtid").value;
+    const idsala = document.getElementById("txtid").value;
     const sala = document.getElementById("txtsala").value;
     const andar = document.getElementById("txtandar").value;
     const bloco = document.getElementById("txtbloco").value;
 
     let local = {
-        idlocal: idlocal,
+        idsala: idsala,
         sala: sala,
         andar: andar,
         bloco: bloco
@@ -49,9 +49,9 @@ function btnupdate(){
 
 
 function btndelete(){
-    const idDelete = document.getElementById("txtid").value;
+    const idsala = document.getElementById("txtid").value;
     let local = {
-        idlocal: idDelete
+        idsala: idsala
     }
     fetch("../../controle/local/controle_Local_deletar.php", {
     method: 'post',
@@ -117,16 +117,20 @@ function btncreate(){
 
 
 function preencherForm(id,sala,andar,bloco){
-    local = local.toString()
+    sala = sala.toString();
+    andar = andar.toString();
+    bloco = bloco.toString();
     document.getElementById("txtid").value = id;
     document.getElementById("txtsala").value = sala;
     document.getElementById("txtandar").value = andar;
     document.getElementById("txtbloco").value = bloco;
-    console.log(local)
+    console.log(sala)
+    console.log(andar)
+    console.log(bloco)
 }
 
 function carregarLocal(){
-    const divListaCargos = document.getElementById("divListaCargos");
+    const divListaLocal = document.getElementById("divListaLocal");
     fetch("../../controle/local/controle_Local_listarAll.php", {
     method: 'get',
     headers: {
@@ -136,7 +140,7 @@ function carregarLocal(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Id Cargo</th><th>Cargo</th>";
+        let tabela = "<table><th>Id Sala</th><th>Sala</th><th>Andar</th><th>Bloco</th>";
         for(var k in res) {
             const id = res[k].Idsala;
             const sala = res[k].Sala;
@@ -150,15 +154,23 @@ function carregarLocal(){
                     tabela+= id;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+id+"','"+local+"')\">";
-                    tabela+=local;
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')\">";
+                    tabela+=sala;
                 tabela+="</td>";
-                
+
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')\">";
+                tabela+=andar;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')\">";
+                tabela+=bloco;
+                tabela+="</td>";
+
             tabela+="</tr>";
             
          }
          tabela+="</table>";
-         divListaCargos.innerHTML=tabela;
+         divListaLocal.innerHTML=tabela;
         console.log(res);
    
     }).catch((error) => {

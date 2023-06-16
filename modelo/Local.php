@@ -49,11 +49,7 @@ class Local implements JsonSerializable
         $andar = $this->Andar;
         $Idsala = $this->Idsala;
         
-        $stmt = $this->banco->getConexao()->prepare("update Local    
-            set Sala=?,
-            set Bloco=?,
-            set Andar=?,
-            where Idsala = ?");
+        $stmt = $this->banco->getConexao()->prepare("update Local set Sala=?, Bloco=?, Andar=? where Idsala = ?");
 
         $stmt->bind_param("sssi", $Sala, $bloco, $andar, $Idsala);
         return $stmt->execute();

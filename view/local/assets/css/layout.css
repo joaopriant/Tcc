@@ -16,7 +16,7 @@ nav{
     height: 200px;
 }
 nav div#logo{
-    background-image: url(../../../image/logo.png);
+    background-image: url(../../logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 150px;
@@ -98,24 +98,24 @@ button{
 button.bnt{
     cursor: pointer;
 }
-#divListaCargos {
+#divListaLocal {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #divListaCargos td, #divListaCargos th {
+  #divListaLocal td, #divListaLocal th {
     border: 1px solid #000000;
     padding: 5px 10px;
     border-radius: 5px;
     
   }
   
-  #divListaCargos tr:hover {
+  #divListaLocal tr:hover {
     background-color: #ddd;
 }
   
-  #divListaCargos th {
+  #divListaLocal th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

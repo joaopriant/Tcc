@@ -1,8 +1,8 @@
 <?php
-    require_once "../Local/Local.php";
-   $Descricao = new Descricao();
+    require_once "../../modelo/Local.php";
+   $Local = new Local();
    
-   $objDescricao = $Descricao->listarDescricao();
-   echo json_encode($objDescricao);
+   $objlocal = $Local->listarLocal();
+   echo json_encode($objlocal);
 
 ?>
