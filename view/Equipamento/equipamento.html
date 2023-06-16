@@ -3,72 +3,72 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
     <title>Formulários em HTML5</title>
     <script>
-        function carregarLocal() {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function () {
-                console.log(this.responseText);
-                let cbolocal = document.getElementById("cboLocal")
-                let objLocais = JSON.parse(this.responseText);
+    function carregarLocal() {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            console.log(this.responseText);
+            let cbolocal = document.getElementById("cboLocal")
+            let objLocais = JSON.parse(this.responseText);
 
-                //let document.
-                objLocais.forEach(local => {
-                    let novaOpcao = document.createElement("option");
-                    novaOpcao.value = local.Idsala;
-                    novaOpcao.text = ("Bloco:")+local.Bloco;
-                    cbolocal.add(novaOpcao);
-                });
-            }
-            xmlhttp.open("GET", "../local/controle_Local_listar.php");
-            xmlhttp.send();
-
+            //let document.
+            objLocais.forEach(local => {
+                let novaOpcao = document.createElement("option");
+                novaOpcao.value = local.Idsala;
+                novaOpcao.text = ("Bloco:")+local.Bloco;
+                cbolocal.add(novaOpcao);
+            });
         }
-        carregarLocal();
+        xmlhttp.open("GET", "../local/controle_Local_listar.php");
+        xmlhttp.send();
+
+    }
+    carregarLocal();
 
 
-        function carregarFuncionario() {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function () {
-                console.log(this.responseText);
-                let cbofuncionario = document.getElementById("cboFuncionario");
-                let objfuncionarios = JSON.parse(this.responseText);
+    function carregarFuncionario() {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            console.log(this.responseText);
+            let cbofuncionario = document.getElementById("cboFuncionario");
+            let objfuncionarios = JSON.parse(this.responseText);
 
-                //let document.
-                objfuncionarios.forEach(funcionario => {
-                    let novaOpcao = document.createElement("option");
-                    novaOpcao.value = funcionario.RegistroFuncionario;
-                    novaOpcao.text = ("nome:")+funcionario.Nome + (" Email:") +funcionario.Email;
-                    console.log(funcionario.Nome)
-                    cbofuncionario.add(novaOpcao);
-                });
-            }
-            xmlhttp.open("GET", "../Funcionario/controle_Funcionario_listar.php");
-            xmlhttp.send();
-
+            //let document.
+            objfuncionarios.forEach(funcionario => {
+                let novaOpcao = document.createElement("option");
+                novaOpcao.value = funcionario.RegistroFuncionario;
+                novaOpcao.text = ("nome:")+funcionario.Nome + (" Email:") +funcionario.Email;
+                console.log(funcionario.Nome)
+                cbofuncionario.add(novaOpcao);
+            });
         }
-        carregarFuncionario();
+        xmlhttp.open("GET", "../Funcionario/controle_Funcionario_listar.php");
+        xmlhttp.send();
 
-        function carregarDescricao() {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function () {
-                console.log(this.responseText);
-                let cbotipoequip = document.getElementById("cboDescricao")
-                let objtipo = JSON.parse(this.responseText);
+    }
+    carregarFuncionario();
 
-                objtipo.forEach(tipo => {
-                    let novaOpcao = document.createElement("option");
-                    novaOpcao.value = tipo.idDescricao;
-                    novaOpcao.text = ("Tipo:")+tipo.Descricao;
-                    cbotipoequip.add(novaOpcao);
-                });
-            }
-            xmlhttp.open("GET", "../Descricao/controle_Descricao_listar.php");
-            xmlhttp.send();
+    function carregarDescricao() {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            console.log(this.responseText);
+            let cbotipoequip = document.getElementById("cboDescricao")
+            let objtipo = JSON.parse(this.responseText);
 
+            objtipo.forEach(tipo => {
+                let novaOpcao = document.createElement("option");
+                novaOpcao.value = tipo.idDescricao;
+                novaOpcao.text = ("Tipo:")+tipo.Descricao;
+                cbotipoequip.add(novaOpcao);
+            });
         }
-        carregarDescricao();
+        xmlhttp.open("GET", "../Descricao/controle_Descricao_listarAll.php");
+        xmlhttp.send();
+
+    }
+    carregarDescricao();
 
     </script>
 </head>
