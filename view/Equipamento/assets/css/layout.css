@@ -16,7 +16,7 @@ nav{
     height: 100px;
 }
 nav div#logo{
-    background-image: url(../../../image/logo.png);
+    background-image: url(../image/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 150px;

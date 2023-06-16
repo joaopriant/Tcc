@@ -1,11 +1,11 @@
-                                                                                                <?php
+<?php
 require_once "../../modelo/Funcionario.php";
 
 $request_raw = file_get_contents('php://input');
 $json_object = json_decode($request_raw);
 
 if($json_object!=null){
-
+    
     $nome = $json_object->nome;
     $nome  = strip_tags($nome);
 
@@ -42,7 +42,7 @@ if($json_object!=null){
         exit;
     }
     if ($date=="") {
-        echo '{"cod":"5","msg":"O id não pode ser vazio!"}';
+        echo '{"cod":"5","msg":"Date não pode ser vazio!"}';
         exit;
     }
     if ($cargo=="") {
@@ -57,15 +57,17 @@ if($json_object!=null){
     $Funcionario->setCargo($cargo);
     $Funcionario->setSenha($senha);
     $Funcionario->setEmail($email);
+  
+    $resultado = $Funcionario->cadastrar();
 
-    $resultado = $Funcionario->atualizar();
-    if($resultado == true){
-         echo '{"cod":"7","msg":"Atualizado com sucesso!"}';
-    }else{
-        echo '{"cod":"8","msg":"erro ao atualizar!"}';
+    if ($resultado == true) {
+        echo '{"cod":"7","msg":"Cadastrado com seucesso"}';
+    } else {
+        echo '{"cod":"8","msg":"O cargo não pode ser vazio!"}';
     }
 }else{
-    echo '{"cod":"9","msg":"O JSON não pode ser nulo!"}';
+    echo '{"cod":"9","msg":"O cargo não pode ser nulo!"}';
     exit;
 }
+
 ?>

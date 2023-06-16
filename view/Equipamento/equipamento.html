@@ -1,130 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    <head>
+        <title>Funcionario</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
+        <link rel="stylesheet" href="assets/css/tipografia.css">
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
-    <title>Formulários em HTML5</title>
-    <script>
-    function carregarLocal() {
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload = function () {
-            console.log(this.responseText);
-            let cbolocal = document.getElementById("cboLocal")
-            let objLocais = JSON.parse(this.responseText);
-
-            //let document.
-            objLocais.forEach(local => {
-                let novaOpcao = document.createElement("option");
-                novaOpcao.value = local.Idsala;
-                novaOpcao.text = ("Bloco:")+local.Bloco;
-                cbolocal.add(novaOpcao);
-            });
-        }
-        xmlhttp.open("GET", "../local/controle_Local_listar.php");
-        xmlhttp.send();
-
-    }
-    carregarLocal();
-
-
-    function carregarFuncionario() {
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload = function () {
-            console.log(this.responseText);
-            let cbofuncionario = document.getElementById("cboFuncionario");
-            let objfuncionarios = JSON.parse(this.responseText);
-
-            //let document.
-            objfuncionarios.forEach(funcionario => {
-                let novaOpcao = document.createElement("option");
-                novaOpcao.value = funcionario.RegistroFuncionario;
-                novaOpcao.text = ("nome:")+funcionario.Nome + (" Email:") +funcionario.Email;
-                console.log(funcionario.Nome)
-                cbofuncionario.add(novaOpcao);
-            });
-        }
-        xmlhttp.open("GET", "../Funcionario/controle_Funcionario_listar.php");
-        xmlhttp.send();
-
-    }
-    carregarFuncionario();
-
-    function carregarDescricao() {
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload = function () {
-            console.log(this.responseText);
-            let cbotipoequip = document.getElementById("cboDescricao")
-            let objtipo = JSON.parse(this.responseText);
-
-            objtipo.forEach(tipo => {
-                let novaOpcao = document.createElement("option");
-                novaOpcao.value = tipo.idDescricao;
-                novaOpcao.text = ("Tipo:")+tipo.Descricao;
-                cbotipoequip.add(novaOpcao);
-            });
-        }
-        xmlhttp.open("GET", "../Descricao/controle_Descricao_listarAll.php");
-        xmlhttp.send();
-
-    }
-    carregarDescricao();
-
-    </script>
-</head>
-
-<body>
-    <form method="post" action="controle_Equipamento_cadastrar.php" class="cadastro">
-        <h1>Cadastrar</h1>
+    
+    </head>
+    <body>
+        <header>
+            <nav>
+                    <div id="logo"></div>
+                    
+                    <ul id="right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Cadastrar</a></li>
+                        <li><a href="#">Relatorios</a></li>
+                        <li><a href="#">Manutenções</a></li>
+                        <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
+                </ul>
+                
+            </nav>
+            
+        </header>
         
-        <label>Locais</label>
-        <br>
-        <select id="cboLocal"  name="cbolocais">
+    <div id="forms">
+    
+        <h1>Equipamento</h1>
+        
+        <label >IdEquipamento</label>
+        <input type="text" id ="txtid">
+        
+        <label >numPatrimônio</label>
+        <input id = "txtnome" type="text" autocomplete="off">
+    
+        <label >Local</label>
+        <select id="cboLocal"></select>
 
-        </select>
-        <br>
-        <label>Funcionários</label>
-        <br>
-        <select id="cboFuncionario" name="cbofuncionario">
+        <label >Funcionario Responsavel</label>
+        <select id="cboFuncionario"></select>
+        
+        <label >Descrição</label>
+        <select id="cboDescricao"></select>
 
-        </select>
-        <br>
-        <label>Descrições</label>
-        <br>
-        <select id="cboDescricao" name="cbodescricao">
-
-        </select>
-        <br>
-        <br>
-        <label>Numero Patrimonio</label>
-        <input class="input-form" type="text" name="txtnumPatrimonio" autocomplete="off" >
+        <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+            
+        <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+        
+        <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
+    
+        
+        <div id="divListaFuncionarios"></div>
+    </div>
     
     
-    
-        <button type="submit" action="">Cadastrar</button>
-   
-    </form>
-
-    <form method="get" action="controle_Equipamento_view.php" class="view">
-    
-        <h1>View</h1>
-    
-        <label for="Idsala" class="label1">Id Equipamento</label>
-        <input class="input-form" type="text" name="txtIdequipamento" autocomplete="off" >
-     
-        <button type="submit" action="">Visualizar</button>
-        </form>
-   
-    <form method="post" action="controle_Equipamento_deletar.php" class="delete">
-       
-       <h1>Deletar</h1>
-   
-       <label>Id Equipamento</label>
-       <input class="input-form" type="text" name="txtIdequipamento" >
-   
-       <button type="submit" action="">Deletar</button>
-       </form>
-
-</body>
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+     <script src="assets/js/controle_equipamento.js"></script>
+     <script>
+        carregarFuncionarios();
+         
+     </script>
+    </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Formulários em HTML5</title>
+    <title>Funcionario</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
@@ -28,46 +28,46 @@
         
     </header>
     
-<form method="post" action="#" id="forms" class="cadastro">
-    <h1>Cadastrar</h1>
+<div id="forms">
 
+    <h1>Funcionario</h1>
+    
+    
+    <label >Registro de Funcionario</label>
+    <input type="text" name="txtid" id ="txtid">
+    
+    <label >Nome</label>
+    <input name="txtnome" id = "txtnome" type="text" autocomplete="off">
+         
+    <label >Email</label>
+    <input type="email" name="txtemail" id ="txtemail">
+    
+    <label >Data de Nascimento</label>
+    <input name="date" id = "date" type="date" autocomplete="off">  
 
-        <label >Senha</label>
-        <input type="text" name="txtsenha" autocomplete="new-password">
+    <label >Cargo</label>
+    <select id="cbocargo"></select>
+    
+    <label >Senha</label>
+    <input name="txtsenha" id = "txtsenha" type="password" autocomplete="off">
+
+    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
         
-        <label >Registro de Funcionario</label>
-        <input name="txtregistro" type="text" autocomplete="off">
+    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
     
-        <label >Nome Completo</label>
-        <input type="text" name="txtnome" autocomplete="name">
+    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
+
     
-    <div id="direita">
-    
-        <label >E-mail</label>
-        <input type="email" name="txtemail" autocomplete="email">
+    <div id="divListaFuncionarios"></div>
+</div>
 
-        <label name="txtcargo">Cargo</label>
-        <br>
-        <select id="cboCargo">
-        </select>
-
-        <br>
-        <br>
-        <label >Data de Nascimento</label>
-        <input type="date" name="txtdata" autocomplete="bday" >
-
-    </div>
-    
-    <button type="submit" onclick="btncreate()" id="create">Cadastrar</button>
-
-    <button type="submit" onclick="btnupdate()" id="update">Atualizar</button>
-    
-    <button type="submit" onclick="btndelete()" id="delete">Deletar</button>
-
- </form>
 
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
  <script src="assets/js/controle_funcionario.js"></script>
+ <script>
+    carregarFuncionarios();
+     
+ </script>
 </body>
 </html>
