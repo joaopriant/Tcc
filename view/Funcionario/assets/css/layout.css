@@ -6,7 +6,7 @@
 }
 header{
     width: 100%;
-    height: 7vh;
+    height: 9vh;
     position: relative;
     background-color: #221c4d;
     
@@ -118,8 +118,7 @@ button.bnt{
 }
   
   #divListaFuncionarios th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+
     text-align: left;
     background-color: #221c4d;
     color: white;
