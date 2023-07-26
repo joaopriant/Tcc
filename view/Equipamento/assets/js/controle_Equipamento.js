@@ -209,11 +209,11 @@ function carregarLocal() {
         objLocais.forEach(local => {
             let novaOpcao = document.createElement("option");
             novaOpcao.value = local.Idsala;
-            novaOpcao.text = ("Bloco:")+local.Bloco;
+            novaOpcao.text = ("Sala:")+local.Sala + (" Andar:")+ local.Andar + (" Bloco:")+ local.Bloco;
             cbolocal.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../../../controle/local/controle_Local_listarAll.php");
+    xmlhttp.open("GET", "../../controle/local/controle_Local_listarAll.php");
     xmlhttp.send();
 
 }
@@ -230,12 +230,11 @@ function carregarFuncionario() {
         objfuncionarios.forEach(funcionario => {
             let novaOpcao = document.createElement("option");
             novaOpcao.value = funcionario.idequipamentoFuncionario;
-            novaOpcao.text = ("numpatrimonio:")+funcionario.numpatrimonio + (" local:") +funcionario.local;
-            console.log(funcionario.numpatrimonio)
+            novaOpcao.text = funcionario.nome;
             cbofuncionario.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../../../controle/Funcionario/controle_Funcionario_listarAll.php");
+    xmlhttp.open("GET", "../../controle/Funcionario/controle_Funcionario_listarAll.php");
     xmlhttp.send();
 
 }
@@ -255,7 +254,7 @@ function carregarDescricao() {
             cbotipoequip.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../../../controle/Descricao/controle_Descricao_listarAll.php");
+    xmlhttp.open("GET", "../../controle/Descricao/controle_Descricao_listarAll.php");
     xmlhttp.send();
 
 }
