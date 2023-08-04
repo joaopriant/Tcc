@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Funcionario</title>
+        <title>Equipamento</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
@@ -32,10 +32,10 @@
         <h1>Equipamento</h1>
         
         <label >IdEquipamento</label>
-        <input type="text" id ="txtid">
+        <input type="text" id ="txtid" readonly>
         
         <label >numPatrimônio</label>
-        <input id = "txtnome" type="text" autocomplete="off">
+        <input id = "txtnumpatrimonio" type="text" autocomplete="off">
     
         <label >Local</label>
         <select id="cboLocal"></select>
@@ -61,7 +61,7 @@
      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
      <script src="assets/js/controle_equipamento.js"></script>
      <script>
-        carregarFuncionarios();
+        carregarEquipamentos();
          
      </script>
     </body>
