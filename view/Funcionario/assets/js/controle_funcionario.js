@@ -68,7 +68,7 @@ function btnupdate(){
     }).catch((error) => {
         console.log(error)
     })
-    //atualizarpage(200);
+    atualizarpage(200);
 }
 
 
@@ -159,18 +159,20 @@ function btncreate(){
 }
 
 
-function preencherForm(registro,nome,email,cargo,senha,date){
+function preencherForm(registro,nome,email,cargo,date){
+    alert(date)
     nome = nome.toString();
     email = email.toString();
-    cargo = cargo.toString();
-    senha = senha.toString();
-
+    cargovalue = cargo.IdCargo;
+    cargotxt = cargo.Cargo;
+    alert(date);
 
     document.getElementById("txtid").value = registro;
     document.getElementById("txtnome").value = nome;
     document.getElementById("txtemail").value = email;
-    document.getElementById("cbocargo").value = cargo;
-    document.getElementById("date").value = today;
+    document.getElementById("date").value = date;
+    document.getElementById("cbocargo").text = cargotxt;
+    document.getElementById("cbocargo").value = cargovalue;
     console.log(date)
 }
 
@@ -185,36 +187,40 @@ function carregarFuncionarios(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Registro Funcionario</th><th>Nome</th><th>Email</th><th>Data de Nacimento</th><th>Cargo</th>";
+        let tabela = "<table><th>Registro Funcionario</th><th>Nome</th><th>Email</th><th>Cargo</th><th>Data de Nacimento</th>";
         for(var k in res) {
             const registro = res[k].RegistroFuncionario;
             const nome = res[k].Nome
             const email = res[k].Email;
             const senha = res[k].Senha;
-            const date = res[k].DatadeNacimento;
+            const date = new Date( res[k].DatadeNacimento);
+            var dia = ("0" + date.getDate()).slice(-2);
+            var mes = ("0" + (date.getMonth() + 1)).slice(-2);
+            const data = date.getFullYear()+"-"+(mes)+"-"+(dia);
+            
             const cargo = res[k].Cargo
-       
-             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')";
+            alert(cargo);
+             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')";
 
             tabela+="<tr>";
                tabela+="<td onclick=\""+meuClick  +"\">";
                     tabela+= registro;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
                     tabela+=nome;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
                     tabela+=email;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
-                    tabela+=date;
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
+                    tabela+=cargo;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+date+"')\">";
-                    tabela+=cargo;
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
+                    tabela+=data;
                 tabela+="</td>";
                             
             tabela+="</tr>";
