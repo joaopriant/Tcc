@@ -2,7 +2,8 @@
 <html>
 <head>
  <title>Formulários em HTML5</title>
- <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+ <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
+ <link rel="stylesheet" type="text/css" href="assets/css/tipografia.css" media="screen" />
 <meta charset="UTF-8">
 <script>
     function carregarEquipamento() {
@@ -30,36 +31,45 @@
     </script>
 </head>
 <body>
- <main>
+    <header>
+        <nav>
+            <div id="logo"></div>
+                <ul id="right">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Cadastrar</a></li>
+                    <li><a href="#">Relatorios</a></li>
+                    <li><a href="#">Manutenções</a></li>
+                    <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
+                </ul>
+        </nav>
+    </header>
 
 
 <form method="post" action="controle_manutencao_cadastrar.php" class="cadastro">
- <h1>cadastrar</h1>
+    <h1>cadastrar</h1>
 
- <label>Problema</label>
- <input class="input-form" type="text" name="txtproblema"  >
+    <label>Problema</label>
+    <input class="input-form" type="" name="txtproblema"  >
 
- <label>Foto</label>
- <input class="input-form" type="image" name="txtimg" >
+    
+    <label>Data Inicio</label>
+    <input class="input-form" type="date" name="txtdatainicio" >
+    
+    <label>Status</label>
+    <input class="input-form" type="text" name="txtstatus" >
+    
+    
+    <label >Equipamento</label>
+    <select id="equipamento" name="cboIdequipamento">
+        
+    </select>
+    
+    <label id="file" class="file">Selecione as Fotos</label>
+    <input class="input-form" type="file" name="txtimg" >
 
- <label>Data Inicio</label>
- <input class="input-form" type="date" name="txtdatainicio" >
+    <button type="submit" action="">Cadastrar</button>
 
- <label>Status</label>
- <input class="input-form" type="text" name="txtstatus" >
+</form>
 
-
- <label >Equipamento</label>
- <select id="equipamento" name="cboIdequipamento">
-
- </select>
-
- <button type="submit" action="">Cadastrar</button>
-
- </form>
-
-
-
- </main>
 </body>
 </html>
