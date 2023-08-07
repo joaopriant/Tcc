@@ -23,7 +23,6 @@ class Cargo implements JsonSerializable
     {
         $IdCargo = $this->IdCargo;
         $Cargo = $this->Cargo;
-        
 
         $stmt = $this->banco->getConexao()->prepare("insert into Cargo(IdCargo, Cargo)values(?, ?)");
         $stmt->bind_param("ss", $IdCargo, $Cargo);
