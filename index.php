@@ -1,27 +1,27 @@
 <?php
-$metodo = $_SERVER['REQUEST_METHOD'];
-$partesRota = explode("/", $_SERVER['REQUEST_URI']);
-if($partesRota[1]=="clientes"){
-    if( $metodo=="POST"){
-        require_once "controle/Cliente_cadastrar.php";
-    }elseif($metodo=="PUT"){
-        require_once "controle/Cliente_atualizar.php";
-    }elseif($metodo=="DELETE"){
-        require_once "controle/Cliente_excluir.php";
-    }elseif($metodo=="GET"){
-        if(isset($partesRota[2])){
-        if(is_numeric($partesRota[2])){
-            require_once "controle/Cliente_buscar.php";
-        }else if ($partesRota[2]==""){
-            require_once "controle/Cliente_listar.php";
-        }
-        }else{
-            require_once "controle/Cliente_listar.php";
-        }
-    }else{
-        header("HTTP/1.1 404 Not Found"); 
-    } 
-}else{
-    header("HTTP/1.1 404 Not Found");
- }
+//https://github.com/bramus/router
+require_once "Router.php";
+
+//Cria uma instância da classe Router
+$router  = new Router();    
+
+//define a rota: GET /retangulo/{int}/{int}/area
+$router->get('/', function($v1,$v2) {
+echo "ola mundo";
+  });
+
+//define a rota: GET /retangulo/{int}/{int}/area
+$router->get('/retangulo/(\d+)/(\d+)/area', function($v1,$v2) {
+   
+ });
+ //define a rota: GET /retangulo/{int}/{int}/perimetro
+ $router->get('/retangulo/(\d+)/(\d+)/perimetro', function($v1,$v2) {
+  
+  });
+  //define a rota: GET /retangulo/{int}/{int}/diagonal
+  $router->get('/retangulo/(\d+)/(\d+)/diagonal', function($v1,$v2) {
+   
+  });
+ 
+$router->run();
 ?>
