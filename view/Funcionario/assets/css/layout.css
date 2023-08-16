@@ -1,125 +1,205 @@
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 header{
     width: 100%;
-    height: 9vh;
+    height: 8vh;
     position: relative;
     background-color: #221c4d;
     
 }
 nav{
+    padding: 3px;
     width: 100%;
-    height: 100px;
+    height: 8vh;
 }
 nav div#logo{
-    background-image: url(../../../image/logo.png);
+    background-image: url(../image/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
-    width: 150px;
-    height: 50px;
+    width: 20vh;
+    height: 7vh;
     float: left;
     margin-top: 6px;
     margin-left: 20px;
     cursor: pointer;
 }
-nav ul#right{
-    float: right;
-}
 nav ul{
+    align-items: center;
     display:flex;
     flex-flow: row wrap;
     justify-content: left;
-    height: 40px;
+    height: 6vh;
+    padding-right: 20px;
+    float: right;
 }
 nav ul li{
-    margin-top: 15px;
+    align-items: center;
+    text-align: center;
     list-style: none;
 }
-nav ul li a{
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 18px;
-    text-decoration: none;
-    padding: 10px 30px;
-    border-radius: 100px;
-}
-nav ul li a::after{
-    color: #ca0f0f;
-}
 nav ion-icon#iconuser{
-    width: 45px;
-    height: 45px;
+    width: 6.5vh;
+    height: 6.5vh;
     color: #ffff;
-    margin-right: 15px;
-    margin-top: 7px;
 
 }
 nav ion-icon#iconuser:hover{
     color: #ca0f0f;
     cursor: pointer;
 }
-#forms{
-    padding-left: 10px; 
-    width: 50%;
+
+/**  ajusta o body e centraliza os elementos.*/
+body{
+    height: 100vh;
+    align-content: center;
 }
 
-input, select{
+section#formulario{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/**ajusta o container que as divs estão inseridas**/
+.container {
+    max-width: 800px;
+    padding: 25px 40px ;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 10px 20px 10px #0000003c;
+
+}
+/**  ajusta os elementos da div detalhes-user*/
+.container form .detalhes-user{
+
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+/**estiliza todos os input e spans dentro do form   */
+form .detalhes-user .campodosdados {
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 20px);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+section#view-funcionarios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div#view-tabela{
+    margin: 25px;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px 40px ;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 10px 20px 10px #0000003c;
+}
+div#tabela{
+    display:none;
+}
+table{
+    max-width: 700px;
+    width: 100%;
+    
+}
+
+div#tabela td{
+    text-align: center;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+h3#view{
+    float: left;
+}
+ion-icon#down-arrow{
+    float: right;
+    width: 25px;
+    height: 25px;
+    display: block;
+    cursor: pointer;
+}
+ion-icon#up-arrow{
+    float: right;
+    width: 25px;
+    height: 25px;
+    display: none;
+    cursor: pointer;
+}
+div#dropdown{
+    cursor: pointer;
+}
+/** input "campodosdados" para inserir detalhes do usuario na hora do cadastro  */
+.detalhes-user .campodosdados input, select {
     display: block;
     margin-top: 15px;
-    width: 50%;
+    width: 100%;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
     margin-top: 5px;
-    border-radius: 5px;
+    border-radius: 4px;
     outline: none;
     height: 40px;
-    cursor: text;
-}
-input:focus,select:focus {
-    border: 1px solid #417ec0;
-}
-button{
-    background-color: #417ec0;
-    height: 40px;
-    width: 100px;
-    font-size: 16px;
-    margin-top: 15px;
-    border: 1.5px solid #213c5a;
-    color: #fff;
-    border-radius: 5px;
-    margin: 0 3px;
-    border: none;
-}
-button.bnt{
-    cursor: pointer;
-}
-#divListaFuncionarios {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    align-items: center;
-  }
-  
-  #divListaFuncionarios td, #divListaFuncionarios th {
-    border: 1px solid #000000;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  #divListaFuncionarios tr:hover {
-    background-color: #ddd;
-}
-  
-  #divListaFuncionarios th {
 
-    text-align: left;
-    background-color: #221c4d;
-    color: white;
+}
+/**estiliza o texto dentro do input*/
+:placeholder-shown{
+    padding: 5px;
+    font-size: 10px;
+}
+/**estiliza o select*/
+  .detalhes-user .campodosdados select:focus,
+  .detalhes-user .campodosdados select:valid{
+      border: 1px solid #417ec0
   }
+
+  /**estiliza o botao*/
+   button {
+    height: 40px;
+    width: 25%;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #1f0f68;
+    outline: none;
+    border: 1.5px solid #ffffff;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    ;
+
+   }
+   /**p mudar a cor do botao qnd passa o mouse*/
+   button:hover{
+    background-color: #1f3b59;
+   }
+   /**classe do botao*/
+.botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    column-gap: 20px;
+}
+ /*muda a cor da borda quando clica no input :3*/
+    .detalhes-user .campodosdados input:focus,
+    .detalhes-user .campodosdados input:valid{
+        border: 1px solid #417ec0
+    }
+
+    

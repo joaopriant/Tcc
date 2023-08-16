@@ -1,5 +1,5 @@
 <?php
-require_once "../equipamento/equipamento.php";
+require_once "../../modelo/Equipamento.php";
 
 if(!isset($_GET['txtIdequipamento'])){
     die("Id não encontrado\n");

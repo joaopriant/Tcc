@@ -60,7 +60,7 @@ class Equipamento implements JsonSerializable
         $funcionario = $this->Responsavel;
         $stmt = $this->banco->getConexao()->prepare("update Equipamento    
             set numPatrimonio=?,
-            set TipoEquipamento_idDescricao=?,
+            set idDescricao=?,
             set Idsala=?,
             set Responsavel=?,
             where IdEquipamento = ?");

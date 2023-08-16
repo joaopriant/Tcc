@@ -1,10 +1,11 @@
 <?php
 include "Banco.php";
+include "Cargo.php";
 class Funcionario implements JsonSerializable
 {
     private $RegistroFuncionario;
     private $Nome;
-    private $DatadeNacimento;
+    private $DatadeNascimento;
     private $Email;
     private $Senha;
     private $Cargo;
@@ -15,7 +16,7 @@ class Funcionario implements JsonSerializable
         $array["Nome"] = $this->getNome();
         $array["Cargo"] = $this->getCargo();
         $array["Email"] = $this->getEmail();
-        $array["DatadeNacimento"] = $this->getDatadeNasc();
+        $array["DatadeNascimento"] = $this->getDatadeNasc();
         $array["senha"] = $this->getSenha();
         $array["RegistroFuncionario"] = $this->getRegistroFuncionario();
        
@@ -32,12 +33,12 @@ class Funcionario implements JsonSerializable
 
         $registrofuncionario = $this->RegistroFuncionario;
         $nome = $this->Nome;
-        $data = $this->DatadeNacimento;
+        $data = $this->DatadeNascimento;
         $email = $this->Email;
         $cargo = $this->Cargo;
         $senha = $this->Senha;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNacimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
+        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
         return $stmt->execute();
     }
@@ -54,14 +55,14 @@ class Funcionario implements JsonSerializable
     {
         $registro = $this->RegistroFuncionario;
         $nome = $this->Nome;
-        $data = $this->DatadeNacimento;
+        $data = $this->DatadeNascimento;
         $email = $this->Email;
         $cargo = $this->Cargo;
         $senha = $this->Senha;
 
-        $stmt = $this->banco->getConexao()->prepare("update Funcionario set Nome=?, DatadeNacimento=?, Email=?,Cargo=? Senha=? where RegistroFuncionario = ?");
+        $stmt = $this->banco->getConexao()->prepare("update Funcionario set Nome=?, DatadeNascimento=?, Email=?,Cargo=?, senha=? where RegistroFuncionario = ?");
 
-        $stmt->bind_param("sssiss", $nome, $data, $email, $cargo, $senha, $registro);
+        $stmt->bind_param("sssisi", $nome, $data, $email, $cargo, $senha, $registro);
         return $stmt->execute();
     }
 
@@ -85,7 +86,7 @@ class Funcionario implements JsonSerializable
     }
     public function listarFuncionario()
     {
-        $stmt = $this->banco->getConexao()->prepare("Select RegistroFuncionario, Nome, DatadeNacimento, Email, cargo.Cargo AS Cargo from funcionario JOIN cargo ON cargo.IdCargo=funcionario.Cargo");
+        $stmt = $this->banco->getConexao()->prepare("Select RegistroFuncionario, Nome, DatadeNascimento, Email, cargo.Cargo AS cargo , cargo.IdCargo AS IdCargo from funcionario JOIN cargo ON cargo.IdCargo=funcionario.Cargo");
         $stmt->execute();
         $resultado = $stmt->get_result();
         $resultados = array();
@@ -95,8 +96,11 @@ class Funcionario implements JsonSerializable
             $resultados[$i]->setRegistroFuncionario($linha->RegistroFuncionario);
             $resultados[$i]->setNome($linha->Nome);
             $resultados[$i]->setEmail($linha->Email);
-            $resultados[$i]->setDatadeNasc($linha->DatadeNacimento);
-            $resultados[$i]->setCargo($linha->Cargo);
+            $resultados[$i]->setDatadeNasc($linha->DatadeNascimento);
+            $cargo = new Cargo();
+            $cargo->setIdCargo($linha->IdCargo);
+            $cargo->setCargo($linha->cargo);
+            $resultados[$i]->setCargo($cargo);
             $i++;
         }
         return $resultados;
@@ -119,11 +123,11 @@ class Funcionario implements JsonSerializable
     }
     public function getDatadeNasc()
     {
-        return $this->DatadeNacimento;
+        return $this->DatadeNascimento;
     }
-    public function setDatadeNasc($DatadeNacimento)
+    public function setDatadeNasc($DatadeNascimento)
     {
-        $this->DatadeNacimento = $DatadeNacimento;
+        $this->DatadeNascimento = $DatadeNascimento;
     }
     public function getEmail()
     {
