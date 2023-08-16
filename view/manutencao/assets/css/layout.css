@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 header{
     width: 100%;
     height: 8vh;
@@ -51,7 +50,6 @@ nav ion-icon#iconuser:hover{
     color: #ca0f0f;
     cursor: pointer;
 }
-
 /**  ajusta o body e centraliza os elementos.*/
 body{
     height: 100vh;
@@ -68,16 +66,17 @@ section#formulario{
 
 /**ajusta o container que as divs estão inseridas**/
 .container {
+    min-width: 300px;
     max-width: 800px;
     padding: 25px 40px ;
     border-radius: 20px;
     background-color: #ffffff;
     box-shadow: 5px 10px 20px 10px #0000003c;
+    align-content: center;
 
 }
 /**  ajusta os elementos da div detalhes-user*/
 .container form .detalhes-user{
-
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between;
@@ -89,57 +88,11 @@ form .detalhes-user .campodosdados {
     margin-bottom: 10px;
     margin-top: 10px;
 }
-section#view-funcionarios{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-div#view-tabela{
-    margin: 25px;
-    max-width: 800px;
-    width: 100%;
-    padding: 20px 40px ;
-    border-radius: 20px;
-    background-color: #ffffff;
-    box-shadow: 5px 10px 20px 10px #0000003c;
-}
-div#tabela{
-    display:none;
-}
-table{
-    max-width: 700px;
-    width: 100%;
-    
-}
-
-div#tabela td{
-    text-align: center;
-    padding: 5px 15px;
-    border-radius: 10px;
-    border: 1px solid gray;
-    cursor: pointer;
-}
 
 h3#view{
     float: left;
 }
-ion-icon#down-arrow{
-    float: right;
-    width: 25px;
-    height: 25px;
-    display: block;
-    cursor: pointer;
-}
-ion-icon#up-arrow{
-    float: right;
-    width: 25px;
-    height: 25px;
-    display: none;
-    cursor: pointer;
-}
-div#dropdown{
-    cursor: pointer;
-}
+
 /** input "campodosdados" para inserir detalhes do usuario na hora do cadastro  */
 .detalhes-user .campodosdados input.input, select,textarea {
     display: block;
@@ -156,7 +109,7 @@ div#dropdown{
 
 }
 textarea{
-    height: 100px;
+    height: 60%;
 }
 /**estiliza o texto dentro do input*/
 :placeholder-shown{
@@ -172,7 +125,7 @@ textarea{
   /**estiliza o botao*/
    button {
     height: 40px;
-    width: 25%;
+    width: 35%;
     font-size: 15px;
     font-weight: 600;
     background-color: #1f0f68;
@@ -206,11 +159,11 @@ textarea{
     }
     input[type=file]{
         border: none;
-        margin: auto;
+        margin: none;
     }
     input[type=file]::file-selector-button {
         border: none;
-        background: #084cdf;
+        background: #721919;
         padding: 10px 20px;
         border-radius: 10px;
         color: #ffffff;
@@ -221,3 +174,80 @@ textarea{
       input[type=file]::file-selector-button:hover {
         background: #0d45a5;
       }
+      #file{
+        width: 100%;
+
+        display: flex;
+        flex-flow: column;
+
+        justify-items: center;
+      }
+
+      /*
+      ------------------------------------
+                RESPONSIVIDADE
+      ------------------------------------
+      */
+    @media screen and (max-width: 600px){
+        .container form .detalhes-user{
+            display: block;
+            justify-content: space-between;
+        }
+        #file{
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-flow: column;
+
+            justify-items: center;
+          }
+        button {
+            height: 40px;
+            width: 45%;
+            font-size: 15px;
+            font-weight: 600;
+            background-color: #1f0f68;
+            outline: none;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+           }
+           form .detalhes-user .campodosdados {
+
+            width: 90%;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        nav ul{
+            align-items: center;
+            display:flex;
+            flex-flow: row wrap;
+            justify-content: left;
+            height: 6vh;
+            padding-right: 20px;
+            float: right;
+        }
+        nav ul li{
+           display: none;
+        }
+        nav ion-icon#iconuser{
+            width: 6.5vh;
+            height: 6.5vh;
+            color: #ffff;
+        
+        }
+        nav ion-icon#iconuser:hover{
+            color: #ca0f0f;
+            cursor: pointer;
+        }
+        input[type=file]::file-selector-button {
+            border: none;
+            background: #721919;
+            padding: 10px 10px;
+            border-radius: 10px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background .2s ease-in-out;
+          }
+    }
