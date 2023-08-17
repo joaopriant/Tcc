@@ -89,7 +89,7 @@ form .detalhes-user .campodosdados {
     margin-bottom: 10px;
     margin-top: 10px;
 }
-section#view-funcionarios{
+section.lista-tabelas{
     display: flex;
     justify-content: center;
     align-items: center;
