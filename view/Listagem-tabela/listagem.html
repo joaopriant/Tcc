@@ -24,14 +24,16 @@
         
     </header>
     <p>.</p>
+
     <section class="lista-tabelas" id="view-funcionarios">
         <div class="lista-tabelas" id="view-tabela-funcionario">
             <div class="dropdown" id="dropdown-funcionarios" onmousedown="toggleDiv('tabela-funcionario','down-arrow-funcionario','up-arrow-funcionario');">
             <H3 class="titulo">Cadastrar Funcionario</H3>
-            <ion-icon class="arrow-up" id="up-arrow" name="chevron-up-outline"></ion-icon>
-            <ion-icon class="arrow-down" id="down-arrow" name="chevron-down-outline"></ion-icon>
+            <ion-icon class="arrow-up" id="up-arrow-funcionario" name="chevron-up-outline"></ion-icon>
+            <ion-icon class="arrow-down" id="down-arrow-funcionario" name="chevron-down-outline"></ion-icon>
             </div>
             <div id="tabela-funcionario" >
+                
             </div>
         </div>
     </section>
@@ -65,7 +67,7 @@
             <div class="dropdown" id="dropdown-local" onmousedown="toggleDiv('tabela-local','down-arrow-local','up-arrow-local');">
             <H3 class="titulo">Cadastrar Local</H3>
             <ion-icon class="arrow-up" id="up-arrow-local" name="chevron-up-outline"></ion-icon>
-            <ion-icon class="arrow-down"id="down-arrow-local" name="chevron-down-outline" onmousedown="carregarLocal();"></ion-icon>
+            <ion-icon class="arrow-down"id="down-arrow-local" name="chevron-down-outline"></ion-icon>
             </div>
             <div id="tabela-local" >
             </div>
@@ -75,5 +77,10 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="assets/js/controle_listagem.js"></script>
+    <script>
+        carregarEquipamento('tabela-local');
+        carregarLocal('tabela-local');
+        carregarFuncionario("tabela-local");
+    </script>
 </body>
 </html>

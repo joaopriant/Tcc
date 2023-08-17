@@ -1,4 +1,17 @@
-function carregarTabela(divid){
+
+function toggleDiv(divid,down,up){
+    if(document.getElementById(divid).style.display == 'none'){
+        document.getElementById(divid).style.display = 'block';
+        document.getElementById(up).style.display = 'block';
+        document.getElementById(down).style.display = 'none';
+    }else{
+     document.getElementById(divid).style.display = 'none';
+     document.getElementById(down).style.display = 'block';
+     document.getElementById(up).style.display = 'none';
+   }
+ }
+
+function carregarFuncionario(divid){
     const divListaCargos = document.getElementById(divid);
     fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
     method: 'get',
@@ -14,7 +27,6 @@ function carregarTabela(divid){
             const registro = res[k].RegistroFuncionario;
             const nome = res[k].Nome
             const email = res[k].Email;
-            const senha = res[k].Senha;
             const date = new Date( res[k].DatadeNacimento);
             var dia = ("0" + date.getDate()).slice(-2);
             var mes = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -56,8 +68,8 @@ function carregarTabela(divid){
     })
 }
 
-function carregarLocal(){
-    const divListaLocal = document.getElementById("divListaLocal");
+function carregarLocal(divid){
+    const divListaLocal = document.getElementById(divid);
     fetch("../../controle/local/controle_Local_listarAll.php", {
     method: 'get',
     headers: {
@@ -104,15 +116,57 @@ function carregarLocal(){
         console.log(error)
     })
 }
+function carregarEquipamento(divid){
+    const divListaresponsavels = document.getElementById(divid);
+    fetch("../../controle/Equipamento/controle_Equipamento_listarAll.php", {
+    method: 'get',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+}).then((response) => {
+        return response.json()
+    }).then((res) => {
+        let tabela = "<table><th>ID Equipamento</th><th>Num patrimonio</th><th>local</th><th>Responsavel</th><th>Descrição</th>";
+        for(var k in res) {
+            const idequipamento = res[k].IdEquipamento;
+            const numpatrimonio = res[k].numPatrimônio
+            const local = res[k].Local_Idsala;
+            const descricao = res[k].Descricao_idDescricao;
+            const responsavel = res[k].Responsavel
+            
+            const meuClick = "onclick=preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')";
+            
+            tabela+="<tr>";
+            tabela+="<td onclick=\""+meuClick+"\">";
+            tabela+= idequipamento;
+            tabela+="</td>";
+            
+            tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+            tabela+=numpatrimonio;
+                tabela+="</td>";
+                
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+=local;
+                tabela+="</td>";
+                
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+=descricao;
+                tabela+="</td>";
+                
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+=responsavel;
+                tabela+="</td>";
+                
+                tabela+="</tr>";
+                
+            }
+         tabela+="</table>";
+         divListaresponsavels.innerHTML=tabela;
+        console.log(res);
+   
+    }).catch((error) => {
+        console.log(error)
+    })
+}
 
-function toggleDiv(divid,down,up){
-    if(document.getElementById(divid).style.display == 'none'){
-        document.getElementById(divid).style.display = 'block';
-        document.getElementById(up).style.display = 'block';
-        document.getElementById(down).style.display = 'none';
-    }else{
-     document.getElementById(divid).style.display = 'none';
-     document.getElementById(down).style.display = 'block';
-     document.getElementById(up).style.display = 'none';
-   }
- }
