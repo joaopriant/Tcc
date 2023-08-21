@@ -1,5 +1,5 @@
 <?php
-include "../banco/banco.php";
+include "Banco.php";
 class Equipamento implements JsonSerializable
 {
     private $IdEquipamento;
@@ -87,9 +87,8 @@ class Equipamento implements JsonSerializable
         return $this;
 
     }
-    public function listarEquipamento
-    (
-    ) {
+    public function listarEquipamento() 
+    {
         $stmt = $this->banco->getConexao()->prepare("Select * from Equipamento");
         $stmt->execute();
         $resultado = $stmt->get_result();

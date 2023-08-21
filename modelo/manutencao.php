@@ -1,5 +1,5 @@
 <?php
-include "../banco/banco.php";
+include "Banco.php";
 class Manutencao implements JsonSerializable
 {
     private $IdManutencao;

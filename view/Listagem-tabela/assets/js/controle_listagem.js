@@ -11,6 +11,8 @@ function toggleDiv(divid,down,up){
    }
  }
 
+
+
 function carregarFuncionario(divid){
     const divListaCargos = document.getElementById(divid);
     fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
@@ -68,6 +70,8 @@ function carregarFuncionario(divid){
     })
 }
 
+
+
 function carregarLocal(divid){
     const divListaLocal = document.getElementById(divid);
     fetch("../../controle/local/controle_Local_listarAll.php", {
@@ -79,30 +83,30 @@ function carregarLocal(divid){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Id Sala</th><th>Sala</th><th>Andar</th><th>Bloco</th>";
+        let tabela = "<table><th>Id problema</th><th>problema</th><th>Datainicio</th><th>Status</th>";
         for(var k in res) {
-            const id = res[k].Idsala;
-            const sala = res[k].Sala;
-            const andar = res[k].Andar;
-            const bloco = res[k].Bloco;
+            const id = res[k].Idproblema;
+            const problema = res[k].problema;
+            const Datainicio = res[k].Datainicio;
+            const Status = res[k].Status;
        
-             const meuClick = "onclick=preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')";
+             const meuClick = "onclick=preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')";
 
             tabela+="<tr>";
                tabela+="<td onclick=\""+meuClick  +"\">";
                     tabela+= id;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')\">";
-                    tabela+=sala;
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')\">";
+                    tabela+=problema;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')\">";
-                tabela+=andar;
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')\">";
+                tabela+=Datainicio;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+id+"','"+sala+"','"+andar+"','"+bloco+"')\">";
-                tabela+=bloco;
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')\">";
+                tabela+=Status;
                 tabela+="</td>";
 
             tabela+="</tr>";
@@ -116,6 +120,8 @@ function carregarLocal(divid){
         console.log(error)
     })
 }
+
+
 function carregarEquipamento(divid){
     const divListaresponsavels = document.getElementById(divid);
     fetch("../../controle/Equipamento/controle_Equipamento_listarAll.php", {
@@ -131,7 +137,7 @@ function carregarEquipamento(divid){
         for(var k in res) {
             const idequipamento = res[k].IdEquipamento;
             const numpatrimonio = res[k].numPatrimônio
-            const local = res[k].Local_Idsala;
+            const local = res[k].Local_Idproblema;
             const descricao = res[k].Descricao_idDescricao;
             const responsavel = res[k].Responsavel
             
@@ -170,3 +176,52 @@ function carregarEquipamento(divid){
     })
 }
 
+
+function carregarManutencao(divid){
+    const divListaManutencao = document.getElementById(divid);
+    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    method: 'get',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    }).then((response) => {
+        return response.json()
+    }).then((res) => {
+        let tabela = "<table><th>Id problema</th><th>problema</th><th>Data inicio</th><th>Status</th>";
+        for(var k in res) {
+            const id = res[k].idManutencao;
+            const problema = res[k].problema;
+            const Datainicio = res[k].DataInicio;
+            const Status = res[k].Status;
+       
+             const meuClick = "onclick=preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')";
+
+            tabela+="<tr>";
+               tabela+="<td onclick=\""+meuClick  +"\">";
+                    tabela+= id;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')\">";
+                    tabela+=problema;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')\">";
+                tabela+=Datainicio;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+id+"','"+problema+"','"+Datainicio+"','"+Status+"')\">";
+                tabela+=Status;
+                tabela+="</td>";
+
+            tabela+="</tr>";
+            
+         }
+         tabela+="</table>";
+         divListaManutencao.innerHTML=tabela;
+        console.log(res);
+   
+    }).catch((error) => {
+        console.log(error)
+    })
+}
