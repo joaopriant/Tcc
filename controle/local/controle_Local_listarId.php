@@ -15,7 +15,7 @@ $Local->buscarLocalPorId($idsala);
 $tabela="<table border='1'>";
 $tabela.="<tr>";
 $tabela.="<td>".$Local->getidSala()."</td>";
-$tabela.="<td>".$Local->getNumsala()."</td>";
+$tabela.="<td>".$Local->getSala()."</td>";
 $tabela.="<td>".$Local->getBloco()."</td>";
 $tabela.="<td>".$Local->getAndar()."</td>";
 
