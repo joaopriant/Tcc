@@ -1,5 +1,17 @@
 <!DOCTYPE html>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/tipografia.css">
+    <title>Cadastro de Funcionários</title>
+</head>
+<body>
     <header>
         <nav>
                 <div id="logo"></div>
@@ -15,36 +27,59 @@
         </nav>
         
     </header>
-    
-<div id="forms">
+<!-- engloba o quadradinho e tudo dentro devle kkkk-->
+<section id="formulario">
+    <div class="container">
 
-    <h1>Cadastrar</h1>
-    
-    
-    <label >Id Cargo</label>
-    <input type="text" name="txtid" id ="txtid">
-    
-    <label >Cargo</label>
-    <input name="txtcargo" id = "txtcargo" type="text" autocomplete="off">
-    <div id="divResposta"></div>
-        
-    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
-        
-    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
-    
-    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
+        <h1>Cargo</h1>
+        <br>
 
+        <form action="#">
+
+        <!-- a div da classe "detalhes-user" engloba tudo do cadastro   -->
+        <div class="detalhes-user" id="dados">
+                <!-- a div "campodosdados" é basicamente o input box e o titulo dele, cada campo pra inserir os dados tem sua propria div,
+                a span da classe "detalhes" é o titulo do input-->
+                <div class="campodosdados">
+                    <span class="detalhes">Id Cargo: </span>
+                    <input type="text" id ="txtid" placeholder="Digite o registro..." required autofocus="true">
+                </div>
+
+                <div class="campodosdados">
+                    <span class="detalhes">Nome do Cargo: </span>
+                    <input type="text" id = "txtnome" placeholder="Digite o nome completo..." required autofocus="true">
+                </div>
+
+        </div>
+    </form>
     
-    <div id="divListaCargos"></div>
-</div>
+        <div class="botao">
+            
+            <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+            <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+            <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
 
+        </div>
 
- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
- <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
- <script src="assets/js/controle_cargo.js"></script>
- <script>
-    carregarCargos();
-     
- </script>
+    </div>
+</section>
+<section id="view-funcionarios">
+    <div id="view-tabela">
+        <div id="dropdown" onmousedown="toggleDiv('tabela','down-arrow','up-arrow');">
+        <H3 id="view">Cargos Cadastrados</H3>
+        <ion-icon id="up-arrow" name="chevron-up-outline"></ion-icon>
+        <ion-icon id="down-arrow" name="chevron-down-outline"></ion-icon>
+        </div>
+        <div id="tabela" >
+        </div>
+    </div>
+</section>
+    
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="assets/js/controle_funcionario.js"></script>
+<script>
+    carregarFuncionarios('tabela');
+</script>
 </body>
 </html>
