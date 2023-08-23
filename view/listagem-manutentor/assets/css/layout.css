@@ -1,0 +1,126 @@
+header{
+    width: 100%;
+    height: 8vh;
+    position: relative;
+    background-color: #221c4d;
+    
+}
+nav{
+    padding: 3px;
+    width: 100%;
+    height: 8vh;
+}
+nav div#logo{
+    background-image: url(../image/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20vh;
+    height: 7vh;
+    float: left;
+    margin-top: 6px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+nav ul{
+    align-items: center;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    height: 6vh;
+    padding-right: 20px;
+    float: right;
+}
+nav ul li{
+    align-items: center;
+    text-align: center;
+    list-style: none;
+}
+nav ion-icon#iconuser{
+    width: 6.5vh;
+    height: 6.5vh;
+    color: #ffff;
+
+}
+nav ion-icon#iconuser:hover{
+    color: #ca0f0f;
+    cursor: pointer;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/**  ajusta o body e centraliza os elementos.*/
+body{
+    height: 100vh;
+    align-content: center;
+}
+section#chart-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section.lista-tabelas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.chart-box{
+    margin: 25px;
+    
+    width: 100%;
+    max-height: 600px;
+    height: 100%;
+    padding: 20px 40px ;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 10px 20px 10px #0000003c; 
+}
+canvas{
+    width: 100px;
+    height: 100px;
+}
+div.lista-tabelas{
+    margin: 25px;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px 40px ;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 10px 20px 10px #0000003c;
+}
+
+table{
+    max-width: 700px;
+    width: 100%;
+}
+table td{
+    text-align: center;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+div#tabela-local,div#tabela-manutencao,div#tabela-equipamento,div#tabela-funcionario{
+    display: none;
+}
+h3.titulo{
+    float: left;
+}
+ion-icon.arrow-down{
+    float: right;
+    width: 25px;
+    height: 25px;
+    display: block;
+    cursor: pointer;
+}
+ion-icon.arrow-up{
+    float: right;
+    width: 25px;
+    height: 25px;
+    display: none;
+    cursor: pointer;
+}
+div.dropdown{
+    cursor: pointer;
+}
