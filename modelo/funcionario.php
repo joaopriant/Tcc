@@ -39,7 +39,7 @@ class Funcionario implements JsonSerializable
         $senha = $this->Senha;
 
         $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
+        $stmt->bind_param("sssssi", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
         return $stmt->execute();
     }
 
@@ -86,7 +86,7 @@ class Funcionario implements JsonSerializable
     }
     public function listarFuncionario()
     {
-        $stmt = $this->banco->getConexao()->prepare("Select RegistroFuncionario, Nome, DatadeNascimento, Email, cargo.Cargo AS cargo , cargo.IdCargo AS IdCargo from funcionario JOIN cargo ON cargo.IdCargo=funcionario.Cargo");
+        $stmt = $this->banco->getConexao()->prepare("Select RegistroFuncionario, Nome, DATE_FORMAT(DatadeNacimento,'%d/%m/%Y') AS DatadeNacimento , Email, cargo.Cargo AS cargo , cargo.IdCargo AS IdCargo from funcionario JOIN cargo ON cargo.IdCargo=funcionario.Cargo");
         $stmt->execute();
         $resultado = $stmt->get_result();
         $resultados = array();
@@ -96,7 +96,7 @@ class Funcionario implements JsonSerializable
             $resultados[$i]->setRegistroFuncionario($linha->RegistroFuncionario);
             $resultados[$i]->setNome($linha->Nome);
             $resultados[$i]->setEmail($linha->Email);
-            $resultados[$i]->setDatadeNasc($linha->DatadeNascimento);
+            $resultados[$i]->setDatadeNasc($linha->DatadeNacimento);
             $cargo = new Cargo();
             $cargo->setIdCargo($linha->IdCargo);
             $cargo->setCargo($linha->cargo);
