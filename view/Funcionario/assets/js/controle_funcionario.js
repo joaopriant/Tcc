@@ -185,7 +185,7 @@ function carregarFuncionarios(divid){
             const nome = res[k].Nome
             const email = res[k].Email;
             const senha = res[k].Senha;
-            const date = new Date( res[k].DatadeNacimento);
+            const date = new Date( res[k].DatadeNascimento);
             var dia = ("0" + date.getDate()).slice(-2);
             var mes = ("0" + (date.getMonth() + 1)).slice(-2);
             const data = date.getFullYear()+"-"+(mes)+"-"+(dia);
