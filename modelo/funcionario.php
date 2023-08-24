@@ -39,7 +39,7 @@ class Funcionario implements JsonSerializable
         $senha = $this->Senha;
 
         $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
+        $stmt->bind_param("sssssi", $registrofuncionario, $nome, $data, $email, $senha, $cargo);
         return $stmt->execute();
     }
 

@@ -70,8 +70,6 @@ function carregarFuncionario(divid){
     })
 }
 
-
-
 function carregarLocal(divid){
     const divListaLocal = document.getElementById(divid);
     fetch("../../controle/local/controle_Local_listarAll.php", {

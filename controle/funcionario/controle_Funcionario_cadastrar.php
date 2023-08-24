@@ -66,7 +66,7 @@ if($json_object!=null){
         echo '{"cod":"8","msg":"O cargo não pode ser vazio!"}';
     }
 }else{
-    echo '{"cod":"9","msg":"O cargo não pode ser nulo!"}';
+    echo '{"cod":"9","msg":"O cadastro não pode ser realizado!"}';
     exit;
 }
 
