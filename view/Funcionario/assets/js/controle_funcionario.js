@@ -186,35 +186,33 @@ function carregarFuncionarios(divid){
             const email = res[k].Email;
             const senha = res[k].Senha;
             const date = new Date( res[k].DatadeNacimento);
-            const dataaa = res[k].DatadeNascimento;
-            console.log(">"+dataaa)
             var dia = ("0" + date.getDate()).slice(-2);
             var mes = ("0" + (date.getMonth() + 1)).slice(-2);
             const data = date.getFullYear()+"-"+(mes)+"-"+(dia);
             console.log(data)
             const IdCargo = res[k].Cargo.IdCargo;
             const cargo = res[k].Cargo.Cargo;
-             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+dataaa+"')";
+             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')";
 
             tabela+="<tr>";
                tabela+="<td onclick=\""+meuClick  +"\">";
                     tabela+= registro;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+dataaa+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
                     tabela+=nome;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+dataaa+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
                     tabela+=email;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+dataaa+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
                     tabela+=cargo;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+dataaa+"')\">";
-                    tabela+=dataaa;
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
+                    tabela+=data;
                 tabela+="</td>";
                             
             tabela+="</tr>";

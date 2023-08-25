@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <title>Cargo</title>
+    <title>Cadastro de Locais</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href=".//assets/css/layout.css" media="screen" />
     <link rel="stylesheet" href=".//assets/css/tipografia.css">
 <meta charset="UTF-8">
@@ -19,7 +19,7 @@
                 <ul id="right">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Cadastrar</a></li>
-                    <li><a href="#">Relatorios</a></li>
+                    <li><a href="#">Relatórios</a></li>
                     <li><a href="#">Manutenções</a></li>
                     <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
             </ul>
@@ -28,44 +28,70 @@
         
     </header>
     
-<div id="forms">
-
-    <h1>Local</h1>
+    <section id="formulario">
+        <div class="container">
     
+            <h1>Local</h1>
+            <br>
     
-    <label >Id Local</label>
-    <input type="text" name="txtid" id ="txtid">
+            <form action="#">
     
-    <label >Sala</label>
-    <input name="txtsala" id = "txtsala" type="text" autocomplete="off">
-    <div id="divResposta"></div>
-
-    <label >Andar</label>
-    <input type="text" name="txtandar" id ="txtandar">
+            <!-- a div da classe "detalhes-user" engloba tudo do cadastro   -->
+            <div class="detalhes-user" id="dados">
+                    <!-- a div "campodosdados" é basicamente o input box e o titulo dele, cada campo pra inserir os dados tem sua propria div,
+                    a span da classe "detalhes" é o titulo do input-->
+                    <div class="campodosdados">
+                        <span class="detalhes">Id Local: </span>
+                        <input type="text" id ="txtid" placeholder="Digite o ID." required autofocus="true">
+                    </div>
     
-    <label >Bloco</label>
-    <input name="txtbloco" id = "txtbloco" type="text" autocomplete="off">
-    <div id="divResposta"></div>
+                    <div class="campodosdados">
+                        <span class="detalhes">Sala: </span>
+                        <input type="text" id = "txtsala" placeholder="Digite a sala." required autofocus="true">
+                    </div>
+    
+                <!-- campodosdados é o INPUT de todos os requerimentos com o span (ex: email, senha, etc)-->
+                    <div class="campodosdados">
+                        <span class="detalhes">Bloco: </span>
+                        <input type="text" id = "txtbloco" placeholder="Digite o bloco." required autofocus="true">
+                    </div>
+    
+                    <div class="campodosdados">
+                        <span class="detalhes">Andar: </span>
+                        <input type="text" id ="txtandar" placeholder="Digite o andar." required autofocus="true">
+                    </div>
+        <br> <br> <br>
+    
+            </div>
+        </form>
         
+            <div class="botao">
+                
+                <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+                <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+                <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
+    
+            </div>
+    
+        </div>
+    </section>
+    <section id="view-funcionarios">
+        <div id="view-tabela">
+            <div id="dropdown" onmousedown="toggleDiv('tabela','down-arrow','up-arrow');">
+            <H3 id="view">Locais Cadastrados</H3>
+            <ion-icon id="up-arrow" name="chevron-up-outline"></ion-icon>
+            <ion-icon id="down-arrow" name="chevron-down-outline"></ion-icon>
+            </div>
+            <div id="tabela" >
+            </div>
+        </div>
+    </section>
         
-    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
-        
-    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
-    
-    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
-
-    
-    <div id="divListaLocal"></div>
-</div>
-
-<script src="assets/js/controle_local.js"></script>
-
-<script>
-    carregarLocal();
-    
-</script>
-
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/controle_local.js"></script>
+    <script>
+        carregarLocal('tabela');
+    </script>
 </body>
 </html>

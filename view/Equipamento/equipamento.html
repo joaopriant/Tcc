@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Equipamento</title>
+        <title>Cadastro - Equipamentos</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
         <link rel="stylesheet" href="assets/css/tipografia.css">
     <meta charset="UTF-8">
@@ -27,43 +27,77 @@
             
         </header>
         
-    <div id="forms">
-    
-        <h1>Equipamento</h1>
+        <section id="formulario">
+            <div class="container">
         
-        <label >IdEquipamento</label>
-        <input type="text" id ="txtid" readonly>
+                <h1>Equipamentos</h1>
+                <br>
         
-        <label >numPatrimônio</label>
-        <input id = "txtnumpatrimonio" type="text" autocomplete="off">
-    
-        <label >Local</label>
-        <select id="cboLocal"></select>
-
-        <label >Funcionario Responsavel</label>
-        <select id="cboFuncionario"></select>
+                <form action="#">
         
-        <label >Descrição</label>
-        <select id="cboDescricao"></select>
-
-        <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+                <!-- a div da classe "detalhes-user" engloba tudo do cadastro   -->
+                <div class="detalhes-user" id="dados">
+                        <!-- a div "campodosdados" é basicamente o input box e o titulo dele, cada campo pra inserir os dados tem sua propria div,
+                        a span da classe "detalhes" é o titulo do input-->
+                        <div class="campodosdados">
+                            <span class="detalhes">Id Equipamento: </span>
+                            <input type="text" id ="txtid" placeholder="Digite o ID." required autofocus="true">
+                        </div>
+        
+                        <div class="campodosdados">
+                            <span class="detalhes">Número de Patrimonio: </span>
+                            <input type="text" id = "txtnumpatrimonio" placeholder="Digite o número." required autofocus="true">
+                        </div>
+        
+                    <!-- campodosdados é o INPUT de todos os requerimentos com o span (ex: email, senha, etc)-->
+                        <div class="campodosdados">
+                            <span class="detalhes">Local: </span>
+                            <select name="local" id="cboLocal"></select>
+                        </div>
+        
+                        <div class="campodosdados">
+                            <span class="detalhes">Funcionário Responsável: </span>
+                            <select name="funcioresp" id="cboResponsavel"> </select>
+                        </div>
+        
+                        <div class="campodosdados" id="desc">
+                            <span class="detalhes">Descrição: </span>
+                            <select name="desc" id="cboDescricao"></select>
+                        </div>
+        
+            <br> <br> <br>
+        
+                </div>
+            </form>
             
-        <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+                <div class="botao">
+                    
+                    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+                    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+                    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
         
-        <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
-    
+                </div>
         
-        <div id="divListaFuncionarios"></div>
-    </div>
-    
-    
-     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-     <script src="assets/js/controle_equipamento.js"></script>
-     <script>
-        carregarEquipamentos();
-         
-     </script>
+            </div>
+        </section>
+        <section id="view-funcionarios">
+            <div id="view-tabela">
+                <div id="dropdown" onmousedown="toggleDiv('tabela','down-arrow','up-arrow');">
+                <H3 id="view">Equipamentos Cadastrados</H3>
+                <ion-icon id="up-arrow" name="chevron-up-outline"></ion-icon>
+                <ion-icon id="down-arrow" name="chevron-down-outline"></ion-icon>
+                </div>
+                <div id="tabela" >
+                </div>
+            </div>
+        </section>
+            
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script src="assets/js/controle_equipamento.js"></script>
+        <script>
+            carregarEquipamentos('tabela');
+        </script>
     </body>
 
 </html>

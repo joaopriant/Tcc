@@ -5,7 +5,7 @@
     <title>Descrição</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href=".//assets/css/layout.css" media="screen" />
     <link rel="stylesheet" href=".//assets/css/tipografia.css">
 <meta charset="UTF-8">
@@ -28,36 +28,58 @@
         
     </header>
     
-<div id="forms">
-
-    <h1>Cadastrar</h1>
+    <section id="formulario">
+        <div class="container">
     
+            <h1>Descrição</h1>
+            <br>
     
-    <label >Id Descrição</label>
-    <input type="text" id ="txtid">
+            <form action="#">
     
-    <label >Descrição</label>
-    <input id = "txtDescricao" type="text">
-    <div id="divResposta"></div>
+            <!-- a div da classe "detalhes-user" engloba tudo do cadastro   -->
+            <div class="detalhes-user" id="dados">
+                    <!-- a div "campodosdados" é basicamente o input box e o titulo dele, cada campo pra inserir os dados tem sua propria div,
+                    a span da classe "detalhes" é o titulo do input-->
+                    <div class="campodosdados">
+                        <span class="detalhes">Id Descrição: </span>
+                        <input type="text" id ="txtid" placeholder="Digite aqui." required autofocus="true">
+                    </div>
+    
+                    <div class="campodosdados">
+                        <span class="detalhes">Descrição: </span>
+                        <input type="text" id = "txtDescricao" placeholder="Digite a descrição..." required autofocus="true">
+                    </div>
+    
+            </div>
+        </form>
         
-        
-    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
-        
-    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+            <div class="botao">
+                
+                <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+                <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+                <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
     
-    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
-
+            </div>
     
-    <div id="divListaDescricao"></div>
-</div>
-
-
- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
- <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
- <script src="assets/js/controle_descricao.js"></script>
- <script>
-    carregarDescricao();
-     
- </script>
+        </div>
+    </section>
+    <section id="view-funcionarios">
+        <div id="view-tabela">
+            <div id="dropdown" onmousedown="toggleDiv('tabela','down-arrow','up-arrow');">
+            <H3 id="view">Descrições Cadastradas</H3>
+            <ion-icon id="up-arrow" name="chevron-up-outline"></ion-icon>
+            <ion-icon id="down-arrow" name="chevron-down-outline"></ion-icon>
+            </div>
+            <div id="tabela" >
+            </div>
+        </div>
+    </section>
+        
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/controle_descricao.js"></script>
+    <script>
+        carregarDescricao('tabela');
+    </script>
 </body>
 </html>
