@@ -89,7 +89,19 @@ class Manutencao implements JsonSerializable
         return $this;
 
     }
+    public function buscarconcluidos(){
+        $stmt = $this->banco->getConexao()->prepare("SELECT COUNT(*) as concluido from manutencao where status='concluido' ");
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado;
+    }
 
+    public function buscarpendente(){
+        $stmt = $this->banco->getConexao()->prepare("select count(*) as pendente from manutencao where status='pendente'");
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado;
+    }
     public function listarmanutencao()
     {
         $stmt = $this->banco->getConexao()->prepare("Select * from manutencao");

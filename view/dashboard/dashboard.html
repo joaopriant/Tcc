@@ -15,8 +15,8 @@
                 <div id="logo"></div>
                 
                 <ul id="right">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Cadastrar</a></li>
+                    <li><a href="../dashboard/dashboard.html">Home</a></li>
+                    <li><a href="../Listagem-tabela/listagem.html">Cadastrar</a></li>
                     <li><a href="#">Relatorios</a></li>
                     <li><a href="#">Manutenções</a></li>
                     <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
@@ -26,11 +26,23 @@
         
     </header>
 
-    <section id="dash-main">
-
+    <p>.</p>
+    
+    <section id="chart-section">
+        <div class="chart-box">
+            <canvas id="chart1"></canvas>
+        </div>
+        <div class="chart-box">
+            <canvas id="chart2"></canvas>
+        </div>
+        <div class="chart-box">
+            <canvas id="chart3"></canvas>
+        </div>
     </section>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

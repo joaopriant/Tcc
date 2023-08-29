@@ -2,7 +2,7 @@
     require_once "../../modelo/manutencao.php";
     $manutencao = new manutencao();
    
-    $objetomanutencao = $manutencao->listarmanutencao();
+    $objetomanutencao = $manutencao->buscarconcluidos();
     echo json_encode($objetomanutencao);
 
 ?>

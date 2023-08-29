@@ -55,12 +55,12 @@ body{
     height: 100vh;
     align-content: center;
 }
-section#chart-section{
+section.lista-tabelas{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-section.lista-tabelas{
+section#chart-section{
     display: flex;
     justify-content: center;
     align-items: center;
