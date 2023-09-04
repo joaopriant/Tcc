@@ -12,8 +12,11 @@ $router->get('/', function() {
 $router->post('/cargos', function() {
   require_once "controle/cargo/controle_Cargo_cadastrar.php";
 });
-$router->get('/cargos', function() {
+$router->get('/cargos', function($id) {
   require_once "controle/cargo/controle_Cargo_listarId.php";
+});
+$router->get('/cargos', function() {
+  require_once "controle/cargo/controle_Cargo_listarAll.php";
 });
 $router->put('/cargos', function() {
   require_once "controle/cargo/controle_Cargo_atualizar.php";
@@ -27,8 +30,11 @@ $router->delete('/cargos', function() {
 $router->post('/locais', function() {
   require_once "controle/local/controle_Local_cadastrar.php";
 });
-$router->get('/locais', function() {
+$router->get('/locais', function($id) {
   require_once "controle/local/controle_Local_listarId.php";
+});
+$router->get('/locais', function() {
+  require_once "controle/local/controle_Local_listarAll.php";
 });
 $router->put('/locais', function() {
   require_once "controle/local/controle_Local_atualizar.php";
@@ -42,8 +48,11 @@ $router->delete('/locais', function() {
 $router->post('/manutencoes', function() {
   require_once "controle/manutencao/controle_manutencao_cadastrar.php";
 });
-$router->get('/manutencoes', function() {
+$router->get('/manutencoes', function($id) {
   require_once "controle/manutencao/controle_manutencao_listarId.php";
+});
+$router->get('/manutencoes', function() {
+  require_once "controle/manutencao/controle_manutencao_listarAll.php";
 });
 $router->put('/manutencoes', function() {
   require_once "controle/manutencao/controle_manutencao_atualizar.php";
@@ -57,8 +66,11 @@ $router->delete('/manutencoes', function() {
 $router->post('/descricoes', function() {
   require_once "controle/descricao/controle_Descricao_cadastrar.php";
 });
-$router->get('/descricoes', function() {
+$router->get('/descricoes', function($id) {
   require_once "controle/descricao/controle_Descricao_listarId.php";
+});
+$router->get('/descricoes', function() {
+  require_once "controle/descricao/controle_Descricao_listarAll.php";
 });
 $router->put('/descricoes', function() {
   require_once "controle/descricao/controle_Descricao_atualizar.php";
@@ -71,8 +83,11 @@ $router->delete('/descricoes', function() {
 $router->post('/equipamentos', function() {
   require_once "controle/equipamento/controle_Equipamento_cadastrar.php";
 });
-$router->get('/equipamentos', function() {
+$router->get('/equipamentos', function($id) {
   require_once "controle/equipamento/controle_Equipamento_listarId.php";
+});
+$router->get('/equipamentos', function() {
+  require_once "controle/equipamento/controle_Equipamento_listarAll.php";
 });
 $router->put('/equipamentos', function() {
   require_once "controle/equipamento/controle_Equipamento_atualizar.php";
@@ -86,8 +101,11 @@ $router->delete('/equipamentos', function() {
 $router->post('/funcionarios', function() {
   require_once "controle/funcionario/controle_Funcionario_cadastrar.php";
 });
-$router->get('/funcionarios', function() {
+$router->get('/funcionarios', function($id) {
   require_once "controle/funcionario/controle_Funcionario_listarId.php";
+});
+$router->get('/funcionarios', function() {
+  require_once "controle/funcionario/controle_Funcionario_listarAll.php";
 });
 $router->put('/funcionarios', function() {
   require_once "controle/funcionario/controle_Funcionario_atualizar.php";

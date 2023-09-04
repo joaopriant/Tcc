@@ -98,8 +98,8 @@ class Equipamento implements JsonSerializable
             $resultados[$i] = new Equipamento();
             $resultados[$i]->setIdEquipamento($linha->IdEquipamento);
             $resultados[$i]->setnumPatrimonio($linha->numPatrimonio);
-            $resultados[$i]->setIdsala($linha->Idsala);
-            $resultados[$i]->setidDescricao($linha->idDescricao);
+            $resultados[$i]->setIdsala($linha->Local);
+            $resultados[$i]->setidDescricao($linha->Descricao);
             $resultados[$i]->setRegistroFuncionario($linha->Responsavel);
             $i++;
         }
