@@ -64,7 +64,6 @@ function carregarFuncionario(divid){
          }
          tabela+="</table>";
          divListaCargos.innerHTML=tabela;
-        console.log(res);
     }).catch((error) => {
         console.log(error)
     })
@@ -112,7 +111,6 @@ function carregarLocal(divid){
          }
          tabela+="</table>";
          divListaLocal.innerHTML=tabela;
-        console.log(res);
    
     }).catch((error) => {
         console.log(error)
@@ -134,10 +132,10 @@ function carregarEquipamento(divid){
         let tabela = "<table><th>ID Equipamento</th><th>Num patrimonio</th><th>local</th><th>Responsavel</th><th>Descrição</th>";
         for(var k in res) {
             const idequipamento = res[k].IdEquipamento;
-            const numpatrimonio = res[k].numPatrimônio
-            const local = res[k].Local_Idproblema;
+            const numpatrimonio = res[k].numPatrimonio
+            const local = res[k].Idsala;
             const descricao = res[k].Descricao_idDescricao;
-            const responsavel = res[k].Responsavel
+            const responsavel = res[k].Responsavel;
             
             const meuClick = "onclick=preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')";
             
@@ -158,16 +156,17 @@ function carregarEquipamento(divid){
                 tabela+=descricao;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+="<td onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
                 tabela+=responsavel;
                 tabela+="</td>";
-                
+                tabela+="<td class='qrcode' onclick=mostrar()>"
+                tabela+="<p>Mostar QrCode</p>";
+                tabela+="</td>";
                 tabela+="</tr>";
                 
             }
          tabela+="</table>";
          divListaresponsavels.innerHTML=tabela;
-        console.log(res);
    
     }).catch((error) => {
         console.log(error)
@@ -186,7 +185,7 @@ function carregarManutencao(divid){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Id problema</th><th>problema</th><th>Data inicio</th><th>Status</th>";
+        let tabela = "<table><th>Id Chamado</th><th>Problema</th><th>Data de inicio</th><th>Status</th>";
         for(var k in res) {
             const id = res[k].idManutencao;
             const problema = res[k].problema;
@@ -217,7 +216,6 @@ function carregarManutencao(divid){
          }
          tabela+="</table>";
          divListaManutencao.innerHTML=tabela;
-        console.log(res);
    
     }).catch((error) => {
         console.log(error)

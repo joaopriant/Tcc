@@ -25,6 +25,11 @@
     </header>
     <p>.</p>
 
+    <dialog id="modal">
+        <div id="conteudo"></div>
+        <div ></div>
+    </dialog>
+
     <section class="lista-tabelas" id="view-funcionarios" >
         <div class="lista-tabelas" href="" id="view-tabela-funcionario">
             <div class="dropdown" id="dropdown-funcionarios" onmousedown="toggleDiv('tabela-funcionario','down-arrow-funcionario','up-arrow-funcionario');">
@@ -38,6 +43,8 @@
         </div>
     </section>
 
+
+
     <section class="lista-tabelas" id="view-manutencao" >
         <div class="lista-tabelas" id="view-tabela-manutencao">
             <div class="dropdown" id="dropdown-manutencao" onmousedown="toggleDiv('tabela-manutencao','down-arrow-manutencao','up-arrow-manutencao');">
@@ -49,6 +56,8 @@
             </div>
         </div>
     </section>
+
+
 
     <section class="lista-tabelas" id="view-equipamento" >
         <div class="lista-tabelas" id="view-tabela-equipamento">
@@ -77,6 +86,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="assets/js/controle_listagem.js"></script>
+    <script src="assets/js/Qrcode.js"></script>
     <script>
         carregarEquipamento('tabela-equipamento');
         carregarLocal('tabela-local');

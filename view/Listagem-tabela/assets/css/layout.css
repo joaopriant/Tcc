@@ -75,6 +75,19 @@ table{
     max-width: 700px;
     width: 100%;
 }
+table th{
+    color: #ffffff;
+    background-color:#221c4d ;
+    text-align: center;
+    padding: 5px 13px;
+    border-radius: 10px;
+}
+.qrcode,#gerar{
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif; 
+    color: #ffffff;
+    background-color:#221c4d ;
+}
 table td{
     text-align: center;
     padding: 5px 15px;
@@ -105,3 +118,18 @@ ion-icon.arrow-up{
 div.dropdown{
     cursor: pointer;
 }
+#modal { 
+    padding: 20px 40px ;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 10px 20px 10px #0000003c;
+    border: none !important;
+    position:relative;
+    margin: auto;
+    width: 40%;
+    height: 400px;
+ }   
+ dialog::backdrop{
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+ }

@@ -1,7 +1,7 @@
 function carregarLocal() {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         let cbolocal = document.getElementById("cbolocal")
         let objLocais = JSON.parse(this.responseText);
         
@@ -22,23 +22,29 @@ carregarLocal();
 function capturarvaluecbo(idelement){
     const cbo = document.getElementById(idelement)
     const id = cbo.value; 
+    console.log(id);
     return id;
 }
 
 function carregarEquipamento() {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         let cboequipamento = document.getElementById("cboequipamento")
         let objequipamento = JSON.parse(this.responseText);
-
         objequipamento.forEach(equipamento => {
-        if(equipamento.Local_Idsala === capturarvaluecbo('cbolocal')){
+            if(equipamento.Idsala == capturarvaluecbo('cbolocal')){
             let novaOpcao = document.createElement("option");
             novaOpcao.value = equipamento.IdEquipamento;
-            novaOpcao.text = equipamento.Responsavel;
+            novaOpcao.text = equipamento.numPatrimonio;
             cboequipamento.add(novaOpcao);
-        }else{return 0}
+        }else{
+            for (let i = 0; i < cboequipamento.options.length; i++) {
+                if (cboequipamento.options[i].value == equipamento.IdEquipamento) {
+                  cboequipamento.remove(i);
+                }
+              }
+        }
         });
     }
     xmlhttp.open("GET", "../../controle/equipamento/controle_Equipamento_listarAll.php");

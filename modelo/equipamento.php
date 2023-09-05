@@ -12,6 +12,8 @@ class Equipamento implements JsonSerializable
 
     private $Idsala;
 
+    private $NumeroEquip;
+
     private $banco;
 
     public function jsonSerialize()
@@ -21,6 +23,7 @@ class Equipamento implements JsonSerializable
         $array["idDescricao"] = $this->getidDescricao();
         $array["Responsavel"] = $this->getRegistroFuncionario();
         $array["Idsala"] = $this->getIdsala();
+        $array["NumeroEquip"] = $this->getNumeroEquip();
 
         return $array;
     }
@@ -32,14 +35,14 @@ class Equipamento implements JsonSerializable
     public function cadastrar()
     {
 
-        $idequipamento = $this->IdEquipamento;
+        $numeroequip = $this->NumeroEquip;
         $numpatri = $this->numPatrimonio;
         $descricao = $this->idDescricao;
         $local = $this->Idsala;
         $funcionario = $this->Responsavel;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into equipamento(numPatrimonio, Local, Responsavel,Descricao)values(?,?,?,?)");
-        $stmt->bind_param("sisi", $numpatri,  $local, $funcionario,$descricao);
+        $stmt = $this->banco->getConexao()->prepare("insert into equipamento(NumeroEquip,numPatrimonio, Local, Responsavel,Descricao)values(?,?,?,?,?)");
+        $stmt->bind_param("ssisi", $numeroequip,$numpatri,  $local, $funcionario,$descricao);
         return $stmt->execute();
     }
     public function excluir()
@@ -55,9 +58,10 @@ class Equipamento implements JsonSerializable
     {
         $idequipamento = $this->IdEquipamento;
         $numpatri = $this->numPatrimonio;
-        $tipoequip = $this->idDescricao;
+        $descricao = $this->idDescricao;
         $local = $this->Idsala;
         $funcionario = $this->Responsavel;
+        $NumeroEquip = $this->NumeroEquip;
         $stmt = $this->banco->getConexao()->prepare("update Equipamento    
             set numPatrimonio=?,
             set idDescricao=?,
@@ -65,7 +69,7 @@ class Equipamento implements JsonSerializable
             set Responsavel=?,
             where IdEquipamento = ?");
 
-        $stmt->bind_param("isiii", $numpatri, $tipoequip, $local, $funcionario,$idequipamento);
+        $stmt->bind_param("ssiisi", $NumeroEquip,$numpatri, $descricao, $local, $funcionario,$idequipamento);
         return $stmt->execute();
     }
 
@@ -81,6 +85,7 @@ class Equipamento implements JsonSerializable
             $this->setIdEquipamento($linha->IdEquipamento);
             $this->setnumPatrimonio($linha->numPatrimonio);
             $this->setIdsala($linha->Idsala);
+            $this->setidDescricao($linha->NumeroEquip);
             $this->setRegistroFuncionario($linha->Responsavel);
             $this->setidDescricao($linha->idDescricao);
         }
@@ -99,6 +104,7 @@ class Equipamento implements JsonSerializable
             $resultados[$i]->setIdEquipamento($linha->IdEquipamento);
             $resultados[$i]->setnumPatrimonio($linha->numPatrimonio);
             $resultados[$i]->setIdsala($linha->Local);
+            $resultados[$i]->setidDescricao($linha->NumeroEquip);
             $resultados[$i]->setidDescricao($linha->Descricao);
             $resultados[$i]->setRegistroFuncionario($linha->Responsavel);
             $i++;
@@ -121,6 +127,14 @@ class Equipamento implements JsonSerializable
     public function setnumPatrimonio($numPatrimonio)
     {
         $this->numPatrimonio = $numPatrimonio;
+    }
+    public function getNumeroEquip()
+    {
+        return $this->NumeroEquip;
+    }
+    public function setNumeroEquip($NumeroEquip)
+    {
+        $this->NumeroEquip = $NumeroEquip;
     }
     public function getidDescricao()
     {

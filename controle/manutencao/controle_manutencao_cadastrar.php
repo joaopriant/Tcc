@@ -17,9 +17,6 @@ if($json_object!=null){
     
     $manutentor = $json_object->manutentor;
     $manutentor  = strip_tags($manutentor);
-
-    $manutentor = $json_object->manutentor;
-    $manutentor  = strip_tags($manutentor);
     
     $equipamento = $json_object->equipamento;
     $equipamento  = strip_tags($equipamento);

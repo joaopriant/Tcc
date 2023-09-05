@@ -8,6 +8,9 @@ if($json_object!=null){
 
     $numpatrimonio = $json_object->numpatrimonio;
     $numpatrimonio  = strip_tags($numpatrimonio);
+
+    $numeroequip = $json_object->numeroequip;
+    $numeroequip  = strip_tags($numeroequip);
     
     $local = $json_object->local;
     $local  = strip_tags($local);
@@ -38,6 +41,7 @@ if($json_object!=null){
     $Equipamento->setIdsala($local);
     $Equipamento->setRegistroFuncionario($responsavel);
     $Equipamento->setnumpatrimonio($numpatrimonio);
+    $Equipamento->setNumeroEquip($numeroequip);
   
     $resultado = $Equipamento->cadastrar();
 

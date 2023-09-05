@@ -19,6 +19,7 @@ $tabela.="<td>".$equipamento->getRegistroFuncionario()."</td>";
 $tabela.="<td>".$equipamento->getnumPatrimonio()."</td>";
 $tabela.="<td>".$equipamento->getIdsala()."</td>";
 $tabela.="<td>".$equipamento->getidDescricao()."</td>";
+$tabela.="<td>".$equipamento->getNumeroEquip()."</td>";
 
 $tabela.="</tr>";
 $tabela.="</table>";
