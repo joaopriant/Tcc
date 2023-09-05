@@ -175,7 +175,7 @@ textarea{
         background: #0d45a5;
       }
       #file{
-        width: 100%;
+        width: 350px;
 
         display: flex;
         flex-flow: column;
@@ -198,7 +198,6 @@ textarea{
             text-align: center;
             display: flex;
             flex-flow: column;
-
             justify-items: center;
           }
         button {

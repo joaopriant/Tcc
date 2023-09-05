@@ -41,8 +41,8 @@ class Manutencao implements JsonSerializable
         $Manutentor = $this->Manutentor;
         $DataTermino = $this->DataTermino;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into manutencao(IdManutencao, Problema, Foto, DataInicio, IdEquipamento, Status, Manutentor, DataTermino)values(?, ?, ?,?,?,?,?,?)");
-        $stmt->bind_param("sss", $IdEquipamento, $Problema, $Foto, $DataInicio, $IdEquipamento, $Status, $Manutentor, $DataTermino);
+        $stmt = $this->banco->getConexao()->prepare("insert into manutencao(IdManutencao, Problema, Foto, DataInicio, Equipamento, Status, Manutentor, DataTermino)values(?, ?, ?,?,?,?,?,?)");
+        $stmt->bind_param("isssisss", $IdEquipamento, $Problema, $Foto, $DataInicio, $IdEquipamento, $Status, $Manutentor, $DataTermino);
         return $stmt->execute();
     }
 

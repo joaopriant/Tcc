@@ -1,45 +1,67 @@
 <?php
-require_once "manutencao.php";
+require_once "../../modelo/manutencao.php";
 
-if(!isset($_POST['txtxproblema'])){
-    die("Bloco não encontrado\n");
-}
+$request_raw = file_get_contents('php://input');
+$json_object = json_decode($request_raw);
 
-if(!isset($_POST['txtdatainicio'])){
-    echo("num sala não encontrado\n");
-}
+if($json_object!=null){
+    
+    $problema = $json_object->problema;
+    $problema  = strip_tags($problema);
 
+    $status = $json_object->status;
+    $status  = strip_tags($status);
+    
+    $datainicio = $json_object->datainicio;
+    $datainicio  = strip_tags($datainicio);
+    
+    $manutentor = $json_object->manutentor;
+    $manutentor  = strip_tags($manutentor);
 
-$Problema = $_POST['txtProblema'];
-$Foto = $_POST['txtImg'];
-$DataInicio = $_POST['txtDataInicio'];
-$IdEquipamento = $_POST['cboIdEquipamento'];
-$Status = $_POST[''];
-$DataTermino = $_POST[''];
-$Manutentor = $_POST['txtManutentor'];
+    $manutentor = $json_object->manutentor;
+    $manutentor  = strip_tags($manutentor);
+    
+    $equipamento = $json_object->equipamento;
+    $equipamento  = strip_tags($equipamento);
 
-$Problema = strip_tags($Problema);
-$Foto = strip_tags($Foto);
-$Status = strip_tags($Status);
-$DataInicio = strip_tags($DataInicio);
-$DataTermino = strip_tags($DataTermino);
-$Manutentor = strip_tags($Manutentor);
+    if ($problema=="") {
+        echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
+        exit;
+    }
+    if ($manutentor=="") {
+        echo '{"cod":"2","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
+    if ($status=="") {
+        echo '{"cod":"4","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
+    if ($datainicio=="") {
+        echo '{"cod":"5","msg":"datainicio não pode ser vazio!"}';
+        exit;
+    }
+    if ($equipamento=="") {
+        echo '{"cod":"6","msg":"A descricao não pode ser vazio!"}';
+        exit;
+    }
 
-$manutencao = new manutencao();
-$manutencao->setProblema($Problema);
-$manutencao->setFoto($Foto);
-$manutencao->setIdEquipamento($IdEquipamento);
-$manutencao->setStatus($Status);
-$manutencao->setDataInicio($DataInicio);
-$manutencao->setDataTermino($DataTermino);
-$manutencao->setManutentor($Manutentor);
+    $manutencao = new Manutencao();
+    $manutencao->setproblema($problema);
+    $manutencao->setManutentor($manutentor);
+    $manutencao->setIdEquipamento($equipamento);
+    $manutencao->setDataInicio($datainicio);
+    $manutencao->setstatus($status);
+  
+    $resultado = $manutencao->cadastrar();
 
-
-$resultado = $manutencao->cadastrar();
-if($resultado==true){
-echo "Cadastrado com sucesso";
+    if ($resultado == true) {
+        echo '{"cod":"7","msg":"Cadastrado com seucesso"}';
+    } else {
+        echo '{"cod":"8","msg":"O equipamento não pode ser vazio!"}';
+    }
 }else{
-echo "Erro ao cadastrar";
+    echo '{"cod":"9","msg":"O cadastro não pode ser realizado!"}';
+    exit;
 }
 
 ?>

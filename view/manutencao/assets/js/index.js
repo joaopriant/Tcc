@@ -1,3 +1,30 @@
+function carregarLocal() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function () {
+        console.log(this.responseText);
+        let cbolocal = document.getElementById("cbolocal")
+        let objLocais = JSON.parse(this.responseText);
+        
+        //let document.
+        objLocais.forEach(local => {
+            let novaOpcao = document.createElement("option");
+            const idlocal = local.IdSala;
+            novaOpcao.value = local.Idsala;
+            novaOpcao.text = ("Sala:")+local.Sala + (" Andar:")+ local.Andar + (" Bloco:")+ local.Bloco;
+            cbolocal.add(novaOpcao);
+        });
+    }
+    xmlhttp.open("GET", "../../controle/local/controle_Local_listarAll.php");
+    xmlhttp.send();
+
+}
+carregarLocal();
+function capturarvaluecbo(idelement){
+    const cbo = document.getElementById(idelement)
+    const id = cbo.value; 
+    return id;
+}
+
 function carregarEquipamento() {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
@@ -5,16 +32,17 @@ function carregarEquipamento() {
         let cboequipamento = document.getElementById("cboequipamento")
         let objequipamento = JSON.parse(this.responseText);
 
-        //let document.
         objequipamento.forEach(equipamento => {
+        if(equipamento.Local_Idsala === capturarvaluecbo('cbolocal')){
             let novaOpcao = document.createElement("option");
             novaOpcao.value = equipamento.IdEquipamento;
             novaOpcao.text = equipamento.Responsavel;
             cboequipamento.add(novaOpcao);
+        }else{return 0}
         });
     }
     xmlhttp.open("GET", "../../controle/equipamento/controle_Equipamento_listarAll.php");
     xmlhttp.send();
 
 }
-carregarEquipamento();
+

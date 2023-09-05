@@ -5,9 +5,6 @@ $request_raw = file_get_contents('php://input');
 $json_object = json_decode($request_raw);
 
 if($json_object!=null){
-    
-    $idequipamento = $json_object->idequipamento;
-    $idequipamento  = strip_tags($idequipamento);
 
     $numpatrimonio = $json_object->numpatrimonio;
     $numpatrimonio  = strip_tags($numpatrimonio);
@@ -21,10 +18,6 @@ if($json_object!=null){
     $descricao = $json_object->descricao;
     $descricao  = strip_tags($descricao);
 
-    if ($idequipamento=="") {
-        echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
-        exit;
-    }
     if ($descricao=="") {
         echo '{"cod":"2","msg":"A descricao não pode ser vazio!"}';
         exit;
@@ -41,8 +34,7 @@ if($json_object!=null){
 
 
     $Equipamento = new Equipamento();
-    $Equipamento->setIdEquipamento($idequipamento);
-    $Equipamento->setRegistroFuncionario($descricao);
+    $Equipamento->setidDescricao($descricao);
     $Equipamento->setIdsala($local);
     $Equipamento->setRegistroFuncionario($responsavel);
     $Equipamento->setnumpatrimonio($numpatrimonio);

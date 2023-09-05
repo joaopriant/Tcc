@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/tipografia.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/index.js"></script>
     <title>Chamado de Manuteção</title>
     
 </head>
@@ -56,6 +59,12 @@
                 </div>
 
                 <div class="campodosdados">
+                    <span class="detalhes">Local: </span>
+                    <select class="input" id="cbolocal" onchange="carregarEquipamento()"></select>
+                    </select>
+                </div>
+
+                <div class="campodosdados">
                     <span class="detalhes">Equipamento: </span>
                     <select class="input" id="cboequipamento"></select>
 
@@ -76,8 +85,6 @@
     </div>
 </section>
    
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script src="assets/js/index.js"></script>
+
 </body>
 </html>

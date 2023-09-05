@@ -38,8 +38,8 @@ class Equipamento implements JsonSerializable
         $local = $this->Idsala;
         $funcionario = $this->Responsavel;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into equipamento(numPatrimonio, Idsala, Responsavel,idDescricao)values(?,?,?,?)");
-        $stmt->bind_param("ssss", $numpatri,  $local, $funcionario,$descricao);
+        $stmt = $this->banco->getConexao()->prepare("insert into equipamento(numPatrimonio, Local, Responsavel,Descricao)values(?,?,?,?)");
+        $stmt->bind_param("sisi", $numpatri,  $local, $funcionario,$descricao);
         return $stmt->execute();
     }
     public function excluir()
