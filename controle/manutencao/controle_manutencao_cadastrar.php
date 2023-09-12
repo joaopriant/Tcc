@@ -8,6 +8,9 @@ if($json_object!=null){
     
     $problema = $json_object->problema;
     $problema  = strip_tags($problema);
+    
+    $foto = $json_object->foto;
+    $foto  = strip_tags($foto);
 
     $status = $json_object->status;
     $status  = strip_tags($status);
@@ -44,6 +47,7 @@ if($json_object!=null){
 
     $manutencao = new Manutencao();
     $manutencao->setproblema($problema);
+    $manutencao->setFoto($foto);
     $manutencao->setManutentor($manutentor);
     $manutencao->setIdEquipamento($equipamento);
     $manutencao->setDataInicio($datainicio);
@@ -60,5 +64,3 @@ if($json_object!=null){
     echo '{"cod":"9","msg":"O cadastro não pode ser realizado!"}';
     exit;
 }
-
-?>

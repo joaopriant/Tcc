@@ -5,7 +5,7 @@ font-family: 'Pacifico', cursive;
 *{
     font-family: 'Poppins', sans-serif;
 }
-h1 {
+h1,h2 {
     font: 100px;
     color: #000000;
     text-align: center;

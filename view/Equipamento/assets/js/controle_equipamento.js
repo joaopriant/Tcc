@@ -223,14 +223,14 @@ function carregarFuncionario() {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
         console.log(this.responseText);
-        let cbofuncionario = document.getElementById("cboFuncionario");
+        let cbofuncionario = document.getElementById("cboResponsavel");
         let objfuncionarios = JSON.parse(this.responseText);
 
         //let document.
         objfuncionarios.forEach(funcionario => {
             let novaOpcao = document.createElement("option");
-            novaOpcao.value = funcionario.idequipamentoFuncionario;
-            novaOpcao.text = funcionario.nome;
+            novaOpcao.value = funcionario.RegistroFuncionario;
+            novaOpcao.text = funcionario.Nome;
             cbofuncionario.add(novaOpcao);
         });
     }
