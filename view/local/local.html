@@ -42,7 +42,7 @@
                     a span da classe "detalhes" é o titulo do input-->
                     <div class="campodosdados">
                         <span class="detalhes">Id Local: </span>
-                        <input type="text" id ="txtid" placeholder="Digite o ID." required autofocus="true">
+                        <input type="text" id ="txtid" placeholder="Digite o ID." required autofocus="true" readonly>
                     </div>
     
                     <div class="campodosdados">
@@ -65,7 +65,7 @@
             </div>
         </form>
         
-            <div class="botao">
+            <div class="botao" onclick="table.load();">
                 
                 <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
                 <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>

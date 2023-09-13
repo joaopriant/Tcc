@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/tipografia.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Cadastro de Funcionários</title>
 </head>
 <body>
@@ -27,6 +29,7 @@
         </nav>
         
     </header>
+    
 <!-- engloba o quadradinho e tudo dentro devle kkkk-->
 <section id="formulario">
     <div class="container">
@@ -80,7 +83,9 @@
 
         </div>
     </form>
-    
+    <div id="div-alerta">
+        <p id="alerta">*Preencha todos os campos*</p>
+    </div>
         <div class="botao">
             
             <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>

@@ -42,7 +42,7 @@ class Manutencao implements JsonSerializable
         $DataTermino = $this->DataTermino;
 
         $stmt = $this->banco->getConexao()->prepare("insert into manutencao(IdManutencao, Problema, Foto, DataInicio, Equipamento, Status, Manutentor, DataTermino)values(?, ?, ?,?,?,?,?,?)");
-        $stmt->bind_param("isssisss", $IdEquipamento, $Problema, $Foto, $DataInicio, $IdEquipamento, $Status, $Manutentor, $DataTermino);
+        $stmt->bind_param("isssisss", $IdManutencao, $Problema, $Foto, $DataInicio, $IdEquipamento, $Status, $Manutentor, $DataTermino);
         return $stmt->execute();
     }
 
@@ -111,14 +111,14 @@ class Manutencao implements JsonSerializable
         $i = 0;
         while ($linha = $resultado->fetch_object()) {
             $resultados[$i] = new manutencao();
-            $resultados[$i]->setIdManutencao($linha->IdManutencao);
-            $resultados[$i]->setProblema($linha->Problema);
-            $resultados[$i]->setFoto($linha->Foto);
+            $resultados[$i]->setIdManutencao($linha->idManutencao);
+            $resultados[$i]->setProblema($linha->problema);
+            $resultados[$i]->setFoto($linha->foto);
             $resultados[$i]->setDataInicio($linha->DataInicio);
             $resultados[$i]->setDataTermino($linha->DataTermino);
-            $resultados[$i]->setStatus($linha->Status);
+            $resultados[$i]->setStatus($linha->status);
             $resultados[$i]->setManutentor($linha->Manutentor);
-            $resultados[$i]->setIdEquipamento($linha->IdEquipamento);
+            $resultados[$i]->setIdEquipamento($linha->Equipamento);
             $i++;
         }
         return $resultados;

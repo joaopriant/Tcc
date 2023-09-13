@@ -65,7 +65,14 @@ section#formulario{
     align-items: center;
 }
 
-
+#alerta{
+    text-align: center;
+    color:#ca0f0f
+}
+#div-alerta{
+    background-color: #ca0f0f;
+    border-radius: 25px;
+}
 /**ajusta o container que as divs estão inseridas**/
 .container {
     max-width: 800px;
