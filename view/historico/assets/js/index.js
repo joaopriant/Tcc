@@ -1,4 +1,3 @@
-
 function toggleDiv(divid,down,up){
     if(document.getElementById(divid).style.display == 'none'){
         document.getElementById(divid).style.display = 'block';

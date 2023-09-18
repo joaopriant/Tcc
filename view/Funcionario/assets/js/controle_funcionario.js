@@ -1,41 +1,25 @@
-
-function sendMail() {
-    var link = "mailto:me@example.com"
-             + "?cc=myCCaddress@example.com"
-             + "&subject=" + escape("This is my subject")
-             + "&body=" + escape(document.getElementById('myText').value)
-    ;
-
-    window.location.href = link;
-}
-
-function carregarCargo() {
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onload = function () {
-        console.log(this.responseText);
-        let cbocargo = document.getElementById("cbocargo")
-        let objcargo = JSON.parse(this.responseText);
-
-        //let document.
-        objcargo.forEach(cargo => {
-            let novaOpcao = document.createElement("option");
-            novaOpcao.value = cargo.IdCargo;
-            novaOpcao.text = cargo.Cargo;
-            cbocargo.add(novaOpcao);
-        });
-    }
-    xmlhttp.open("GET", "../../controle/cargo/controle_Cargo_listarAll.php");
-    xmlhttp.send();
-
-}
-carregarCargo();
-
 forms = document.getElementById("forms");
 
 function atualizarpage(tempo){
     setInterval(function(){
         location.reload () 
       }, tempo);
+}
+
+function validadorcampo(){
+    const registro = document.getElementById("txtid").value;
+    const nome = document.getElementById("txtnome").value;
+    const email = document.getElementById("txtemail").value;
+    const cargo = document.getElementById("cbocargo").value;
+    const date = document.getElementById("date").value;
+
+    if (registro|nome|email|cargo|date == null){
+        div = document.getElementById("div-alerta")
+        div.style.display = "block";
+        return false;
+    }else{
+        return true;
+    }
 }
 
 function btnupdate(){
@@ -132,7 +116,7 @@ function btncreate(){
     const cargo = document.getElementById("cbocargo").value;
     const senha = document.getElementById("txtsenha").value;
     const date = document.getElementById("date").value;
-
+    if(validadorcampo()){
     let funcionario = {
         registro: registro,
         nome: nome,
@@ -165,6 +149,7 @@ function btncreate(){
         console.log(error)
     })
     atualizarpage(200)
+    }
 }
 
 

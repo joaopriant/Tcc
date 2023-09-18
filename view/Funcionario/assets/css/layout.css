@@ -70,7 +70,8 @@ section#formulario{
     color:#ca0f0f
 }
 #div-alerta{
-    background-color: #ca0f0f;
+    display: none;
+    background-color: #ffffff;
     border-radius: 25px;
 }
 /**ajusta o container que as divs estão inseridas**/
