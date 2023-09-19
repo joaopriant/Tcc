@@ -5,26 +5,8 @@ require_once "Router.php";
 $router  = new Router();    
 //define a rota: GET /retangulo/{int}/{int}/area
 $router->get('/', function() {
-    echo "ola mundo";
+    echo "ola mundfdfsddso";
 });
-
-//define a rota: GET /retangulo/{int}/{int}/area
-$router->post('/cargos', function() {
-  require_once "controle/cargo/controle_Cargo_cadastrar.php";
-});
-$router->get('/cargos', function($id) {
-  require_once "controle/cargo/controle_Cargo_listarId.php";
-});
-$router->get('/cargos', function() {
-  require_once "controle/cargo/controle_Cargo_listarAll.php";
-});
-$router->put('/cargos', function() {
-  require_once "controle/cargo/controle_Cargo_atualizar.php";
-});
-$router->delete('/cargos', function() {
-  require_once "controle/cargo/controle_Cargo_deletar.php";
-});
-
 
 
 $router->post('/locais', function() {
