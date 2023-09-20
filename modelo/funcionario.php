@@ -67,28 +67,9 @@ class Funcionario implements JsonSerializable
         $stmt->bind_param("sssisi", $nome, $data, $email, $cargo, $hash, $registro);
         return $stmt->execute();
     }
-
-    public function buscarFuncionarioPorId($RegistroFuncionario)
-    {   
-        
-        $stmt = $this->banco->getConexao()->prepare("select * from Funcionario where RegistroFuncionario = ?");
-        $stmt->bind_param("s", $RegistroFuncionario);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        while ($linha = $resultado->fetch_object()) {
-            $this->setRegistroFuncionario($linha->registro);
-            $this->setNome($linha->nome);
-            $this->setEmail($linha->Email);
-            $this->setDatadeNasc($linha->cargo);
-            $this->setDatadeNasc($linha->date);
-
-        }
-        return $this;
-
-    }
     public function listarFuncionario()
     {
-        $stmt = $this->banco->getConexao()->prepare("Select RegistroFuncionario, Nome, DATE_FORMAT(DatadeNascimento,'%d/%m/%Y') AS DatadeNascimento , Email, cargo.Cargo AS cargo , cargo.IdCargo AS IdCargo from funcionario JOIN cargo ON cargo.IdCargo=funcionario.Cargo");
+        $stmt = $this->banco->getConexao()->prepare("Select * from Funcionario");
         $stmt->execute();
         $resultado = $stmt->get_result();
         $resultados = array();
