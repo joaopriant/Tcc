@@ -8,7 +8,6 @@ function carregarLocal() {
         //let document.
         objLocais.forEach(local => {
             let novaOpcao = document.createElement("option");
-            const idlocal = local.IdSala;
             novaOpcao.value = local.Idsala;
             novaOpcao.text = ("Sala:")+local.Sala + (" Andar:")+ local.Andar + (" Bloco:")+ local.Bloco;
             cbolocal.add(novaOpcao);
@@ -16,12 +15,12 @@ function carregarLocal() {
     }
     xmlhttp.open("GET", "../../controle/local/controle_Local_listarAll.php");
     xmlhttp.send();
-
 }
+
 carregarLocal();
 function capturarvaluecbo(idelement){
-    const cbo = document.getElementById(idelement)
-    const id = cbo.value; 
+    const cbo = document.getElementById(idelement);
+    const id = cbo.value;
     console.log(id);
     return id;
 }
@@ -29,15 +28,14 @@ function capturarvaluecbo(idelement){
 function carregarEquipamento() {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function () {
-        //console.log(this.responseText);
         let cboequipamento = document.getElementById("cboequipamento")
         let objequipamento = JSON.parse(this.responseText);
         objequipamento.forEach(equipamento => {
             if(equipamento.Idsala == capturarvaluecbo('cbolocal')){
-            let novaOpcao = document.createElement("option");
-            novaOpcao.value = equipamento.IdEquipamento;
-            novaOpcao.text = equipamento.numPatrimonio;
-            cboequipamento.add(novaOpcao);
+                let novaOpcao = document.createElement("option");
+                novaOpcao.value = equipamento.IdEquipamento;
+                novaOpcao.text = equipamento.numPatrimonio;
+                cboequipamento.add(novaOpcao);
         }else{
             for (let i = 0; i < cboequipamento.options.length; i++) {
                 if (cboequipamento.options[i].value == equipamento.IdEquipamento) {

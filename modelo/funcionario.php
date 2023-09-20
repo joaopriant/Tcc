@@ -1,6 +1,6 @@
 <?php
 include "Banco.php";
-include "Cargo.php";
+
 class Funcionario implements JsonSerializable
 {
     private $RegistroFuncionario;
@@ -40,7 +40,7 @@ class Funcionario implements JsonSerializable
         $hash = md5($senha);
 
         $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssi", $registrofuncionario, $nome, $data, $email, $hash, $cargo);
+        $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $hash, $cargo);
         return $stmt->execute();
     }
 
@@ -99,10 +99,7 @@ class Funcionario implements JsonSerializable
             $resultados[$i]->setNome($linha->Nome);
             $resultados[$i]->setEmail($linha->Email);
             $resultados[$i]->setDatadeNasc($linha->DatadeNacimento);
-            $cargo = new Cargo();
-            $cargo->setIdCargo($linha->IdCargo);
-            $cargo->setCargo($linha->cargo);
-            $resultados[$i]->setCargo($cargo);
+            $resultados[$i]->setCargo($linha->cargo);
             $i++;
         }
         return $resultados;

@@ -6,21 +6,6 @@ function atualizarpage(tempo){
       }, tempo);
 }
 
-function validadorcampo(){
-    const registro = document.getElementById("txtid").value;
-    const nome = document.getElementById("txtnome").value;
-    const email = document.getElementById("txtemail").value;
-    const cargo = document.getElementById("cbocargo").value;
-    const date = document.getElementById("date").value;
-
-    if (registro|nome|email|cargo|date == null){
-        div = document.getElementById("div-alerta")
-        div.style.display = "block";
-        return false;
-    }else{
-        return true;
-    }
-}
 
 function btnupdate(){
 
@@ -116,8 +101,7 @@ function btncreate(){
     const cargo = document.getElementById("cbocargo").value;
     const senha = document.getElementById("txtsenha").value;
     const date = document.getElementById("date").value;
-    if(validadorcampo()){
-    let funcionario = {
+   let funcionario = {
         registro: registro,
         nome: nome,
         email: email,
@@ -149,7 +133,6 @@ function btncreate(){
         console.log(error)
     })
     atualizarpage(200)
-    }
 }
 
 
