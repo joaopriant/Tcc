@@ -93,15 +93,7 @@ function btndelete(){
     })
     atualizarpage(200)
 }
-
-
-function btncreate(){
-    const registro = document.getElementById("txtid").value;
-    const nome = document.getElementById("txtnome").value;
-    const email = document.getElementById("txtemail").value;
-    const cargo = document.getElementById("cbocargo").value;
-    const senha = document.getElementById("txtsenha").value;
-    const date = document.getElementById("date").value;
+function cadastroAcesso(funcionario){
     
     let acessoCadastro = document.getElementById("cadastro");
     let acessoAbertura = document.getElementById("AberturaChamado");
@@ -114,6 +106,41 @@ function btncreate(){
     acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
     acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
     acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
+
+    acesso = {
+        funcionario: funcionario,
+        AcompanhamentoChamado: acessoAcompanhamento,
+        AberturaChamado: acessoAbertura,
+        Manutencao: acessoManutencao,
+        Cadastro: acessoCadastro,
+        Dashboard: acessoDashboard
+    }
+    console.log(acesso);
+
+    if (res.status === 200) {
+        console.log("Post successfully created!")
+        fetch("../../controle/acesso/controle_acesso_cadastrar.php", {
+            method: 'post',
+            body: JSON.stringify(acesso),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            return response.json();
+        }).then((res) => {
+            console.log(res)
+            
+        })
+}}
+
+function btncreate(){
+    const registro = document.getElementById("txtid").value;
+    const nome = document.getElementById("txtnome").value;
+    const email = document.getElementById("txtemail").value;
+    const cargo = document.getElementById("cbocargo").value;
+    const senha = document.getElementById("txtsenha").value;
+    const date = document.getElementById("date").value;
 
    let funcionario = {
         registro: registro,
@@ -130,8 +157,9 @@ function btncreate(){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }
-    }).then((response) => {
-        return response.json()
+}).then((response) => {
+    cadastroAcesso(registro)
+    return response.json()
     }).then((res) => {
         
         const div = document.getElementById("divResposta");
@@ -139,31 +167,6 @@ function btncreate(){
             div.innerHTML = "O campo não pode ser vazio";
         }
         console.log(res)
-
-        acesso = {
-            funcionario: registro,
-            AcompanhamentoChamado: acessoAcompanhamento,
-            AberturaChamado: acessoAbertura,
-            Manutencao: acessoManutencao,
-            Cadastro: acessoCadastro,
-            Dashboard: acessoDashboard
-        }
-        console.log(acesso)
-        if (res.status === 200) {
-            console.log("Post successfully created!")
-            fetch("../../controle/acesso/controle_acesso_cadastrar.php", {
-                method: 'post',
-                body: JSON.stringify(acesso),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-                }).then((response) => {
-                    return response.json();
-                }).then((res) => {
-
-                })
-        }
     }).catch((error) => {
         console.log(error)
     })
