@@ -9,6 +9,11 @@ class Funcionario implements JsonSerializable
     private $Email;
     private $Senha;
     private $Cargo;
+    private $Cadastro;
+    private $AcompanhamentoChamado;
+    private $AberturaChamado;
+    private $Manutencao;
+    private $Dashboard;
     private $banco;
 
     public function jsonSerialize()
@@ -19,7 +24,11 @@ class Funcionario implements JsonSerializable
         $array["DatadeNascimento"] = $this->getDatadeNasc();
         $array["senha"] = $this->getSenha();
         $array["RegistroFuncionario"] = $this->getRegistroFuncionario();
-       
+        $array["AcompanhamentoChamado"] = $this->getAcompanhamentoChamado();
+        $array["AberturaChamado"] = $this->getAberturaChamado();
+        $array["Manutencao"] = $this->getManutencao();
+        $array["Dashboard"] = $this->getDashboard();
+        $array["Cadastro"] = $this->getDashboard();
         return $array;
     }
 
@@ -36,11 +45,15 @@ class Funcionario implements JsonSerializable
         $data = $this->DatadeNascimento;
         $email = $this->Email;
         $cargo = $this->Cargo;
-        $senha = $this->Senha;
-        $hash = md5($senha);
+        $hash = md5($this->Senha);
+        $AcompanhamentoChamado = $this->AcompanhamentoChamado;
+        $AberturaChamado = $this->AberturaChamado;
+        $Manutencao = $this->Manutencao;
+        $Dashboard = $this->Dashboard;
+        $Cadastro = $this->Cadastro;
 
-        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $hash, $cargo);
+        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo, Cadastro ,AcompanhamentoChamado, AberturaChamado, Manutencao, Dashboard)values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssiiiii", $registrofuncionario, $nome, $data, $email, $hash, $cargo,$Cadastro, $AcompanhamentoChamado, $AberturaChamado, $Manutencao, $Dashboard);
         return $stmt->execute();
     }
 
@@ -59,12 +72,16 @@ class Funcionario implements JsonSerializable
         $data = $this->DatadeNascimento;
         $email = $this->Email;
         $cargo = $this->Cargo;
-        $senha = $this->Senha;
-        $hash = md5($senha);
+        $hash = md5($this->Senha);
+        $AcompanhamentoChamado = $this->AcompanhamentoChamado;
+        $AberturaChamado = $this->AberturaChamado;
+        $Manutencao = $this->Manutencao;
+        $Dashboard = $this->Dashboard;
+        $Cadastro = $this->Cadastro;
 
-        $stmt = $this->banco->getConexao()->prepare("update Funcionario set Nome=?, DatadeNascimento=?, Email=?,Cargo=?, senha=? where RegistroFuncionario = ?");
+        $stmt = $this->banco->getConexao()->prepare("update Funcionario set Nome=?, DatadeNascimento=?, Email=?,Cargo=?, senha=?, AcompanhamentoChamado=?,Cadastro=? ,AberturaChamado=?, Manutencao=?,Dashboard=? where RegistroFuncionario = ?");
 
-        $stmt->bind_param("sssisi", $nome, $data, $email, $cargo, $hash, $registro);
+        $stmt->bind_param("sssisiiiiii", $nome, $data, $email, $cargo, $hash, $AcompanhamentoChamado,$Cadastro, $AberturaChamado, $Manutencao, $Dashboard,$registro);
         return $stmt->execute();
     }
     public function listarFuncionario()
@@ -81,6 +98,11 @@ class Funcionario implements JsonSerializable
             $resultados[$i]->setEmail($linha->Email);
             $resultados[$i]->setDatadeNasc($linha->DatadeNacimento);
             $resultados[$i]->setCargo($linha->cargo);
+            $resultados[$i]->setAcompanhamentoChamado($linha->AcompanhamentoChamado);
+            $resultados[$i]->setManutencao($linha->Manutencao);
+            $resultados[$i]->setAberturaChamado($linha->AberturaChamado);
+            $resultados[$i]->setDashboard($linha->Dashboard);
+            $resultados[$i]->setCadastro($linha->Cadastro);
             $i++;
         }
         return $resultados;
@@ -134,8 +156,47 @@ class Funcionario implements JsonSerializable
         $this->Cargo = $Cargo;
     }
 
-
-
+    
+    public function getCadastro()
+    {
+        return $this->Cadastro;
+    }
+    public function setCadastro($Cadastro)
+    {
+        $this->Cadastro = $Cadastro;
+    }
+    public function getAcompanhamentoChamado()
+    {
+        return $this->AcompanhamentoChamado;
+    }
+    public function setAcompanhamentoChamado($AcompanhamentoChamado)
+    {
+        $this->AcompanhamentoChamado = $AcompanhamentoChamado;
+    }
+    public function getAberturaChamado()
+    {
+        return $this->AberturaChamado;
+    }
+    public function setAberturaChamado($AberturaChamado)
+    {
+        $this->AberturaChamado = $AberturaChamado;
+    }
+    public function getManutencao()
+    {
+        return $this->Manutencao;
+    }
+    public function setManutencao($Manutencao)
+    {
+        $this->Manutencao = $Manutencao;
+    }
+    public function getDashboard()
+    {
+        return $this->Dashboard;
+    }
+    public function setDashboard($Dashboard)
+    {
+        $this->Dashboard = $Dashboard;
+    }
 }
 
 ?>

@@ -24,6 +24,43 @@ if($json_object!=null){
     $cargo = $json_object->cargo;
     $cargo  = strip_tags($cargo);
 
+    $AcompanhamentoChamado = $json_object->AcompanhamentoChamado;
+    $AcompanhamentoChamado  = strip_tags($AcompanhamentoChamado);
+    
+    $AberturaChamado = $json_object->AberturaChamado;
+    $AberturaChamado  = strip_tags($AberturaChamado);
+    
+    $Manutencao = $json_object->Manutencao;
+    $Manutencao  = strip_tags($Manutencao);
+
+    $Dashboard = $json_object->Dashboard;
+    $Dashboard  = strip_tags($Dashboard);
+
+    $Cadastro = $json_object->Cadastro;
+    $Cadastro  = strip_tags($Cadastro);
+
+    if ($Dashboard=="") {
+        echo '{"cod":"2","msg":"O Dashboard não pode ser vazio!"}';
+        exit;
+    }
+    if ($Cadastro=="") {
+        echo '{"cod":"2","msg":"O Dashboard não pode ser vazio!"}';
+        exit;
+    }
+    
+    if ($Manutencao=="") {
+        echo '{"cod":"3","msg":"A manutenção não pode ser vazio!"}';
+        exit;
+    }
+    if ($AcompanhamentoChamado=="") {
+        echo '{"cod":"4","msg":"O Acompanhamento não pode ser vazio!"}';
+        exit;
+    }
+    if ($AberturaChamado=="") {
+        echo '{"cod":"5","msg":"a Abertura de Chamado não pode ser vazio!"}';
+        exit;
+    }
+
     if ($nome=="") {
         echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
         exit;
@@ -57,6 +94,11 @@ if($json_object!=null){
     $Funcionario->setCargo($cargo);
     $Funcionario->setSenha($senha);
     $Funcionario->setEmail($email);
+    $Funcionario->setDashboard($Dashboard);
+    $Funcionario->setAberturaChamado($AberturaChamado);
+    $Funcionario->setManutencao($Manutencao);
+    $Funcionario->setCadastro($Cadastro);
+    $Funcionario->setAcompanhamentoChamado($AcompanhamentoChamado);
   
     $resultado = $Funcionario->cadastrar();
 

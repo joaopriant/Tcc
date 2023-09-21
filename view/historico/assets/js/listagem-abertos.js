@@ -18,9 +18,9 @@ function carregarManutencao(divid){
             
             if(Status== "Aberta"){
 
-            tabela+="<tr id='"+id+"' class='linha'>";
-               tabela+="<td>";
-                    tabela+= '<ion-icon class="icon-complete" name="checkbox-outline"></ion-icon>';
+            tabela+="<tr class='linha'>";
+               tabela+="<td id='finish-check'>";
+                    tabela+= '<ion-icon class="icon-complete" value="" name="checkbox-outline"></ion-icon>';
                 tabela+="</td>";
 
                tabela+="<td>";
@@ -111,4 +111,8 @@ function atualizar(status,id){
         console.log(error)
     })
 }
-atualizar("Aberta",7)
+function finalizarManutencao(){
+    document.getElementById("#fisish-check").addEventListener("click",(e)=>{
+        console.log("Check")
+    })
+}
