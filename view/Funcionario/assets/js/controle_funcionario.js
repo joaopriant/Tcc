@@ -1,5 +1,5 @@
 forms = document.getElementById("forms");
-
+const chkCadastro = document.getElementById("chkCadastro");
 
 function atualizarpage(tempo){
     setInterval(function(){
@@ -16,13 +16,16 @@ function btnupdate(){
     const cargo = document.getElementById("cbocargo").value;
     const senha = document.getElementById("txtsenha").value;
     const date = document.getElementById("date").value;
+
+
     let funcionario = {
         registro: registro,
         nome: nome,
         email: email,
         cargo: cargo,
         senha: senha,
-        date: date
+        date: date,
+        permissaoCadasttro:chkCadastro.checked
     }
     console.log(funcionario)
     fetch("../../controle/Funcionario/controle_Funcionario_atualizar.php", {
@@ -100,6 +103,7 @@ function cadastroAcesso(funcionario){
     let acessoAcompanhamento = document.getElementById("acompanhamento");
     let acessoManutencao = document.getElementById("manutencao");
     let acessoDashboard = document.getElementById("dashboard");
+
 
     acessoCadastro = acessoCadastro.checked == true ? 1 : 0;
     acessoAbertura = acessoAbertura.checked === true ? 1 : 0;

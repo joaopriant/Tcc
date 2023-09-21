@@ -11,6 +11,8 @@ class Funcionario implements JsonSerializable
     private $Cargo;
     private $banco;
 
+    private $permissaoCadasttro;
+
     public function jsonSerialize()
     {
         $array["Nome"] = $this->getNome();
@@ -19,6 +21,7 @@ class Funcionario implements JsonSerializable
         $array["DatadeNascimento"] = $this->getDatadeNasc();
         $array["senha"] = $this->getSenha();
         $array["RegistroFuncionario"] = $this->getRegistroFuncionario();
+        $array["permissaoCadasttro"] = $this->getPermissaoCadasttro();
        
         return $array;
     }
@@ -38,6 +41,7 @@ class Funcionario implements JsonSerializable
         $cargo = $this->Cargo;
         $senha = $this->Senha;
         $hash = md5($senha);
+        $permissaoCadasttro= $this->permissaoCadasttro;
 
         $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(RegistroFuncionario, Nome, DatadeNascimento, Email, Senha, Cargo)values(?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $registrofuncionario, $nome, $data, $email, $hash, $cargo);
@@ -136,6 +140,22 @@ class Funcionario implements JsonSerializable
 
 
 
+
+	/**
+	 * @return mixed
+	 */
+	public function getPermissaoCadasttro() {
+		return $this->permissaoCadasttro;
+	}
+	
+	/**
+	 * @param mixed $permissaoCadasttro 
+	 * @return self
+	 */
+	public function setPermissaoCadasttro($permissaoCadasttro) {
+		$this->permissaoCadasttro = $permissaoCadasttro;
+		return $this;
+	}
 }
 
 ?>

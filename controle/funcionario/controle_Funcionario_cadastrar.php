@@ -24,6 +24,10 @@ if($json_object!=null){
     $cargo = $json_object->cargo;
     $cargo  = strip_tags($cargo);
 
+    $permissaoCadasttro = $json_object->permissaoCadasttro;
+    $permissaoCadasttro  = strip_tags($permissaoCadasttro);
+    
+
     if ($nome=="") {
         echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
         exit;
@@ -57,7 +61,7 @@ if($json_object!=null){
     $Funcionario->setCargo($cargo);
     $Funcionario->setSenha($senha);
     $Funcionario->setEmail($email);
-  
+    $Funcionario->setPermissaoCadasttro($permissaoCadasttro);
     $resultado = $Funcionario->cadastrar();
 
     if ($resultado == true) {
