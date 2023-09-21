@@ -21,6 +21,9 @@ if($json_object!=null){
     $Dashboard = $json_object->Dashboard;
     $Dashboard  = strip_tags($Dashboard);
 
+    $Cadastro = $json_object->Cadastro;
+    $Cadastro  = strip_tags($Cadastro);
+
     if ($funcionario=="") {
         echo '{"cod":"1","msg":"O Funcionario não pode ser vazio!"}';
         exit;
@@ -29,7 +32,11 @@ if($json_object!=null){
         echo '{"cod":"2","msg":"O Dashboard não pode ser vazio!"}';
         exit;
     }
-
+    if ($Cadastro=="") {
+        echo '{"cod":"2","msg":"O Dashboard não pode ser vazio!"}';
+        exit;
+    }
+    
     if ($Manutencao=="") {
         echo '{"cod":"3","msg":"A manutenção não pode ser vazio!"}';
         exit;
@@ -48,6 +55,7 @@ if($json_object!=null){
     $Acesso->setDashboard($Dashboard);
     $Acesso->setAberturaChamado($AberturaChamado);
     $Acesso->setManutencao($Manutencao);
+    $Acesso->setCadastro($Cadastro);
     $Acesso->setAcompanhamentoChamado($AcompanhamentoChamado);
   
     $resultado = $Acesso->cadastrar();

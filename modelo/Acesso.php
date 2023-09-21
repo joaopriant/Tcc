@@ -4,6 +4,7 @@ require_once "Banco.php";
 class Acesso implements JsonSerializable
 {
     private $Funcionario;
+    private $Cadastro;
     private $AcompanhamentoChamado;
     private $AberturaChamado;
     private $Manutencao;
@@ -17,7 +18,8 @@ class Acesso implements JsonSerializable
         $array["AberturaChamado"] = $this->getAberturaChamado();
         $array["Manutencao"] = $this->getManutencao();
         $array["Dashboard"] = $this->getDashboard();
-
+        $array["Cadastro"] = $this->getDashboard();
+        
        
         return $array;
     }
@@ -34,10 +36,11 @@ class Acesso implements JsonSerializable
         $AberturaChamado = $this->AberturaChamado;
         $Manutencao = $this->Manutencao;
         $Dashboard = $this->Dashboard;
+        $Cadastro = $this->Cadastro;
 
 
-        $stmt = $this->banco->getConexao()->prepare("insert into Funcionario(Funcionario, AcompanhamentoChamado, AberturaChamado, Manutencao, Dashboard)values(?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiiii", $Funcionario, $AcompanhamentoChamado, $AberturaChamado, $Manutencao, $Dashboard);
+        $stmt = $this->banco->getConexao()->prepare("insert into acesso(Funcionario,Cadastro ,AcompanhamentoChamado, AberturaChamado, Manutencao, Dashboard)values(?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("siiiii", $Funcionario, $AcompanhamentoChamado,$Cadastro, $AberturaChamado, $Manutencao, $Dashboard);
         return $stmt->execute();
     }
 
@@ -56,10 +59,11 @@ class Acesso implements JsonSerializable
         $AberturaChamado = $this->AberturaChamado;
         $Manutencao = $this->Manutencao;
         $Dashboard = $this->Dashboard;
+        $Cadastro = $this->Cadastro;
 
 
-        $stmt = $this->banco->getConexao()->prepare("update Acesso set AcompanhamentoChamado=?, AberturaChamado=?, Manutencao=?,Dashboard=? where Funcionario = ?");
-        $stmt->bind_param("iiiii", $AcompanhamentoChamado, $AberturaChamado, $Manutencao, $Dashboard, $Funcionario);
+        $stmt = $this->banco->getConexao()->prepare("update Acesso set AcompanhamentoChamado=?,Cadastro=? ,AberturaChamado=?, Manutencao=?,Dashboard=? where Funcionario = ?");
+        $stmt->bind_param("iiiiii", $AcompanhamentoChamado,$Cadastro, $AberturaChamado, $Manutencao, $Dashboard, $Funcionario);
         return $stmt->execute();
     }
     public function listarAcesso()
@@ -76,6 +80,7 @@ class Acesso implements JsonSerializable
             $resultados[$i]->setManutencao($linha->Manutencao);
             $resultados[$i]->setAberturaChamado($linha->AberturaChamado);
             $resultados[$i]->setDashboard($linha->Dashboard);
+            $resultados[$i]->setCadastro($linha->Cadastro);
             $i++;
         }
         return $resultados;
@@ -88,6 +93,14 @@ class Acesso implements JsonSerializable
     public function setFuncionario($Funcionario)
     {
         $this->Funcionario = $Funcionario;
+    }
+    public function getCadastro()
+    {
+        return $this->Cadastro;
+    }
+    public function setCadastro($Cadastro)
+    {
+        $this->Cadastro = $Cadastro;
     }
     public function getAcompanhamentoChamado()
     {

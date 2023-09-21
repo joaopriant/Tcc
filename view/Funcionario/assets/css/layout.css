@@ -64,9 +64,22 @@ section#formulario{
     justify-content: center;
     align-items: center;
 }
-checkbox{
-    color: #221c4d;
+div#acesso{
+    display: flex;
 }
+div.left{
+    width: 50%;
+}
+div.rigth{
+    width: 49%;
+}
+input[type="checkbox"]{
+    background-color: #ffffff;
+    border-color: #1f0f68;
+    width: 15px;
+    height: 15px;
+}
+
 #alerta{
     text-align: center;
     color:#ca0f0f

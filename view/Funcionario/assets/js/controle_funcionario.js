@@ -1,5 +1,6 @@
 forms = document.getElementById("forms");
 
+
 function atualizarpage(tempo){
     setInterval(function(){
         location.reload () 
@@ -101,6 +102,19 @@ function btncreate(){
     const cargo = document.getElementById("cbocargo").value;
     const senha = document.getElementById("txtsenha").value;
     const date = document.getElementById("date").value;
+    
+    let acessoCadastro = document.getElementById("cadastro");
+    let acessoAbertura = document.getElementById("AberturaChamado");
+    let acessoAcompanhamento = document.getElementById("acompanhamento");
+    let acessoManutencao = document.getElementById("manutencao");
+    let acessoDashboard = document.getElementById("dashboard");
+
+    acessoCadastro = acessoCadastro.checked == true ? 1 : 0;
+    acessoAbertura = acessoAbertura.checked === true ? 1 : 0;
+    acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
+    acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
+    acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
+
    let funcionario = {
         registro: registro,
         nome: nome,
@@ -119,20 +133,41 @@ function btncreate(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-     
+        
         const div = document.getElementById("divResposta");
         if(res.cod==1){
             div.innerHTML = "O campo não pode ser vazio";
         }
         console.log(res)
 
+        acesso = {
+            funcionario: registro,
+            AcompanhamentoChamado: acessoAcompanhamento,
+            AberturaChamado: acessoAbertura,
+            Manutencao: acessoManutencao,
+            Cadastro: acessoCadastro,
+            Dashboard: acessoDashboard
+        }
+        console.log(acesso)
         if (res.status === 200) {
             console.log("Post successfully created!")
+            fetch("../../controle/acesso/controle_acesso_cadastrar.php", {
+                method: 'post',
+                body: JSON.stringify(acesso),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+                }).then((response) => {
+                    return response.json();
+                }).then((res) => {
+
+                })
         }
     }).catch((error) => {
         console.log(error)
     })
-    atualizarpage(200)
+    //atualizarpage(200)
 }
 
 
