@@ -16,6 +16,8 @@ class Funcionario implements JsonSerializable
     private $Dashboard;
     private $banco;
 
+    private $permissaoCadasttro;
+
     public function jsonSerialize()
     {
         $array["Nome"] = $this->getNome();
@@ -154,9 +156,7 @@ class Funcionario implements JsonSerializable
     public function setCargo($Cargo)
     {
         $this->Cargo = $Cargo;
-    }
-
-    
+    }    
     public function getCadastro()
     {
         return $this->Cadastro;
