@@ -64,7 +64,9 @@ section#formulario{
     justify-content: center;
     align-items: center;
 }
-
+checkbox{
+    color: #221c4d;
+}
 #alerta{
     text-align: center;
     color:#ca0f0f
