@@ -4,9 +4,7 @@ require_once "../../modelo/Descricao.php";
 $request_raw = file_get_contents('php://input');
 $json_object = json_decode($request_raw);
 
-
 if($json_object!=null){
-
 
     $iddesc = $json_object->iddesc;
     $iddesc  = strip_tags($iddesc);
@@ -19,7 +17,7 @@ if($json_object!=null){
         exit;
     }
     if ($desc=="") {
-        echo '{"cod":"1","msg":"A descricao não pode ser vazio!"}';
+        echo '{"cod":"2","msg":"A descricao não pode ser vazio!"}';
         exit;
     }
 
@@ -31,12 +29,12 @@ if($json_object!=null){
 
     $resultado = $Descricao->atualizar();
     if($resultado == true){
-         echo '{"cod":"1","msg":"Atualizado com sucesso!"}';
+         echo '{"cod":"3","msg":"Atualizado com sucesso!"}';
     }else{
-        echo '{"cod":"1","msg":"erro ao atualizar!"}';
+        echo '{"cod":"4","msg":"erro ao atualizar!"}';
     }
 }else{
-    echo '{"cod":"4","msg":"O JSON não pode ser nulo!"}';
+    echo '{"cod":5","msg":"O JSON não pode ser nulo!"}';
     exit;
 }
 ?>

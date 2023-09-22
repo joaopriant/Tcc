@@ -35,7 +35,7 @@ function btnupdate(){
     }
     console.log(local);
     fetch("../../controle/local/controle_Local_atualizar.php", {
-    method: 'post',
+    method: 'put',
     body: JSON.stringify(local),
     headers: {
         'Accept': 'application/json',
@@ -44,6 +44,7 @@ function btnupdate(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
+        carregarLocal();
      
         const div = document.getElementById("divResposta");
         if(res.cod==1){
@@ -57,7 +58,6 @@ function btnupdate(){
     }).catch((error) => {
         console.log(error)
     })
-    atualizarpage(200);
 }
 
 

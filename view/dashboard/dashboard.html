@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/tipografia.css">
+    <link rel="stylesheet" href="assets/css/tabelas.css">
 
     <title>Dashboard</title>
 </head>
@@ -37,10 +38,25 @@
             <canvas id="chart3"></canvas>
         </div>
     </section>
+    <section class="lista-tabelas" id="view-manutencao">
+        <div class="lista-tabelas" id="view-tabela-manutencao">
+            <div class="dropdown" id="dropdown-manutencao" onmousedown="toggleDiv('tabela-historico','down-arrow-historico','up-arrow-historico');">
+            <H3 class="titulo">Historico de Manuteções</H3>
+            <ion-icon class="arrow-up" id="up-arrow-historico" name="chevron-up-outline"></ion-icon>
+            <ion-icon class="arrow-down"id="down-arrow-historico" name="chevron-down-outline"></ion-icon>
+        </div>
+        <div id="tabela-historico" >
+        </div>
+    </div>
+</section> 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/charts.js"></script>
+    <script>
+        carregarHistorico("tabela-historico");
+    </script>
 </body>
 </html>

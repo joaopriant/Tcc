@@ -47,12 +47,12 @@ if($json_object!=null){
 
     $resultado = $Local->atualizar();
     if($resultado == true){
-         echo '{"cod":"1","msg":"Atualizado com sucesso!"}';
+         echo '{"cod":"5","msg":"Atualizado com sucesso!"}';
     }else{
-        echo '{"cod":"1","msg":"erro ao atualizar!"}';
+        echo '{"cod":"6","msg":"erro ao atualizar!"}';
     }
 }else{
-    echo '{"cod":"4","msg":"O JSON não pode ser nulo!"}';
+    echo '{"cod":"7","msg":"O JSON não pode ser nulo!"}';
     exit;
 }
 ?>

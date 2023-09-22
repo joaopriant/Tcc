@@ -1,92 +1,61 @@
-const options = ["Aberta","Pendente","Concluida"];
-var chamados = [0,0,0];
+function toggleDiv(divid,down,up){
+    if(document.getElementById(divid).style.display == 'none'){
+        document.getElementById(divid).style.display = 'block';
+        document.getElementById(up).style.display = 'block';
+        document.getElementById(down).style.display = 'none';
+    }else{
+     document.getElementById(divid).style.display = 'none';
+     document.getElementById(down).style.display = 'block';
+     document.getElementById(up).style.display = 'none';
+   }
+ }
+ function carregarHistorico(divid){
+    const divListaManutencao = document.getElementById(divid);
+    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    method: 'get',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    }).then((response) => {
+        return response.json()
+    }).then((res) => {
+        let tabela = "<table><th>Id Chamado</th><th>Problema</th><th>Data de inicio</th><th>Status</th>";
+        for(var k in res) {
+            const id = res[k].IdManutencao;
+            const problema = res[k].Problema;
+            const Datainicio = res[k].DataInicio;
+            const Status = res[k].Status;
+            
+            if(Status== "Concluido"){     
+
+            tabela+="<tr>";
+               tabela+="<td>";
+                    tabela+= id;
+                tabela+="</td>";
+
+                tabela+="<td>";
+                    tabela+=problema;
+                tabela+="</td>";
+
+                tabela+="<td>";
+                tabela+=Datainicio;
+                tabela+="</td>";
+
+                tabela+="<td>";
+                tabela+=Status;
+                tabela+="</td>";
 
 
-function carregarChamado(chamados=[]) {
-  const xmlhttp = new XMLHttpRequest();
-  xmlhttp.onload = function () {
-
-      let objChamado = JSON.parse(this.responseText);
-      var chamadoAberto = 0;
-      var chamadoPendente = 0;
-      var chamadoConcluida = 0;
-      objChamado.forEach(chamado => {
-        let status = chamado.Status;
-        if (status == options[0]){
-          chamadoAberto += 1;
-        }else if (status == options[1]){
-          console.log("Pendente")
-          chamadoPendente +=1;
-        }else if (status == options[2]){
-          console.log("Concluida");
-          chamadoConcluida +=1;
-        }
-        chamados[0] = chamadoAberto;
-        chamados[1] = chamadoPendente;
-        chamados[2] = chamadoConcluida;
-        return chamados
-      });
-  }
-  xmlhttp.open("GET", "../../controle/manutencao/controle_manutencao_listarAll.php");
-  xmlhttp.send();
-
+            tabela+="</tr>";
+            }else{
+                continue
+            }
+         }
+         tabela+="</table>";
+         divListaManutencao.innerHTML=tabela;
+   
+    }).catch((error) => {
+        console.log(error)
+    })
 }
-carregarChamado(chamados);
-const ctx1 = document.getElementById('chart2');
-const ctx2 = document.getElementById('chart3');
-
-new Chart(ctx1, {
-  type: 'doughnut',
-  data: {
-    labels: ['Abertas', 'Pendentes', 'Concluidas'],
-    datasets: [{
-      label: 'Chamados',
-      data: chamados,
-      borderWidth: 1,
-      backgroundColor: [
-        '#0113E0',
-        '#E05216',
-        '#5CE016'
-        ],
-    }]
-  },
-  options: {
-    scales: {
-      x: {
-        grid: {
-          display: false
-        }
-      },
-      y: {
-        grid: {
-          display: false
-        }
-      },
-      yAxes: [{
-        gridLines: {
-          drawBorder: true,
-          display: false
-          }
-      }]
-    }
-  }
-});
-
-new Chart(ctx2, {
-  type: 'doughnut',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});

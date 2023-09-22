@@ -1,6 +1,30 @@
 forms = document.getElementById("forms");
 const chkCadastro = document.getElementById("chkCadastro");
 
+const registro = document.getElementById("txtid").value;
+const nome = document.getElementById("txtnome").value;
+const email = document.getElementById("txtemail").value;
+const cargo = document.getElementById("cbocargo").value;
+const senha = document.getElementById("txtsenha").value;
+const date = document.getElementById("date").value;
+
+let acessoCadastro = document.getElementById("cadastro");
+let acessoAbertura = document.getElementById("AberturaChamado");
+let acessoAcompanhamento = document.getElementById("acompanhamento");
+let acessoManutencao = document.getElementById("manutencao");
+let acessoDashboard = document.getElementById("dashboard");
+
+function toggleDiv(divid,down,up){
+    if(document.getElementById(divid).style.display == 'none'){
+        document.getElementById(divid).style.display = 'block';
+        document.getElementById(up).style.display = 'block';
+        document.getElementById(down).style.display = 'none';
+    }else{
+     document.getElementById(divid).style.display = 'none';
+     document.getElementById(down).style.display = 'block';
+     document.getElementById(up).style.display = 'none';
+   }
+ }
 function atualizarpage(tempo){
     setInterval(function(){
         location.reload () 
@@ -9,14 +33,11 @@ function atualizarpage(tempo){
 
 
 function btnupdate(){
-
-    const registro = document.getElementById("txtid").value;
-    const nome = document.getElementById("txtnome").value;
-    const email = document.getElementById("txtemail").value;
-    const cargo = document.getElementById("cbocargo").value;
-    const senha = document.getElementById("txtsenha").value;
-    const date = document.getElementById("date").value;
-
+    acessoCadastro = acessoCadastro.checked == true ? 1 : 0;
+    acessoAbertura = acessoAbertura.checked === true ? 1 : 0;
+    acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
+    acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
+    acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
 
     let funcionario = {
         registro: registro,
@@ -25,7 +46,11 @@ function btnupdate(){
         cargo: cargo,
         senha: senha,
         date: date,
-        permissaoCadasttro:chkCadastro.checked
+        AcompanhamentoChamado: acessoAcompanhamento,
+        AberturaChamado: acessoAbertura,
+        Manutencao: acessoManutencao,
+        Cadastro: acessoCadastro,
+        Dashboard: acessoDashboard
     }
     console.log(funcionario)
     fetch("../../controle/Funcionario/controle_Funcionario_atualizar.php", {
@@ -56,20 +81,8 @@ function btnupdate(){
 
 
 function btndelete(){
-    const registro = document.getElementById("txtid").value;
-    const nome = document.getElementById("txtnome").value;
-    const email = document.getElementById("txtemail").value;
-    const cargo = document.getElementById("cbocargo").value;
-    const senha = document.getElementById("txtsenha").value;
-    const date = document.getElementById("date").value;
-
     let funcionario = {
-        registro: registro,
-        nome: nome,
-        email: email,
-        cargo: cargo,
-        senha: senha,
-        date: date
+        registro: registro
     }
     fetch("../../controle/Funcionario/controle_Funcionario_deletar.php", {
     method: 'post',
@@ -96,64 +109,28 @@ function btndelete(){
     })
     atualizarpage(200)
 }
-function cadastroAcesso(funcionario){
-    
-    let acessoCadastro = document.getElementById("cadastro");
-    let acessoAbertura = document.getElementById("AberturaChamado");
-    let acessoAcompanhamento = document.getElementById("acompanhamento");
-    let acessoManutencao = document.getElementById("manutencao");
-    let acessoDashboard = document.getElementById("dashboard");
 
-
+function btncreate(){
     acessoCadastro = acessoCadastro.checked == true ? 1 : 0;
     acessoAbertura = acessoAbertura.checked === true ? 1 : 0;
     acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
     acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
     acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
 
-    acesso = {
-        funcionario: funcionario,
+    let funcionario = {
+        registro: registro,
+        nome: nome,
+        email: email,
+        cargo: cargo,
+        senha: senha,
+        date: date,
         AcompanhamentoChamado: acessoAcompanhamento,
         AberturaChamado: acessoAbertura,
         Manutencao: acessoManutencao,
         Cadastro: acessoCadastro,
         Dashboard: acessoDashboard
     }
-    console.log(acesso);
-
-    if (res.status === 200) {
-        console.log("Post successfully created!")
-        fetch("../../controle/acesso/controle_acesso_cadastrar.php", {
-            method: 'post',
-            body: JSON.stringify(acesso),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then((response) => {
-            return response.json();
-        }).then((res) => {
-            console.log(res)
-            
-        })
-}}
-
-function btncreate(){
-    const registro = document.getElementById("txtid").value;
-    const nome = document.getElementById("txtnome").value;
-    const email = document.getElementById("txtemail").value;
-    const cargo = document.getElementById("cbocargo").value;
-    const senha = document.getElementById("txtsenha").value;
-    const date = document.getElementById("date").value;
-
-   let funcionario = {
-        registro: registro,
-        nome: nome,
-        email: email,
-        cargo: cargo,
-        senha: senha,
-        date: date
-    }
+    
     fetch("../../controle/Funcionario/controle_Funcionario_cadastrar.php", {
     method: 'post',
     body: JSON.stringify(funcionario),
@@ -246,14 +223,3 @@ function carregarFuncionarios(divid){
         console.log(error)
     })
 }
-function toggleDiv(divid,down,up){
-    if(document.getElementById(divid).style.display == 'none'){
-        document.getElementById(divid).style.display = 'block';
-        document.getElementById(up).style.display = 'block';
-        document.getElementById(down).style.display = 'none';
-    }else{
-     document.getElementById(divid).style.display = 'none';
-     document.getElementById(down).style.display = 'block';
-     document.getElementById(up).style.display = 'none';
-   }
- }

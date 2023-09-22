@@ -112,7 +112,7 @@ function atualizar(status,id){
     })
 }
 function finalizarManutencao(){
-    document.getElementById("#fisish-check").addEventListener("click",(e)=>{
+    document.getElementById("finish-check").addEventListener("click",(e)=>{
         console.log("Check")
     })
 }
