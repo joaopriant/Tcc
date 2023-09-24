@@ -1,28 +1,32 @@
+
 <?php
+require_once "../../modelo/manutecao.php";
 
-    require_once "../manutencao/manutencao.php";
+$request_raw = file_get_contents('php://input');
+$json_object = json_decode($request_raw);
 
-    if(!isset($_POST['txtIdManutencao'])){
-        die("ID não encontrado\n");
+if($json_object != null) {
+
+    $IdManut = $json_object->IdManut;
+    $IdManut  = strip_tags($IdManut);
+
+    if ($IdManut == "") {
+        echo '{"cod":"1","msg":"O id não pode ser vazio!"}';
+        exit;
     }
 
+    $Manutencao = new Manutencao();
+    $Manutencao->setIdManutencao($IdManut);
 
-    $IdManut = $_POST['txtIdManut'];
-
-
-    $IdManut = strip_tags($IdManut);
-
-
-    $manutencao = new Manutencao();
-    $manutencao->setIdManutencao($IdManut);
-
-
-
-    $resultado = $manutencao->excluir();
-    if($resultado==true){
-    echo "Apagado com sucesso";
-    }else{
-    echo "Erro ao apagar";
+    $resultado = $Manutencao->excluir();
+    if ($resultado == true) {
+        echo '{"cod":"2","msg":"Sucesso ao deletar!"}';
+    } else {
+        echo '{"cod":"3","msg":"erro ao deletar!"}';
     }
-
+} else {
+    echo '{"cod":"4","msg":"O JSON não pode ser nulo!"}';
+    exit;
+}
 ?>
+
