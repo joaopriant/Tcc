@@ -155,7 +155,7 @@ function btncreate(){
 }
 
 
-function preencherForm(registro,nome,email,cargo,date){
+function preencherForm(registro,nome,email,cargo,date,acompanhamento,abertura,cadastro,dashboard,manutencao) {
     nome = nome.toString();
     email = email.toString();
 
@@ -164,10 +164,16 @@ function preencherForm(registro,nome,email,cargo,date){
     document.getElementById("txtemail").value = email;
     document.getElementById("date").value = date;
     document.getElementById("cbocargo").value = cargo;
+    document.getElementById("ckbAcompanhamento").value = acompanhamento;
+    document.getElementById("ckbAberturaChamado").value = abertura;
+    document.getElementById("ckbCadastro").value = cadastro;
+    document.getElementById("ckbManutencao").value = manutencao;
+    document.getElementById("ckbDashboard").value = dashboard;
 }
 
 function carregarFuncionarios(divid){
     const divListaCargos = document.getElementById(divid);
+    divListaCargos.removeChild();
     fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
     method: 'get',
     headers: {
