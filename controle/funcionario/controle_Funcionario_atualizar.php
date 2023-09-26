@@ -40,24 +40,24 @@ if($json_object!=null){
     $Cadastro  = strip_tags($Cadastro);
 
     if ($Dashboard=="") {
-        echo '{"cod":"2","msg":"O Dashboard não pode ser vazio!"}';
+        echo '{"cod":"15","msg":"O Dashboard não pode ser vazio!"}';
         exit;
     }
     if ($Cadastro=="") {
-        echo '{"cod":"2","msg":"O Dashboard não pode ser vazio!"}';
+        echo '{"cod":"14","msg":"O Dashboard não pode ser vazio!"}';
         exit;
     }
     
     if ($Manutencao=="") {
-        echo '{"cod":"3","msg":"A manutenção não pode ser vazio!"}';
+        echo '{"cod":"13","msg":"A manutenção não pode ser vazio!"}';
         exit;
     }
     if ($AcompanhamentoChamado=="") {
-        echo '{"cod":"4","msg":"O Acompanhamento não pode ser vazio!"}';
+        echo '{"cod":"13","msg":"O Acompanhamento não pode ser vazio!"}';
         exit;
     }
     if ($AberturaChamado=="") {
-        echo '{"cod":"5","msg":"a Abertura de Chamado não pode ser vazio!"}';
+        echo '{"cod":"12","msg":"a Abertura de Chamado não pode ser vazio!"}';
         exit;
     }
 
@@ -71,11 +71,11 @@ if($json_object!=null){
     }
 
     if ($senha=="") {
-        echo '{"cod":"3","msg":"O id não pode ser vazio!"}';
+        echo '{"cod":"3","msg":"Senha não pode ser vazio!"}';
         exit;
     }
     if ($email=="") {
-        echo '{"cod":"4","msg":"A descricao não pode ser vazio!"}';
+        echo '{"cod":"4","msg":"Email não pode ser vazio!"}';
         exit;
     }
     if ($date=="") {

@@ -98,8 +98,8 @@ class Funcionario implements JsonSerializable
             $resultados[$i]->setRegistroFuncionario($linha->RegistroFuncionario);
             $resultados[$i]->setNome($linha->Nome);
             $resultados[$i]->setEmail($linha->Email);
-            $resultados[$i]->setDatadeNasc($linha->DatadeNacimento);
-            $resultados[$i]->setCargo($linha->cargo);
+            $resultados[$i]->setDatadeNasc($linha->DatadeNascimento);
+            $resultados[$i]->setCargo($linha->Cargo);
             $resultados[$i]->setAcompanhamentoChamado($linha->AcompanhamentoChamado);
             $resultados[$i]->setManutencao($linha->Manutencao);
             $resultados[$i]->setAberturaChamado($linha->AberturaChamado);

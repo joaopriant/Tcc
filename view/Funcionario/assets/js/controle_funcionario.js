@@ -1,18 +1,18 @@
 forms = document.getElementById("forms");
 const chkCadastro = document.getElementById("chkCadastro");
 
-const registro = document.getElementById("txtid").value;
-const nome = document.getElementById("txtnome").value;
-const email = document.getElementById("txtemail").value;
-const cargo = document.getElementById("cbocargo").value;
-const senha = document.getElementById("txtsenha").value;
-const date = document.getElementById("date").value;
+const registro = document.getElementById("txtid");
+const nome = document.getElementById("txtnome");
+const email = document.getElementById("txtemail");
+const cargo = document.getElementById("cbocargo");
+const senha = document.getElementById("txtsenha");
+const date = document.getElementById("date");
 
-let acessoCadastro = document.getElementById("cadastro");
-let acessoAbertura = document.getElementById("AberturaChamado");
-let acessoAcompanhamento = document.getElementById("acompanhamento");
-let acessoManutencao = document.getElementById("manutencao");
-let acessoDashboard = document.getElementById("dashboard");
+let acessoCadastro = document.getElementById("ckbCadastro");
+let acessoAbertura = document.getElementById("ckbAberturaChamado");
+let acessoAcompanhamento = document.getElementById("ckbAcompanhamento");
+let acessoManutencao = document.getElementById("ckbManutencao");
+let acessoDashboard = document.getElementById("ckbDashboard");
 
 function toggleDiv(divid,down,up){
     if(document.getElementById(divid).style.display == 'none'){
@@ -33,19 +33,18 @@ function atualizarpage(tempo){
 
 
 function btnupdate(){
-    acessoCadastro = acessoCadastro.checked == true ? 1 : 0;
+    acessoCadastro = acessoCadastro.checked === true ? 1 : 0;
     acessoAbertura = acessoAbertura.checked === true ? 1 : 0;
     acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
     acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
     acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
-
     let funcionario = {
-        registro: registro,
-        nome: nome,
-        email: email,
-        cargo: cargo,
-        senha: senha,
-        date: date,
+        registro: registro.value,
+        nome: nome.value,
+        email: email.value,
+        cargo: cargo.value,
+        senha: senha.value,
+        date: date.value,
         AcompanhamentoChamado: acessoAcompanhamento,
         AberturaChamado: acessoAbertura,
         Manutencao: acessoManutencao,
@@ -63,7 +62,7 @@ function btnupdate(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-     
+        carregarFuncionarios("tabela")
         const div = document.getElementById("divResposta");
         if(res.cod==1){
             div.innerHTML = "O campo não pode ser vazio";
@@ -82,7 +81,7 @@ function btnupdate(){
 
 function btndelete(){
     let funcionario = {
-        registro: registro
+        registro:registro.value
     }
     fetch("../../controle/Funcionario/controle_Funcionario_deletar.php", {
     method: 'post',
@@ -94,7 +93,7 @@ function btndelete(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-     
+        carregarFuncionarios("tabela")
         const div = document.getElementById("divResposta");
         if(res.cod==1){
             div.innerHTML = "O campo não pode ser vazio";
@@ -107,23 +106,23 @@ function btndelete(){
     }).catch((error) => {
         console.log(error)
     })
-    atualizarpage(200)
+    //atualizarpage(200)
 }
 
 function btncreate(){
-    acessoCadastro = acessoCadastro.checked == true ? 1 : 0;
+    acessoCadastro = acessoCadastro.checked === true ? 1 : 0;
     acessoAbertura = acessoAbertura.checked === true ? 1 : 0;
     acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
     acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
     acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
-
+    console.log(nome)
     let funcionario = {
-        registro: registro,
-        nome: nome,
-        email: email,
-        cargo: cargo,
-        senha: senha,
-        date: date,
+        registro: registro.value,
+        nome: nome.value,
+        email: email.value,
+        cargo: cargo.value,
+        senha: senha.value,
+        date: date.value,
         AcompanhamentoChamado: acessoAcompanhamento,
         AberturaChamado: acessoAbertura,
         Manutencao: acessoManutencao,
@@ -139,11 +138,10 @@ function btncreate(){
         'Content-Type': 'application/json'
     }
 }).then((response) => {
-    cadastroAcesso(registro)
     return response.json()
     }).then((res) => {
-        
-        const div = document.getElementById("divResposta");
+        carregarFuncionarios("tabela")
+        const div = document.getElementById("alerta");
         if(res.cod==1){
             div.innerHTML = "O campo não pode ser vazio";
         }
@@ -173,7 +171,6 @@ function preencherForm(registro,nome,email,cargo,date,acompanhamento,abertura,ca
 
 function carregarFuncionarios(divid){
     const divListaCargos = document.getElementById(divid);
-    divListaCargos.removeChild();
     fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
     method: 'get',
     headers: {
@@ -183,42 +180,42 @@ function carregarFuncionarios(divid){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>Registro</th><th>Nome</th><th>Email</th><th>Cargo</th><th>Data de Nascimento</th>";
+        let tabela = "<table><th>Registro</th><th>Nome</th><th>Email</th><th>Cargo</th><th>Data de Nascimento</th><th>Acessos</th>"; 
         for(var k in res) {
             const registro = res[k].RegistroFuncionario;
             const nome = res[k].Nome
             const email = res[k].Email;
             const senha = res[k].Senha;
-            const date = new Date( res[k].DatadeNacimento);
+            const date = new Date( res[k].DatadeNascimento);
             var dia = ("0" + date.getDate()).slice(-2);
             var mes = ("0" + (date.getMonth() + 1)).slice(-2);
             const data = date.getFullYear()+"-"+(mes)+"-"+(dia);
-            console.log(data)
-            const IdCargo = res[k].Cargo.IdCargo;
-            const cargo = res[k].Cargo.Cargo;
-             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')";
+            const cargo = res[k].Cargo;
+             const meuClick = "onclick=preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')";
 
             tabela+="<tr>";
                tabela+="<td onclick=\""+meuClick  +"\">";
                     tabela+= registro;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
                     tabela+=nome;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
                     tabela+=email;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
                     tabela+=cargo;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+IdCargo+"','"+data+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+registro+"','"+nome+"','"+email+"','"+cargo+"','"+data+"')\">";
                     tabela+=data;
                 tabela+="</td>";
-                            
+                tabela+="<td class='td-button'>";
+                
+                tabela+="</td>";
             tabela+="</tr>";
             
          }
