@@ -31,54 +31,6 @@ function atualizarpage(tempo){
       }, tempo);
 }
 
-
-function btnupdate(){
-    acessoCadastro = acessoCadastro.checked === true ? 1 : 0;
-    acessoAbertura = acessoAbertura.checked === true ? 1 : 0;
-    acessoAcompanhamento = acessoAcompanhamento.checked === true ? 1 : 0;
-    acessoManutencao = acessoManutencao.checked === true ? 1 : 0;
-    acessoDashboard = acessoDashboard.checked === true ? 1 : 0;
-    let funcionario = {
-        registro: registro.value,
-        nome: nome.value,
-        email: email.value,
-        cargo: cargo.value,
-        senha: senha.value,
-        date: date.value,
-        AcompanhamentoChamado: acessoAcompanhamento,
-        AberturaChamado: acessoAbertura,
-        Manutencao: acessoManutencao,
-        Cadastro: acessoCadastro,
-        Dashboard: acessoDashboard
-    }
-    console.log(funcionario)
-    fetch("../../controle/Funcionario/controle_Funcionario_atualizar.php", {
-    method: 'post',
-    body: JSON.stringify(funcionario),
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
-    }).then((response) => {
-        return response.json()
-    }).then((res) => {
-        carregarFuncionarios("tabela")
-        const div = document.getElementById("divResposta");
-        if(res.cod==1){
-            div.innerHTML = "O campo não pode ser vazio";
-        }
-        console.log(res)
-
-        if (res.status === 200) {
-            console.log("Post successfully created!")
-        }
-    }).catch((error) => {
-        console.log(error)
-    })
-  // atualizarpage(200);
-}
-
-
 function btndelete(){
     let funcionario = {
         registro:registro.value

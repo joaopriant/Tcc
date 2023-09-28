@@ -4,7 +4,7 @@ require_once "../../modelo/Funcionario.php";
 
 $request_raw = file_get_contents('php://input');
 $json_object = json_decode($request_raw);
-echo '{"cod":"1","msg":"O Descricao não pode ser vazio!"}';
+echo '{"cod":"1","msg":"Json não pode ser vazio!"}';
 
 if($json_object!=null){
 
@@ -12,7 +12,7 @@ if($json_object!=null){
     $registro  = strip_tags($registro);
 
     if ($registro=="") {
-        echo '{"cod":"2","msg":"A descricao não pode ser vazio!"}';
+        echo '{"cod":"2","msg":"o id não pode ser vazio!"}';
         exit;
     }
 

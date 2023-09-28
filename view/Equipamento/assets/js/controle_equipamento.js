@@ -6,20 +6,32 @@ function atualizarpage(tempo){
         location.reload () 
       }, tempo);
 }
-
-function btnupdescricao(){
+function toggleDiv(divid,down,up){
+    if(document.getElementById(divid).style.display == 'none'){
+        document.getElementById(divid).style.display = 'block';
+        document.getElementById(up).style.display = 'block';
+        document.getElementById(down).style.display = 'none';
+    }else{
+     document.getElementById(divid).style.display = 'none';
+     document.getElementById(down).style.display = 'block';
+     document.getElementById(up).style.display = 'none';
+   }
+ }
+function btnupdate(){
     const idequipamento = document.getElementById("txtid").value;
     const numpatrimonio = document.getElementById("txtnumpatrimonio").value;
     const local = document.getElementById("cboLocal").value;
     const responsavel = document.getElementById("cboResponsavel").value;
     const descricao = document.getElementById("cboDescricao").value;
+    const numEquip = document.getElementById("txtnumequip").value;
     
     let Equipamento = {
         idequipamento: idequipamento,
         numpatrimonio: numpatrimonio,
         local: local,
         responsavel: responsavel,
-        descricao: descricao
+        descricao: descricao,
+        NumeroEquip: numEquip
     }
     console.log(Equipamento);
     fetch("../../controle/Equipamento/controle_Equipamento_atualizar.php", {
@@ -51,17 +63,9 @@ function btnupdescricao(){
 
 function btndelete(){
     const idequipamento = document.getElementById("txtid").value;
-    const numpatrimonio = document.getElementById("txtnumpatrimonio").value;
-    const local = document.getElementById("cboLocal").value;
-    const responsavel = document.getElementById("cboResponsavel").value;
-    const descricao = document.getElementById("cboDescricao").value;
     
     let Equipamento = {
         idequipamento: idequipamento,
-        numpatrimonio: numpatrimonio,
-        local: local,
-        responsavel: responsavel,
-        descricao: descricao
     }
     fetch("../../controle/Equipamento/controle_Equipamento_deletar.php", {
         method: 'post',
@@ -86,7 +90,6 @@ function btndelete(){
     }).catch((error) => {
         console.log(error)
     })
-    atualizarpage(200)
 }
 
 function btncreate(){
@@ -95,13 +98,15 @@ function btncreate(){
     const local = document.getElementById("cboLocal").value;
     const responsavel = document.getElementById("cboResponsavel").value;
     const descricao = document.getElementById("cboDescricao").value;
+    const numEquip = document.getElementById("txtnumequip").value;
     
     let Equipamento = {
         idequipamento: idequipamento,
         numpatrimonio: numpatrimonio,
         local: local,
         responsavel: responsavel,
-        descricao: descricao
+        descricao: descricao,
+        NumeroEquip: numEquip
     }
     fetch("../../controle/Equipamento/controle_Equipamento_cadastrar.php", {
         method: 'post',
@@ -130,22 +135,21 @@ function btncreate(){
     console.log(Equipamento)
 }
 
-function preencherForm(idequipamento,numpatrimonio,local,responsavel,descricao){
+function preencherForm(idequipamento,numpatrimonio,local,responsavel,descricao,NumeroEquip){
     numpatrimonio = numpatrimonio.toString();
-    local = local.toString();
-    responsavel = responsavel.toString();
-    descricao = descricao.toString();
+    NumeroEquip = NumeroEquip.toString();
     
     
     document.getElementById("txtid").value = idequipamento;
     document.getElementById("txtnumpatrimonio").value = numpatrimonio;
     document.getElementById("cboLocal").value = local;
-    document.getElementById("cboFuncionario").value = responsavel;
+    document.getElementById("cboResponsavel").value = responsavel;
     document.getElementById("cboDescricao").value = descricao;
+    document.getElementById("txtnumequip").value = NumeroEquip;
 }
 
 function carregarEquipamentos(){
-    const divListaresponsavels = document.getElementById("divListaEquipamentos");
+    const divListaresponsavels = document.getElementById("tabela");
     fetch("../../controle/Equipamento/controle_Equipamento_listarAll.php", {
     method: 'get',
     headers: {
@@ -155,35 +159,40 @@ function carregarEquipamentos(){
 }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>ID Equipamento</th><th>Num patrimonio</th><th>local</th><th>Data de Nacimento</th><th>responsavel</th>";
+        let tabela = "<table><th>ID Equipamento</th><th>Num patrimonio</th><th>Local</th><th>Descrição</th><th>Responsavel</th><th>Num Equip</th>";
         for(var k in res) {
-            const idequipamento = res[k].idequipamento;
-            const numpatrimonio = res[k].numpatrimonio
-            const local = res[k].local;
-            const descricao = res[k].descricao;
-            const responsavel = res[k].responsavel
+            const idequipamento = res[k].IdEquipamento;
+            const numpatrimonio = res[k].numPatrimonio;
+            const numEquip = res[k].NumeroEquip;
+            const descricao = res[k].idDescricao;
+            const local = res[k].Idsala;
+            const responsavel = res[k].Responsavel
             
-            const meuClick = "onclick=preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')";
+            const meuClick = "onclick=preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')";
             
             tabela+="<tr>";
             tabela+="<td onclick=\""+meuClick+"\">";
             tabela+= idequipamento;
             tabela+="</td>";
             
-            tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+            tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
             tabela+=numpatrimonio;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
                 tabela+=local;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
                 tabela+=descricao;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"')\">";
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
                 tabela+=responsavel;
+                tabela+="</td>";
+
+                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
+                tabela+=numEquip;
                 tabela+="</td>";
                 
                 tabela+="</tr>";

@@ -45,7 +45,7 @@
 
                 <div class="campodosdados">
                     <span class="detalhes">Data de Inicio:</span>
-                    <input class="input" type="date" id ="txtid" placeholder="Digite o registro..." required autofocus="true">
+                    <input class="input" type="date" id ="date" placeholder="Digite o registro..." required autofocus="true">
                 </div>
             <!-- campodosdados é o INPUT de todos os requerimentos com o span (ex: email, senha, etc)-->
                 <div class="campodosdados">
@@ -66,14 +66,20 @@
                 <div class="campodosdados">
                     <span class="detalhes">Equipamento: </span>
                     <select class="input" id="cboequipamento"></select>
-
+                        <option></option>
+                    </select>
+                </div>
+                <div class="campodosdados">
+                    <span class="detalhes">Manutentor: </span>
+                    <select class="input" id="cbomanutentor"></select>
+                        <option></option>
                     </select>
                 </div>
                 <div id="file" class="campodosdados">
                 <span class="detalhes">Selecione as Fotos</label></span>
-                <input class="input-file" type="file" name="txtimg" accept="image/*" >
+                <input class="input-file" id="inpfoto" type="file" name="txtimg" accept="image/*" >
                 </div>
-
+                <div id="alerta"></div>
         </div>
     </form>
     

@@ -46,9 +46,8 @@ function btnupdate(){
     }).then((res) => {
         carregarLocal();
      
-        const div = document.getElementById("divResposta");
         if(res.cod==1){
-            div.innerHTML = "O campo não pode ser vazio";
+            console.log("O campo não pode ser vazio");
         }
         console.log(res)
 
@@ -76,10 +75,9 @@ function btndelete(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-     
-        const div = document.getElementById("divResposta");
+        carregarLocal();
         if(res.cod==1){
-            div.innerHTML = "O campo não pode ser vazio";
+            console.log("O campo não pode ser vazio");
         }
         console.log(res)
 
@@ -89,7 +87,7 @@ function btndelete(){
     }).catch((error) => {
         console.log(error)
     })
-    atualizarpage(200)
+
 }
 
 
@@ -112,10 +110,9 @@ function btncreate(){
     }).then((response) => {
         return response.json()
     }).then((res) => {
-     
-        const div = document.getElementById("divResposta");
+        carregarLocal();
         if(res.cod==1){
-            div.innerHTML = "O campo não pode ser vazio";
+            console.log("O campo não pode ser vazio");
         }
         console.log(res)
 
@@ -126,7 +123,6 @@ function btncreate(){
         console.log(error)
     })
     console.log(local)
-    table.load();
 }
 
 

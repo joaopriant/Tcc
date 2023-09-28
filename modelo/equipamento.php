@@ -62,14 +62,9 @@ class Equipamento implements JsonSerializable
         $local = $this->Idsala;
         $funcionario = $this->Responsavel;
         $NumeroEquip = $this->NumeroEquip;
-        $stmt = $this->banco->getConexao()->prepare("update Equipamento    
-            set numPatrimonio=?,
-            set idDescricao=?,
-            set Idsala=?,
-            set Responsavel=?,
-            where IdEquipamento = ?");
+        $stmt = $this->banco->getConexao()->prepare("update equipamento set NumeroE\quip=?, numPatrimonio=?, Descricao=?, Local=?, Responsavel=? where IdEquipamento = ?");
 
-        $stmt->bind_param("ssiisi", $NumeroEquip,$numpatri, $descricao, $local, $funcionario,$idequipamento);
+        $stmt->bind_param("iiiisi", $NumeroEquip,$numpatri, $descricao, $local, $funcionario,$idequipamento);
         return $stmt->execute();
     }
 

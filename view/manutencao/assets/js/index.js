@@ -49,4 +49,63 @@ function carregarEquipamento() {
     xmlhttp.send();
 
 }
+function btncreate(){
 
+    const problema = document.getElementById("txtproblema");
+    const foto = document.getElementById("inpfoto");
+    const status = document.getElementById("cbostatus");
+    const datainicio = document.getElementById("date");
+    const manutentor = document.getElementById("cbomanutentor");
+    const equipamento = document.getElementById("cboequipamento");
+
+    console.log(foto)
+    let chamado = {
+        problema: problema.value,
+        foto: foto.value,
+        status: status.value,
+        datainicio: datainicio.value,
+        manutentor: manutentor.value,
+        equipamento: equipamento.value,
+    }
+    
+    fetch("../../controle/manutencao/controle_manutencao_cadastrar.php", {
+    method: 'post',
+    body: JSON.stringify(chamado),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+}).then((response) => {
+    return response.json()
+    }).then((res) => {
+        const div = document.getElementById("alerta");
+        if(res.cod==1){
+            div.innerHTML = "O campo não pode ser vazio";
+        }
+        console.log(res)
+    }).catch((error) => {
+        console.log(error)
+    })
+    //atualizarpage(200)
+}
+
+function carregarFuncionario() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function () {
+        console.log(this.responseText);
+        let cbofuncionario = document.getElementById("cbomanutentor");
+        let objfuncionarios = JSON.parse(this.responseText);
+
+        //let document.
+        objfuncionarios.forEach(funcionario => {
+            let novaOpcao = document.createElement("option");
+            novaOpcao.value = funcionario.RegistroFuncionario;
+            novaOpcao.text = funcionario.Nome;
+            cbofuncionario.add(novaOpcao);
+        });
+    }
+    xmlhttp.open("GET", "../../controle/Funcionario/controle_Funcionario_listarAll.php");
+    xmlhttp.send();
+
+}
+carregarFuncionario();

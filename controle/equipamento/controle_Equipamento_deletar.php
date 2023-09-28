@@ -2,7 +2,7 @@
 
     require_once "../equipamento/equipamento.php";
 
-    if(!isset($_POST['txtIdequipamento'])){
+    if(!isset($_POST['txtIdequipamento'])){ 
         die("ID não encontrado\n");
     }
 
