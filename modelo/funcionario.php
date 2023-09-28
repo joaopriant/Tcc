@@ -1,5 +1,5 @@
 <?php
-include "Banco.php";
+require_once "Banco.php";
 
 class Funcionario implements JsonSerializable
 {
@@ -20,17 +20,17 @@ class Funcionario implements JsonSerializable
 
     public function jsonSerialize()
     {
-        $array["Nome"] = $this->getNome();
-        $array["Cargo"] = $this->getCargo();
-        $array["Email"] = $this->getEmail();
-        $array["DatadeNascimento"] = $this->getDatadeNasc();
-        $array["senha"] = $this->getSenha();
         $array["RegistroFuncionario"] = $this->getRegistroFuncionario();
+        $array["Email"] = $this->getEmail();
+        $array["senha"] = $this->getSenha();
+        $array["Nome"] = $this->getNome();
+        $array["DatadeNascimento"] = $this->getDatadeNasc();
+        $array["Cargo"] = $this->getCargo();
         $array["AcompanhamentoChamado"] = $this->getAcompanhamentoChamado();
         $array["AberturaChamado"] = $this->getAberturaChamado();
         $array["Manutencao"] = $this->getManutencao();
         $array["Dashboard"] = $this->getDashboard();
-        $array["Cadastro"] = $this->getDashboard();
+        $array["Cadastro"] = $this->getCadastro();
         return $array;
     }
 
@@ -39,6 +39,34 @@ class Funcionario implements JsonSerializable
         $this->banco = new Banco();
     }
 
+
+    
+    //método que verifica se o usuário e senha estão corretos
+    public function verificarUsuarioSenha(){   
+       
+        $this->Senha = md5($this->Senha); //cria um hash utilizando o algoritmo md5 para a senha
+        $sql = "select count(*) as qtd , Nome, RegistroFuncionario, Cadastro, AberturaChamado, Manutencao, Dashboard, AcompanhamentoChamado  from funcionario where Email = ? and senha =?";
+        $stmt = $this->banco->getConexao()->prepare($sql);
+        $stmt->bind_param("ss", $this->Email, $this->Senha);
+        $stmt->execute();  //executa a  instrução sql no sgbd
+        $resultado = $stmt->get_result();   //recupera os dados referentes a execução do sql
+        //estrutura de repetição que passa por todos os dados
+        while ($linha = $resultado->fetch_object()) { 
+            //verifica se qtd é igual a 1, significa que existe 1 usuario om o email e senha fornecido.
+            if ($linha->qtd == 1) {
+                $this->setRegistroFuncionario($linha->RegistroFuncionario);
+                $this->setNome($linha->Nome);
+                $this->setCadastro($linha->Cadastro);
+                $this->setAberturaChamado($linha->AberturaChamado);
+                $this->setAcompanhamentoChamado($linha->AcompanhamentoChamado);
+                $this->setManutencao($linha->Manutencao);
+                $this->setDashboard($linha->Dashboard);
+
+                return true;
+            }
+        }
+        return false;
+    }
     public function cadastrar()
     {
 

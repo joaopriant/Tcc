@@ -1,4 +1,4 @@
-function btncreate(){
+function btnPost(){
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
     if(validadorcampo()){
@@ -6,7 +6,7 @@ function btncreate(){
         email: email,
         senha: senha
     }
-    fetch("../../LoginProfessor.php", {
+    fetch("/login", {
     method: 'post',
     body: JSON.stringify(login),
     headers: {

@@ -13,21 +13,20 @@
 
     <div class="page">
       
-        <form method="POST" class="formLogin">
             <img src="image/recurso.png">
             <h2><b>Seja bem-vindo!</b></h2>
             <p>Por favor identifique-se.</p>
 
             <label for="email" >E-mail</label>
-            <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
+            <input type="email" id="email" placeholder="Digite seu e-mail" autofocus="true" />
             <label for="password" >Senha</label>
-            <input type="password" placeholder="Digite sua senha" />
+            <input type="password" id='senha' placeholder="Digite sua senha" />
             <a href="esquecisenha.html">Esqueci minha senha </a>
-            <input type="submit" value="Acessar" class="btn" />
+            <button onclick="btnPost()">Enviar </button>
             <hr>
             <p id="helpmsg">Use seu E-mail ou Registro <br>para efetuar o login.</p>
-        </form>
     
     </div>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

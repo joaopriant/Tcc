@@ -1,10 +1,12 @@
 <?php
+    use Firebase\JWT\TokenJWT;
     session_start();
     require_once "Router.php";
     require_once "Usuario.php";
-
+    require_once "modelo/TokenJWT.php";
+    require_once "modelo/Funcionario.php";
     $rota  = new Router();    
-
+  /*
     $rota->post('/login', function() {
         $jsonRecebido = file_get_contents('php://input');
         echo $jsonRecebido;
@@ -22,7 +24,27 @@
         }
 
     });
-
+*/
+    $rota->post('/login', function () {
+      $jsonRecebido = file_get_contents('php://input');
+      $obj = json_decode($jsonRecebido);
+      $funcionario = new Funcionario();
+      $funcionario->setEmail($obj->email);
+      $funcionario->setSenha($obj->senha);
+      $resposta = array();
+      if ($funcionario->verificarUsuarioSenha() == true) {
+        $tokenJWT = new TokenJWT();
+        $novoToken = $tokenJWT->gerarToken(json_encode($funcionario));
+        $resposta['status'] = 'true';
+        $resposta['msg'] = "Login efetuado com sucesso";
+        $resposta['token'] =  $novoToken;
+      }else{
+        $resposta['status'] = 'false';
+        $resposta['msg'] = "Login inválido";
+      }
+      echo json_encode($resposta);
+    });
+/*
     $rota->get('/', function() {
         echo "ola mundfdfsddso";
     });
@@ -99,5 +121,7 @@
         require_once "controle/funcionario/controle_Funcionario_deletar.php";
       });
 
+      */
     $rota->run();
-?>
+
+    ?>
