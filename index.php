@@ -25,6 +25,7 @@
 
     });
 */
+
     $rota->post('/login', function () {
       $jsonRecebido = file_get_contents('php://input');
       $obj = json_decode($jsonRecebido);
@@ -44,7 +45,7 @@
       }
       echo json_encode($resposta);
     });
-/*
+
     $rota->get('/', function() {
         echo "ola mundfdfsddso";
     });
@@ -121,7 +122,6 @@
         require_once "controle/funcionario/controle_Funcionario_deletar.php";
       });
 
-      */
     $rota->run();
 
     ?>
