@@ -1,16 +1,16 @@
-const options = ["Aberta","Pendente","Concluida"];
+const options = ["Aberta","Pendente","Concluído"];
 var chamados = [0,0,0];
 
 
 function carregarChamado(chamados=[]) {
   const xmlhttp = new XMLHttpRequest();
   xmlhttp.onload = function () {
-
-      let objChamado = JSON.parse(this.responseText);
-      var chamadoAberto = 0;
-      var chamadoPendente = 0;
-      var chamadoConcluida = 0;
-      objChamado.forEach(chamado => {
+    let objChamado = JSON.parse(this.responseText);
+    var chamadoAberto = 0;
+    var chamadoPendente = 0;
+    var chamadoConcluida = 0;
+    objChamado.forEach(chamado => {
+        console.log('asdasdasdasasadsdasads')
         let status = chamado.Status;
         if (status == options[0]){
           chamadoAberto += 1;
@@ -32,6 +32,7 @@ function carregarChamado(chamados=[]) {
 
 }
 carregarChamado(chamados);
+console.log(chamados)
 const ctx1 = document.getElementById('chart2');
 const ctx2 = document.getElementById('chart3');
 
@@ -72,13 +73,47 @@ new Chart(ctx1, {
   }
 });
 
+
+const options2 = ["Aberta","Pendente","Concluído", "Recusado"];
+var chamados2 = [0,0,0]
+function carregarChamado(chamados=[]) {
+  const xmlhttp = new XMLHttpRequest();
+  xmlhttp.onload = function () {
+    let objChamado = JSON.parse(this.responseText);
+    var chamadoAceito = 0;
+    var chamadoPendente = 0;
+    var chamadoRecusado = 0;
+    objChamado.forEach(chamado => {
+        console.log('asdasdasdasasadsdasads')
+        let status = chamado.Status;
+        if (status == options2[0] || status == options2[2]){
+          chamadoAceito += 1;
+        }else if (status == options2[1]){
+          console.log("Pendente")
+          chamadoPendente +=1;
+        }else if (status == options2[3]){
+          console.log("Recusado");
+          chamadoRecusado +=1;
+        }
+        chamados[0] = chamadoAceito;
+        chamados[1] = chamadoRecusado;
+        chamados[2] = chamadoPendente;
+        return chamados
+      });
+  }
+  xmlhttp.open("GET", "../../controle/manutencao/controle_manutencao_listarAll.php");
+  xmlhttp.send();
+
+}
+carregarChamado(chamados2);
+
 new Chart(ctx2, {
   type: 'doughnut',
   data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ['Aceitas','Recusadas','Pendentes'],
     datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      label: 'Chamados',
+      data: chamados2,
       borderWidth: 1
     }]
   },

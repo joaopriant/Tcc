@@ -111,7 +111,7 @@ class Manutencao implements JsonSerializable
         $i = 0;
         while ($linha = $resultado->fetch_object()) {
             $resultados[$i] = new manutencao();
-            $resultados[$i]->setIdManutencao($linha->idManutencao);
+            $resultados[$i]->setIdManutencao($linha->idmanutencao);
             $resultados[$i]->setProblema($linha->problema);
             $resultados[$i]->setFoto($linha->foto);
             $resultados[$i]->setDataInicio($linha->DataInicio);
