@@ -1,6 +1,6 @@
 
 <?php
-require_once "../../modelo/manutecao.php";
+require_once "modelo/manutecao.php";
 
 $request_raw = file_get_contents('php://input');
 $json_object = json_decode($request_raw);

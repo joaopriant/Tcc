@@ -1,6 +1,6 @@
 function carregarPendente(divid){
     const divListaManutencao = document.getElementById(divid);
-    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    fetch("/manutencoes", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -35,7 +35,7 @@ function carregarPendente(divid){
                 tabela+=Status;
                 tabela+="</td>";
 
-                tabela+="<td>";
+                tabela+="<td >";
                 tabela+='<ion-icon class ="icon-check" name="checkmark-circle-outline"></ion-icon>';
                 tabela+="</td>";
 

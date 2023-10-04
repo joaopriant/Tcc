@@ -24,8 +24,8 @@ function btnupdate(){
         
     }
     console.log(descricao);
-    fetch("../../controle/descricao/controle_Descricao_atualizar.php", {
-    method: 'post',
+    fetch("/descricoes", {
+    method: 'put',
     body: JSON.stringify(descricao),
     headers: {
         'Accept': 'application/json',
@@ -55,7 +55,7 @@ function btndelete(){
     let descricao = {
         iddesc:idDelete
     }
-    fetch("../../controle/descricao/controle_Descricao_deletar.php", {
+    fetch("/descricoes", {
     method: 'delete',
     body: JSON.stringify(descricao),
     headers: {
@@ -88,7 +88,7 @@ function btncreate(){
     let descricao = {
         desc:novaDescricao
     }
-    fetch("../../controle/descricao/controle_Descricao_cadastrar.php", {
+    fetch("/descricoes", {
     method: 'post',
     body: JSON.stringify(descricao),
     headers: {
@@ -125,7 +125,7 @@ function preencherForm(id,descricao){
 
 function carregarDescricao(divid){
     const divListaDescricao = document.getElementById(divid);
-    fetch("../../controle/descricao/controle_Descricao_listarAll.php", {
+    fetch("/descricoes", {
     method: 'get',
     headers: {
         'Accept': 'application/json',

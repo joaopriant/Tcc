@@ -35,8 +35,8 @@ function btndelete(){
     let funcionario = {
         registro:registro.value
     }
-    fetch("../../controle/Funcionario/controle_Funcionario_deletar.php", {
-    method: 'post',
+    fetch("/funcionarios", {
+    method: 'delete',
     body: JSON.stringify(funcionario),
     headers: {
         'Accept': 'application/json',
@@ -82,7 +82,7 @@ function btncreate(){
         Dashboard: acessoDashboard
     }
     
-    fetch("../../controle/Funcionario/controle_Funcionario_cadastrar.php", {
+    fetch("/funcionarios", {
     method: 'post',
     body: JSON.stringify(funcionario),
     headers: {
@@ -123,7 +123,7 @@ function preencherForm(registro,nome,email,cargo,date,acompanhamento,abertura,ca
 
 function carregarFuncionarios(divid){
     const divListaCargos = document.getElementById(divid);
-    fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
+    fetch("/funcionarios", {
     method: 'get',
     headers: {
         'Accept': 'application/json',

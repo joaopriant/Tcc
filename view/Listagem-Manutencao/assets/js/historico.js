@@ -1,15 +1,4 @@
-function toggleDiv(divid,down,up){
-    if(document.getElementById(divid).style.display == 'none'){
-        document.getElementById(divid).style.display = 'block';
-        document.getElementById(up).style.display = 'block';
-        document.getElementById(down).style.display = 'none';
-    }else{
-     document.getElementById(divid).style.display = 'none';
-     document.getElementById(down).style.display = 'block';
-     document.getElementById(up).style.display = 'none';
-   }
- }
- function carregarHistorico(divid){
+function carregarHistorico(divid){
     const divListaManutencao = document.getElementById(divid);
     fetch("/manutencoes", {
     method: 'get',
@@ -25,7 +14,7 @@ function toggleDiv(divid,down,up){
             const id = res[k].IdManutencao;
             const problema = res[k].Problema;
             const Datainicio = res[k].DataInicio;
-            const Status = res[k].Status;     
+            const Status = res[k].Status;    
 
             tabela+="<tr>";
                tabela+="<td>";
@@ -43,7 +32,6 @@ function toggleDiv(divid,down,up){
                 tabela+="<td>";
                 tabela+=Status;
                 tabela+="</td>";
-
 
             tabela+="</tr>";
          }

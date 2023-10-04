@@ -15,7 +15,7 @@ function toggleDiv(divid,down,up){
 
 function carregarFuncionario(divid){
     const divListaCargos = document.getElementById(divid);
-    fetch("../../controle/funcionario/controle_Funcionario_listarAll.php", {
+    fetch("/funcionarios", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -71,7 +71,7 @@ function carregarFuncionario(divid){
 
 function carregarLocal(divid){
     const divListaLocal = document.getElementById(divid);
-    fetch("../../controle/local/controle_Local_listarAll.php", {
+    fetch("/locais", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -120,7 +120,7 @@ function carregarLocal(divid){
 
 function carregarEquipamento(divid){
     const divListaresponsavels = document.getElementById(divid);
-    fetch("../../controle/Equipamento/controle_Equipamento_listarAll.php", {
+    fetch("/equipamentos", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -176,7 +176,7 @@ function carregarEquipamento(divid){
 
 function carregarManutencao(divid){
     const divListaManutencao = document.getElementById(divid);
-    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    fetch("/manutencoes", {
     method: 'get',
     headers: {
         'Accept': 'application/json',

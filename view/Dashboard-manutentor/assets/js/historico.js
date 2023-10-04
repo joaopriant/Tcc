@@ -1,6 +1,6 @@
 function carregarHistorico(divid){
     const divListaManutencao = document.getElementById(divid);
-    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    fetch("/manutencoes", {
     method: 'get',
     headers: {
         'Accept': 'application/json',

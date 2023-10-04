@@ -13,7 +13,7 @@ function carregarLocal() {
             cbolocal.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../controle/local/controle_Local_listarAll.php");
+    xmlhttp.open("GET", "/locais");
     xmlhttp.send();
 }
 
@@ -45,7 +45,7 @@ function carregarEquipamento() {
         }
         });
     }
-    xmlhttp.open("GET", "../../controle/equipamento/controle_Equipamento_listarAll.php");
+    xmlhttp.open("GET", "/equipamentos");
     xmlhttp.send();
 
 }
@@ -68,7 +68,7 @@ function btncreate(){
         equipamento: equipamento.value,
     }
     
-    fetch("../../controle/manutencao/controle_manutencao_cadastrar.php", {
+    fetch("/manutencoes", {
     method: 'post',
     body: JSON.stringify(chamado),
     headers: {
@@ -104,7 +104,7 @@ function carregarFuncionario() {
             cbofuncionario.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../controle/Funcionario/controle_Funcionario_listarAll.php");
+    xmlhttp.open("GET", "/funcionarios");
     xmlhttp.send();
 
 }

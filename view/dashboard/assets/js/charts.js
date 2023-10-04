@@ -12,6 +12,7 @@ function carregarChamado(chamados=[]) {
     objChamado.forEach(chamado => {
         console.log('asdasdasdasasadsdasads')
         let status = chamado.Status;
+
         if (status == options[0]){
           chamadoAberto += 1;
         }else if (status == options[1]){
@@ -27,7 +28,7 @@ function carregarChamado(chamados=[]) {
         return chamados
       });
   }
-  xmlhttp.open("GET", "../../controle/manutencao/controle_manutencao_listarAll.php");
+  xmlhttp.open("GET", "/manutencoes");
   xmlhttp.send();
 
 }
@@ -39,11 +40,11 @@ const ctx2 = document.getElementById('chart3');
 new Chart(ctx1, {
   type: 'doughnut',
   data: {
-    labels: ['Abertas', 'Pendentes', 'Concluidas'],
+    labels: ['Abertas','Pendentes','Concluidas'],
     datasets: [{
       label: 'Chamados',
       data: chamados,
-      borderWidth: 1,
+      borderWidth:3,
       backgroundColor: [
         '#0113E0',
         '#E05216',
@@ -53,13 +54,6 @@ new Chart(ctx1, {
   },
   options: {
     scales: {
-      x: {
-        grid: {
-          display: false
-        }
-      },
-      y: {
-        grid: {
           display: false
         }
       },
@@ -69,10 +63,7 @@ new Chart(ctx1, {
           display: false
           }
       }]
-    }
-  }
-});
-
+    });
 
 const options2 = ["Aberta","Pendente","Concluído", "Recusado"];
 var chamados2 = [0,0,0]
@@ -101,7 +92,7 @@ function carregarChamado(chamados=[]) {
         return chamados
       });
   }
-  xmlhttp.open("GET", "../../controle/manutencao/controle_manutencao_listarAll.php");
+  xmlhttp.open("GET", "/manutencoes");
   xmlhttp.send();
 
 }
@@ -119,9 +110,7 @@ new Chart(ctx2, {
   },
   options: {
     scales: {
-      y: {
-        beginAtZero: true
-      }
+      display:0
     }
   }
 });

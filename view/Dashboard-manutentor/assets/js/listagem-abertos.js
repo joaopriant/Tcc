@@ -1,6 +1,14 @@
+function diaAtual(){
+    const date = new Date();
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toLocaleDateString();
+}
+console.log(diaAtual());
+atualizar('concluido',1,diaAtual());
 function carregarManutencao(divid){
     const divListaManutencao = document.getElementById(divid);
-    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    fetch("/manutencoes", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -17,9 +25,8 @@ function carregarManutencao(divid){
             const Status = res[k].Status;
             
             if(Status== "Aberta"){
-
             tabela+="<tr class='linha'>";
-               tabela+="<td id='finish-check'>";
+               tabela+="<td onclick='atualizar('Concluído',"+id+","+diaAtual()+")' id='finish-check'>";
                     tabela+= '<ion-icon class="icon-complete" value="" name="checkbox-outline"></ion-icon>';
                 tabela+="</td>";
 
@@ -55,8 +62,9 @@ let idmanutencao;
 let problema;
 let Datainicio;
 let Status;
+
 function listarid(id){
-    fetch("../../controle/manutencao/controle_manutencao_listarAll.php", {
+    fetch("/manutencoes", {
         method: 'get',
         headers: {
             'Accept': 'application/json',
@@ -70,26 +78,31 @@ function listarid(id){
                 problema = res[k].Problema;
                 Datainicio = res[k].DataInicio;
                 Status = res[k].Status;
+                foto = res[k].Foto;
+                equipamento = res[k].IdEquipamento;
+                manutentor = res[k].Manutentor;
+                datatermino = res[k].DataTermino;
                 if(res[k].IdManutencao == id){
-                    break;
+                    return manutencao = {
+                        idmanutencao: res[k].IdManutencao,
+                        problema: res[k].Problema,
+                        Datainicio: res[k].DataInicio,
+                        Status: 'Concluido',
+                        foto: res[k].Foto,
+                        equipamento: res[k].IdEquipamento,
+                        manutentor: res[k].Manutentor,
+                        datatermino: diaAtual()
+                    }
                 }
             }
     })
 }
-function atualizar(status,id){
+function atualizar(status,id,datatermino){
    // const id = document.getElementById(id).value;
-    listarid(id)
-    let manutencao = {
-        IdManutencao: id,
-        Status: status,
-        Problema: problema,
-        DataInicio: Datainicio
-    }
-    
-    console.log(manutencao)
-    fetch("../../controle/manutencao/controle_manutencao_atualizar.php", {
-    method: 'post',
-    body: JSON.stringify(manutencao),
+   console.log('chegou')
+    fetch("/manutencoes", {
+    method: 'put',
+    body: JSON.stringify(listarid(1)),
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -112,7 +125,5 @@ function atualizar(status,id){
     })
 }
 function finalizarManutencao(){
-    document.getElementById("finish-check").addEventListener("click",(e)=>{
-        console.log("Check")
-    })
+
 }

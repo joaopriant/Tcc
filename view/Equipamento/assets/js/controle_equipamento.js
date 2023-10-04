@@ -34,8 +34,8 @@ function btnupdate(){
         NumeroEquip: numEquip
     }
     console.log(Equipamento);
-    fetch("../../controle/Equipamento/controle_Equipamento_atualizar.php", {
-    method: 'post',
+    fetch("/equipamentos", {
+    method: 'put',
     body: JSON.stringify(Equipamento),
     headers: {
         'Accept': 'application/json',
@@ -67,8 +67,8 @@ function btndelete(){
     let Equipamento = {
         idequipamento: idequipamento,
     }
-    fetch("../../controle/Equipamento/controle_Equipamento_deletar.php", {
-        method: 'post',
+    fetch("/equipamentos", {
+        method: 'delete',
     body: JSON.stringify(Equipamento),
     headers: {
         'Accept': 'application/json',
@@ -108,7 +108,7 @@ function btncreate(){
         descricao: descricao,
         NumeroEquip: numEquip
     }
-    fetch("../../controle/Equipamento/controle_Equipamento_cadastrar.php", {
+    fetch("/equipamentos", {
         method: 'post',
         body: JSON.stringify(Equipamento),
     headers: {
@@ -150,7 +150,7 @@ function preencherForm(idequipamento,numpatrimonio,local,responsavel,descricao,N
 
 function carregarEquipamentos(){
     const divListaresponsavels = document.getElementById("tabela");
-    fetch("../../controle/Equipamento/controle_Equipamento_listarAll.php", {
+    fetch("/equipamentos", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
@@ -222,7 +222,7 @@ function carregarLocal() {
             cbolocal.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../controle/local/controle_Local_listarAll.php");
+    xmlhttp.open("GET", "/locais");
     xmlhttp.send();
 
 }
@@ -243,7 +243,7 @@ function carregarFuncionario() {
             cbofuncionario.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../controle/Funcionario/controle_Funcionario_listarAll.php");
+    xmlhttp.open("GET", "/funcionarios");
     xmlhttp.send();
 
 }
@@ -263,7 +263,7 @@ function carregarDescricao() {
             cbotipoequip.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "../../controle/Descricao/controle_Descricao_listarAll.php");
+    xmlhttp.open("GET", "descricoes");
     xmlhttp.send();
 
 }

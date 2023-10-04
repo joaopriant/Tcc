@@ -1,10 +1,9 @@
 <?php
-require_once "../../modelo/Funcionario.php";
+require_once "modelo/Funcionario.php";
 
 
 $request_raw = file_get_contents('php://input');
-$json_object = json_decode($request_raw);
-echo '{"cod":"1","msg":"Json não pode ser vazio!"}';
+$json_object = json_decode($request_raw);   
 
 if($json_object!=null){
 

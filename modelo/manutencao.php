@@ -1,5 +1,5 @@
 <?php
-include "Banco.php";
+require_once "Banco.php";
 class Manutencao implements JsonSerializable
 {
     private $IdManutencao;
@@ -67,40 +67,6 @@ class Manutencao implements JsonSerializable
 
         $stmt->bind_param("ssssssi", $this->Problema, $this->Foto, $this->DataInicio, $this->DataTermino, $this->Status, $this->Manutentor ,$this->IdManutencao);
         return $stmt->execute();
-    }
-
-    public function buscarmanutencaoPorId($IdManutencao)
-    {
-        $stmt = $this->banco->getConexao()->prepare("select * from Manutencao where IdManutencao = ?");
-        $stmt->bind_param("i", $IdManutencao);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        while ($linha = $resultado->fetch_object()) {
-            $this->setIdManutencao($linha->IdManutencao);
-            $this->setProblema($linha->Problema);
-            $this->setFoto($linha->Foto);
-            $this->setDataInicio($linha->DataInicio);
-            $this->setDataTermino($linha->DataTermino);
-            $this->setStatus($linha->Status);
-            $this->setManutentor($linha->Manutentor);
-            $this->setIdequipamento($linha->IdEquipamento);
-
-        }
-        return $this;
-
-    }
-    public function buscarconcluidos(){
-        $stmt = $this->banco->getConexao()->prepare("SELECT COUNT(*) as concluido from manutencao where status='concluido' ");
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        return $resultado;
-    }
-
-    public function buscarpendente(){
-        $stmt = $this->banco->getConexao()->prepare("select count(*) as pendente from manutencao where status='pendente'");
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        return $resultado;
     }
     public function listarmanutencao()
     {

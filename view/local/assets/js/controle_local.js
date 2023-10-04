@@ -34,7 +34,7 @@ function btnupdate(){
         
     }
     console.log(local);
-    fetch("../../controle/local/controle_Local_atualizar.php", {
+    fetch("/locais", {
     method: 'put',
     body: JSON.stringify(local),
     headers: {
@@ -65,8 +65,8 @@ function btndelete(){
     let local = {
         idsala: idsala
     }
-    fetch("../../controle/local/controle_Local_deletar.php", {
-    method: 'post',
+    fetch("/locais", {
+    method: 'delete',
     body: JSON.stringify(local),
     headers: {
         'Accept': 'application/json',
@@ -100,7 +100,7 @@ function btncreate(){
         andar: andar,
         bloco: bloco 
        }
-    fetch("../../controle/local/controle_Local_cadastrar.php", {
+    fetch("/locais", {
     method: 'post',
     body: JSON.stringify(local),
     headers: {
@@ -141,7 +141,7 @@ function preencherForm(id,sala,andar,bloco){
 
 function carregarLocal(){
     const divListaLocal = document.getElementById("tabela");
-    fetch("../../controle/local/controle_Local_listarAll.php", {
+    fetch("/locais", {
     method: 'get',
     headers: {
         'Accept': 'application/json',
