@@ -39,6 +39,7 @@
         $resposta['status'] = 'true';
         $resposta['msg'] = "Login efetuado com sucesso";
         $resposta['token'] =  $novoToken;
+        $resposta['acessos'] =  $funcionario;
       }else{
         $resposta['status'] = 'false';
         $resposta['msg'] = "Login inválido";

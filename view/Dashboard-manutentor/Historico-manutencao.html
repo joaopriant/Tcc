@@ -23,6 +23,7 @@
             
                 <ul id="right">
                     <li><a href="#">Home</a></li>
+                    <li><a href="#" id="menuHome2">Home 2</a></li>
                     <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
                 </ul>
                 
@@ -92,6 +93,17 @@
     carregarHistorico("tabela-historico");
 </script>
 </body>
+<script>
+    const menuHome2 = document.getElementById("menuHome2");
+    menuHome2.style.display = 'none'; //or
+
+    const textoJson = localStorage.getItem("dadosLogin");
+    const objetoJson = JSON.parse(textoJson);
+    //alert(objetoJson.acessos.AberturaChamado);
+    if(objetoJson.acessos.AcompanhamentoChamado==1){
+        menuHome2.style.display = "block"
+    }
+</script>
 </html>
 </body>
 </html>
