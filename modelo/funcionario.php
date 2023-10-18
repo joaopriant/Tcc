@@ -39,8 +39,16 @@ class Funcionario implements JsonSerializable
         $this->banco = new Banco();
     }
 
+    public function alterarSenha()
+    {
+        $registro = $this->RegistroFuncionario;
+        $hash = md5($this->Senha);
 
-    
+        $stmt = $this->banco->getConexao()->prepare("update Funcionario set senha=? where RegistroFuncionario = ?");
+
+        $stmt->bind_param("si", $hash,$registro);
+        return $stmt->execute();
+    }
     //método que verifica se o usuário e senha estão corretos
     public function verificarUsuarioSenha(){   
        
@@ -53,7 +61,7 @@ class Funcionario implements JsonSerializable
         //estrutura de repetição que passa por todos os dados
         while ($linha = $resultado->fetch_object()) { 
             //verifica se qtd é igual a 1, significa que existe 1 usuario om o email e senha fornecido.
-            if ($linha->qtd == 1) {
+            if ($linha->qtd >= 1) {
                 $this->setRegistroFuncionario($linha->RegistroFuncionario);
                 $this->setNome($linha->Nome);
                 $this->setCadastro($linha->Cadastro);

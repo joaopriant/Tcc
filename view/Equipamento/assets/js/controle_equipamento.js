@@ -175,23 +175,23 @@ function carregarEquipamentos(){
             tabela+= idequipamento;
             tabela+="</td>";
             
-            tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
+            tabela+="<td onclick=\""+meuClick+"\">";
             tabela+=numpatrimonio;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
+                tabela+="<td onclick=\""+meuClick+"\">";
                 tabela+=local;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
+                tabela+="<td onclick=\""+meuClick+"\">";
                 tabela+=descricao;
                 tabela+="</td>";
                 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
+                tabela+="<td onclick=\""+meuClick+"\">";
                 tabela+=responsavel;
                 tabela+="</td>";
 
-                tabela+="<td  onclick=\"preencherForm('"+idequipamento+"','"+numpatrimonio+"','"+local+"','"+responsavel+"','"+descricao+"','"+numEquip+"')\">";
+                tabela+="<td onclick=\""+meuClick+"\">";
                 tabela+=numEquip;
                 tabela+="</td>";
                 

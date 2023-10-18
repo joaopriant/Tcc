@@ -20,10 +20,19 @@ function btnPost(){
         
         if(obj.status=="true"){
             localStorage.setItem("dadosLogin",res);
-           
-                alert("abertura chamados");
+            console.log(obj.acessos.Dashboard)
+            if(obj.acessos.Dashboard === 1){
+                window.location = "/view/dashboard/dashboard.html";
+            }
+            else if(obj.acessos.Manutencao===1){
                 window.location = "/view/Dashboard-manutentor/Historico-manutencao.html";
-          
+            }
+            else if(obj.acessos.Cadastro === 1){
+                window.location = "/view/Listagem-tabela/listagem.html";
+            }
+            else if(obj.acessos.AberturaChamado===1){
+                window.location = "/view/Dashboard-manutentor/Historico-manutencao.html";
+            }
             
         }else{
             alert("Email ou senha inválido!")

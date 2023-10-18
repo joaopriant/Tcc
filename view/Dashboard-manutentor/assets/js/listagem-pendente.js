@@ -43,7 +43,9 @@ function carregarPendente(divid){
                 tabela+='<ion-icon class ="icon-uncheck" name="close-circle-outline"></ion-icon>';
                 tabela+="</td>";
 
+
             tabela+="</tr>";
+            
             }else{
                 continue
             }

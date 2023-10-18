@@ -76,7 +76,7 @@ section#chart-section{
 div.chart-box{
     margin: 25px;
     width: 400px;
-    max-height: 300px;
+    max-height: 350px;
     height: 100%;
     padding: 20px 40px ;
     border-radius: 20px;
@@ -91,4 +91,14 @@ canvas{
 #chart-section{
     width: 100%;   
     height:400px;
+}
+#dropdown-manutencao{
+    flex-direction: row;
+    background-color: #213c5a;
+}
+#view-tabela-manutencao{
+    flex-direction: column;
+}
+#hide-div{
+    display: none;
 }

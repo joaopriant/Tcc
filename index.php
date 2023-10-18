@@ -6,25 +6,6 @@
     require_once "modelo/TokenJWT.php";
     require_once "modelo/Funcionario.php";
     $rota  = new Router();    
-  /*
-    $rota->post('/login', function() {
-        $jsonRecebido = file_get_contents('php://input');
-        echo $jsonRecebido;
-
-        $objJson = json_decode($jsonRecebido);
-        $u1 = new Usuario();
-        $u1->setEmail($objJson->email);
-        $u1->setsenha($objJson->senha);
-        $u1->setCargo($objJson->cargo);
-        
-        if($u1->login() == true){
-            echo "logou";
-        }else {
-            echo "usuario e senha invalidos";
-        }
-
-    });
-*/
 
     $rota->post('/login', function () {
       $jsonRecebido = file_get_contents('php://input');
@@ -74,6 +55,9 @@
     });
     $rota->put('/manutencoes', function() {
       require_once "controle/manutencao/controle_manutencao_atualizar.php";
+    });
+    $rota->patch('/manutencoes', function() {
+      require_once "controle/manutencao/controle_manutencao_atualizar_status.php";
     });
     $rota->delete('/manutencoes', function() {
       require_once "controle/manutencao/controle_manutencao_deletar.php";

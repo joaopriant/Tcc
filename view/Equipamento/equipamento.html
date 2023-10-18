@@ -1,113 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Cadastro - Equipamentos</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
-        <link rel="stylesheet" href="assets/css/tipografia.css">
-    <meta charset="UTF-8">
-    
-    </head>
-    <body>
-        <header>
-            <nav>
-                    <div id="logo"></div>
-                    
-                    <ul id="right">
-                        <li><a href="../dashboard/dashboard.html">Home</a></li>
-                        <li><a href="../Listagem-tabela/listagem.html">Cadastrar</a></li>
-                        <li><a href="#">Relatorios</a></li>
-                        <li><a href="#">Manutenções</a></li>
-                        <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
-                </ul>
+<head>
+    <title>Cadastro - Equipamentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/layout.css" media="screen" />
+    <link rel="stylesheet" href="assets/css/tipografia.css">
+<meta charset="UTF-8">
+
+</head>
+<body onload="onload()">
+    <header>
+        <nav>
+                <div id="logo"></div>
                 
-            </nav>
+                <ul id="right">
+                    <li><a id="homeMenu" href="../dashboard/dashboard.html">Home</a></li>
+                    <li><a id="cadastrarMenu" href="../Listagem-tabela/listagem.html">Cadastrar</a></li>
+                    <li><a id="abrirChamadoMenu" href="../manutencao/manutencao.html">Abrir Chamado</a></li>
+                    <li><a id="manutencoesMenu" href="../Dashboard-manutentor/Historico-manutencao.html">Manutenções</a></li>
+                    <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
+            </ul>
             
-        </header>
+        </nav>
         
-        <section id="formulario">
-            <div class="container">
-        
-                <h1>Equipamentos</h1>
-                <br>
-        
-                <form action="#">
-        
-                <!-- a div da classe "detalhes-user" engloba tudo do cadastro   -->
-                <div class="detalhes-user" id="dados">
-                        <!-- a div "campodosdados" é basicamente o input box e o titulo dele, cada campo pra inserir os dados tem sua propria div,
-                        a span da classe "detalhes" é o titulo do input-->
-                        <div class="campodosdados">
-                            <span class="detalhes">Id Equipamento: </span>
-                            <input type="text" id ="txtid" placeholder="Digite o ID." required autofocus="true" readonly>
-                        </div>
-        
-                        <div class="campodosdados">
-                            <span class="detalhes">Número de Patrimonio: </span>
-                            <input type="text" id = "txtnumpatrimonio" placeholder="Digite o número." required autofocus="true">
-                        </div>
-        
-                    <!-- campodosdados é o INPUT de todos os requerimentos com o span (ex: email, senha, etc)-->
-                        <div class="campodosdados">
-                            <span class="detalhes">Local: </span>
-                            <select name="local" id="cboLocal">
-                                <option></option>
-                            </select>
-                        </div>
-        
-                        <div class="campodosdados">
-                            <span class="detalhes">Funcionário Responsável: </span>
-                            <select name="funcioresp" id="cboResponsavel"> ]
-                                <option></option>
-                            </select>
-                        </div>
-        
-                        <div class="campodosdados">
-                            <span class="detalhes">Descrição: </span>
-                            <select name="desc" id="cboDescricao">
-                                <option></option>
-                            </select>
-                        </div>
-                        <div class="campodosdados">
-                            <span class="detalhes">Número do Equipamento: </span>
-                            <input type="text" id = "txtnumequip" placeholder="Digite o número." required autofocus="true">
-                        </div>
-        
-            <br> <br> <br>
-        
-                </div>
-            </form>
-            
-                <div class="botao">
-                    
-                    <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
-                    <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
-                    <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
-        
-                </div>
-        
+    </header>
+    
+    <section id="formulario">
+        <div class="container">
+    
+            <h1>Equipamentos</h1>
+            <br>
+    
+            <form action="#">
+    
+            <!-- a div da classe "detalhes-user" engloba tudo do cadastro   -->
+            <div class="detalhes-user" id="dados">
+                    <!-- a div "campodosdados" é basicamente o input box e o titulo dele, cada campo pra inserir os dados tem sua propria div,
+                    a span da classe "detalhes" é o titulo do input-->
+                    <div class="campodosdados">
+                        <span class="detalhes">Id Equipamento: </span>
+                        <input type="text" id ="txtid" placeholder="Digite o ID." required autofocus="true" readonly>
+                    </div>
+    
+                    <div class="campodosdados">
+                        <span class="detalhes">Número de Patrimonio: </span>
+                        <input type="text" id = "txtnumpatrimonio" placeholder="Digite o número." required autofocus="true">
+                    </div>
+    
+                <!-- campodosdados é o INPUT de todos os requerimentos com o span (ex: email, senha, etc)-->
+                    <div class="campodosdados">
+                        <span class="detalhes">Local: </span>
+                        <select name="local" id="cboLocal">
+                            <option></option>
+                        </select>
+                    </div>
+    
+                    <div class="campodosdados">
+                        <span class="detalhes">Funcionário Responsável: </span>
+                        <select name="funcioresp" id="cboResponsavel"> ]
+                            <option></option>
+                        </select>
+                    </div>
+    
+                    <div class="campodosdados">
+                        <span class="detalhes">Descrição: </span>
+                        <select name="desc" id="cboDescricao">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="campodosdados">
+                        <span class="detalhes">Número do Equipamento: </span>
+                        <input type="text" id = "txtnumequip" placeholder="Digite o número." required autofocus="true">
+                    </div>
+    
+        <br> <br> <br>
+    
             </div>
-        </section>
-        <section id="view-funcionarios">
-            <div id="view-tabela">
-                <div id="dropdown" onmousedown="toggleDiv('tabela','down-arrow','up-arrow');">
-                <H3 id="view">Equipamentos Cadastrados</H3>
-                <ion-icon id="up-arrow" name="chevron-up-outline"></ion-icon>
-                <ion-icon id="down-arrow" name="chevron-down-outline"></ion-icon>
-                </div>
-                <div id="tabela" >
-                </div>
+        </form>
+        
+            <div class="botao">
+                
+                <button type="button" class="bnt" onclick="btncreate()" id="create">Cadastrar</button>
+                <button type="button" class="bnt" onclick="btnupdate()" id="update">Atualizar</button>
+                <button type="button" class="bnt" onclick="btndelete()" id="delete">Deletar</button>
+    
             </div>
-        </section>
-            
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <script src="assets/js/controle_equipamento.js"></script>
-        <script>
-            carregarEquipamentos('tabela');
-        </script>
-    </body>
+    
+        </div>
+    </section>
+    <section id="view-funcionarios">
+        <div id="view-tabela">
+            <div id="dropdown" onmousedown="toggleDiv('tabela','down-arrow','up-arrow');">
+            <H3 id="view">Equipamentos Cadastrados</H3>
+            <ion-icon id="up-arrow" name="chevron-up-outline"></ion-icon>
+            <ion-icon id="down-arrow" name="chevron-down-outline"></ion-icon>
+            </div>
+            <div id="tabela" >
+            </div>
+        </div>
+    </section>
+        
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/controle_equipamento.js"></script>
+    <script src="assets/js/auth.js"></script>
+
+    <script>
+        carregarEquipamentos();
+    </script>
+</body>
 
 </html>

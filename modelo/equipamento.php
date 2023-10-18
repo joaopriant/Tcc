@@ -1,5 +1,5 @@
 <?php
-include "Banco.php";
+require_once "Banco.php";
 class Equipamento implements JsonSerializable
 {
     private $IdEquipamento;
@@ -62,7 +62,7 @@ class Equipamento implements JsonSerializable
         $local = $this->Idsala;
         $funcionario = $this->Responsavel;
         $NumeroEquip = $this->NumeroEquip;
-        $stmt = $this->banco->getConexao()->prepare("update equipamento set NumeroE\quip=?, numPatrimonio=?, Descricao=?, Local=?, Responsavel=? where IdEquipamento = ?");
+        $stmt = $this->banco->getConexao()->prepare("update equipamento set NumeroEquip=?, numPatrimonio=?, Descricao=?, Local=?, Responsavel=? where IdEquipamento = ?");
 
         $stmt->bind_param("iiiisi", $NumeroEquip,$numpatri, $descricao, $local, $funcionario,$idequipamento);
         return $stmt->execute();

@@ -68,6 +68,14 @@ class Manutencao implements JsonSerializable
         $stmt->bind_param("ssssssi", $this->Problema, $this->Foto, $this->DataInicio, $this->DataTermino, $this->Status, $this->Manutentor ,$this->IdManutencao);
         return $stmt->execute();
     }
+    public function atualizar_status()
+    {
+        $status = $this->Status;
+        $idManutencao = $this->IdManutencao; 
+        $stmt = $this->banco->getConexao()->prepare("update manutencao set Status=? where idManutencao = ?");
+        $stmt->bind_param("si", $status,$idManutencao);
+        return $stmt->execute();
+    }
     public function listarmanutencao()
     {
         $stmt = $this->banco->getConexao()->prepare("Select * from manutencao");

@@ -13,16 +13,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Cadastro de Funcionários</title>
 </head>
-<body>
+<body onload="onload()">
     <header>
         <nav>
                 <div id="logo"></div>
                 
                 <ul id="right">
-                    <li><a href="../dashboard/dashboard.html">Home</a></li>
-                    <li><a href="../Listagem-tabela/listagem.html">Cadastrar</a></li>
-                    <li><a href="#">Relatorios</a></li>
-                    <li><a href="#">Manutenções</a></li>
+                    <li><a id="homeMenu" href="../dashboard/dashboard.html">Home</a></li>
+                    <li><a id="cadastrarMenu" href="../Listagem-tabela/listagem.html">Cadastrar</a></li>
+                    <li><a id="abrirChamadoMenu" href="../manutencao/manutencao.html">Abrir Chamado</a></li>
+                    <li><a id="manutencoesMenu" href="../Dashboard-manutentor/Historico-manutencao.html">Manutenções</a></li>
                     <ion-icon id="iconuser" name="person-circle-outline"></ion-icon>
             </ul>
             
@@ -134,6 +134,8 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="assets/js/controle_funcionario.js"></script>
+<script src="assets/js/auth.js"></script>
+
 <script>
     carregarFuncionarios('tabela');
 </script>

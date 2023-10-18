@@ -1,15 +1,7 @@
-function diaAtual(){
-    const date = new Date();
-    const timeElapsed = Date.now();
-    const today = new Date(timeElapsed);
-    return today.toLocaleDateString();
-}
-console.log(diaAtual());
-atualizar('concluido',1,diaAtual());
 function carregarManutencao(divid){
     const divListaManutencao = document.getElementById(divid);
     fetch("/manutencoes", {
-    method: 'get',
+    method: 'GET',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -24,12 +16,66 @@ function carregarManutencao(divid){
             const Datainicio = res[k].DataInicio;
             const Status = res[k].Status;
             
+            console.log("Aberta")
             if(Status== "Aberta"){
-            tabela+="<tr class='linha'>";
-               tabela+="<td onclick='atualizar('Concluído',"+id+","+diaAtual()+")' id='finish-check'>";
-                    tabela+= '<ion-icon class="icon-complete" value="" name="checkbox-outline"></ion-icon>';
+                tabela+="<tr class='linha'>";
+                tabela+="<td onclick='finalizarManutencao("+id+","+'Concluida'+")>";
+                tabela+= '<ion-icon class="icon-complete" value="" name="checkbox-outline"></ion-icon>';
                 tabela+="</td>";
+                
+                tabela+="<tr>";
+                tabela+="<td>";
+                tabela+= id;
+                tabela+="</td>";
+                
+                tabela+="<td>";
+                tabela+=problema;
+                tabela+="</td>";
+                
+                tabela+="<td>";
+                 tabela+=Datainicio;
+                 tabela+="</td>";
+                 
+                 tabela+="<td>";
+                 tabela+=Status;
+                 tabela+="</td>"; 
+                 
+                 tabela+="</tr>";
+                 
+            }else{
+                continue
+            }
+         }
+         console.log("Aberta")
+         tabela+="</table>";
+         divListaManutencao.innerHTML=tabela;
+   
+    }).catch((error) => {
+        console.log(error)
+    })
+}
 
+function carregarPendente(divid){
+    const divListaManutencao = document.getElementById(divid);
+    fetch("/manutencoes", {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    }).then((response) => {
+        return response.json()
+    }).then((res) => {
+        let tabela = "<table><th>Id Chamado</th><th>Problema</th><th>Data de inicio</th><th>Status</th>";
+        for(var k in res) {
+            const id = res[k].IdManutencao;
+            const problema = res[k].Problema;
+            const Datainicio = res[k].DataInicio;
+            const Status = res[k].Status;
+            
+            if(Status== "Pendente"){     
+
+            tabela+="<tr>";
                tabela+="<td>";
                     tabela+= id;
                 tabela+="</td>";
@@ -46,7 +92,17 @@ function carregarManutencao(divid){
                 tabela+=Status;
                 tabela+="</td>";
 
+                tabela+="<td >";
+                tabela+='<ion-icon class ="icon-check" name="checkmark-circle-outline"></ion-icon>';
+                tabela+="</td>";
+
+                tabela+="<td>";
+                tabela+='<ion-icon class ="icon-uncheck" name="close-circle-outline"></ion-icon>';
+                tabela+="</td>";
+
+
             tabela+="</tr>";
+            
             }else{
                 continue
             }
@@ -58,72 +114,35 @@ function carregarManutencao(divid){
         console.log(error)
     })
 }
-let idmanutencao;
-let problema;
-let Datainicio;
-let Status;
 
-function listarid(id){
+function finalizarManutencao(id, statusmanu){
+    statusManutencao = statusmanu;
+    let manutencao = {
+        idmanutencao: id,
+        status: statusManutencao
+    };
+    console.log(manutencao);
     fetch("/manutencoes", {
-        method: 'get',
+        method: 'PATCH',
+        body: JSON.stringify(manutencao),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-        }).then((response) => {
-            return response.json()
-        }).then((res) => {
-            for(var k in res) {
-                idmanutencao = res[k].IdManutencao;
-                problema = res[k].Problema;
-                Datainicio = res[k].DataInicio;
-                Status = res[k].Status;
-                foto = res[k].Foto;
-                equipamento = res[k].IdEquipamento;
-                manutentor = res[k].Manutentor;
-                datatermino = res[k].DataTermino;
-                if(res[k].IdManutencao == id){
-                    return manutencao = {
-                        idmanutencao: res[k].IdManutencao,
-                        problema: res[k].Problema,
-                        Datainicio: res[k].DataInicio,
-                        Status: 'Concluido',
-                        foto: res[k].Foto,
-                        equipamento: res[k].IdEquipamento,
-                        manutentor: res[k].Manutentor,
-                        datatermino: diaAtual()
-                    }
-                }
-            }
-    })
-}
-function atualizar(status,id,datatermino){
-   // const id = document.getElementById(id).value;
-   console.log('chegou')
-    fetch("/manutencoes", {
-    method: 'put',
-    body: JSON.stringify(listarid(1)),
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
     }).then((response) => {
         return response.json()
     }).then((res) => {
-     
-        const div = document.getElementById("divResposta");
-        if(res.cod==1){
-            div.innerHTML = "O campo não pode ser vazio";
-        }
-        console.log(res)
 
+        if(res.cod==1){
+            console.log("Não pode ser vazio")
+        }
         if (res.status === 200) {
-            console.log("Post successfully created!")
+            console.log("Post successfully updated!")
+            carregarManutencao("abertos-manutencao");
+            carregarPendente("pendente-manutencao");
+            carregarHistorico("tabela-historico");
         }
     }).catch((error) => {
         console.log(error)
     })
-}
-function finalizarManutencao(){
-
 }

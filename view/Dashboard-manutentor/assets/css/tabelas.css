@@ -2,7 +2,7 @@ div.lista-tabelas{
     margin: 25px;
     max-width: 800px;
     width: 100%;
-    padding: 20px 40px ;
+    padding: 20px 40px;
     border-radius: 20px;
     background-color: #ffffff;
     box-shadow: 5px 10px 20px 10px #0000003c;
@@ -15,9 +15,10 @@ table{
 }
 table td{
     text-align: center;
+    max-width: 200px;
     padding: 5px 15px;
-    border: none;
-    
+    border-bottom: 1px solid #0000003c;
+    border-color: #bebebecb;
 }
 tr{
     width: 25px;

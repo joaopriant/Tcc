@@ -10,16 +10,12 @@ function carregarChamado(chamados=[]) {
     var chamadoPendente = 0;
     var chamadoConcluida = 0;
     objChamado.forEach(chamado => {
-        console.log('asdasdasdasasadsdasads')
         let status = chamado.Status;
-
         if (status == options[0]){
           chamadoAberto += 1;
         }else if (status == options[1]){
-          console.log("Pendente")
           chamadoPendente +=1;
         }else if (status == options[2]){
-          console.log("Concluida");
           chamadoConcluida +=1;
         }
         chamados[0] = chamadoAberto;
@@ -33,7 +29,6 @@ function carregarChamado(chamados=[]) {
 
 }
 carregarChamado(chamados);
-console.log(chamados)
 const ctx1 = document.getElementById('chart2');
 const ctx2 = document.getElementById('chart3');
 
@@ -44,7 +39,7 @@ new Chart(ctx1, {
     datasets: [{
       label: 'Chamados',
       data: chamados,
-      borderWidth:3,
+      borderWidth:1,
       backgroundColor: [
         '#0113E0',
         '#E05216',
@@ -54,16 +49,17 @@ new Chart(ctx1, {
   },
   options: {
     scales: {
-          display: false
+          display: true
         }
       },
       yAxes: [{
         gridLines: {
           drawBorder: true,
-          display: false
+          display: true
           }
       }]
     });
+
 
 const options2 = ["Aberta","Pendente","Concluído", "Recusado"];
 var chamados2 = [0,0,0]
@@ -75,15 +71,12 @@ function carregarChamado(chamados=[]) {
     var chamadoPendente = 0;
     var chamadoRecusado = 0;
     objChamado.forEach(chamado => {
-        console.log('asdasdasdasasadsdasads')
-        let status = chamado.Status;
+      let status = chamado.Status;
         if (status == options2[0] || status == options2[2]){
           chamadoAceito += 1;
         }else if (status == options2[1]){
-          console.log("Pendente")
           chamadoPendente +=1;
         }else if (status == options2[3]){
-          console.log("Recusado");
           chamadoRecusado +=1;
         }
         chamados[0] = chamadoAceito;
@@ -110,7 +103,7 @@ new Chart(ctx2, {
   },
   options: {
     scales: {
-      display:0
+      display:true
     }
   }
 });

@@ -165,6 +165,7 @@ ion-icon#up-arrow{
 div#dropdown{
     cursor: pointer;
 }
+
 /** input "campodosdados" para inserir detalhes do usuario na hora do cadastro  */
 .detalhes-user .campodosdados input, select {
     display: block;

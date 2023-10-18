@@ -63,7 +63,7 @@ section#chart-section{
 }
 div.chart-box{
     margin: 25px;
-    width: 100%;
+    width: 500px;
     max-height: 600px;
     height: 100%;
     padding: 20px 40px ;

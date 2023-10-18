@@ -25,9 +25,6 @@ tr{
     border: 1px solid #0000003c;
 }
 
-div#abertos-manutencao,div#pendente-manutencao,div#tabela-historico{
-    display: none;
-}
 h3.titulo{
     float: left;
 }
@@ -52,31 +49,4 @@ section.lista-tabelas{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.icon-check{
-    width: 25px;
-    height: 25px;
-    color: #1c8733ee;
-    background-color: #9ce7ac;
-    border-radius: 100%;
-    cursor: pointer;
-    float:right
-}
-.icon-uncheck{
-    width: 25px;
-    height: 25px;
-    color: #6e0000;
-    background-color: #FF7878;
-    border-radius: 100%;
-    cursor: pointer;
-    float:right
-}
-.icon-complete{
-    width: 25px;
-    height: 25px;
-    color: #08200dee;
-    background-color: #9ce7ac;
-    background-size: 25px 25px;
-    border-radius: 5px;
-    cursor: pointer;
 }
