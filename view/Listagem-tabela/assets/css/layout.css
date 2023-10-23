@@ -95,7 +95,7 @@ table td{
     border: 1px solid gray;
     cursor: pointer;
 }
-div#tabela-local,div#tabela-manutencao,div#tabela-equipamento,div#tabela-funcionario{
+div#tabela-local,div#tabela-manutencao,div#tabela-equipamento,div#tabela-funcionario,div#tabela-descricao{
     display: none;
 }
 h3.titulo{

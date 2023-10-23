@@ -68,25 +68,6 @@ class Equipamento implements JsonSerializable
         return $stmt->execute();
     }
 
-    public function buscarequipamentoPorId($IdEquipamento)
-    {
-
-        $stmt = $this->banco->getConexao()->prepare("select * from Equipamento
-         where IdEquipamento = ?");
-        $stmt->bind_param("i", $IdEquipamento);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        while ($linha = $resultado->fetch_object()) {
-            $this->setIdEquipamento($linha->IdEquipamento);
-            $this->setnumPatrimonio($linha->numPatrimonio);
-            $this->setIdsala($linha->Idsala);
-            $this->setidDescricao($linha->NumeroEquip);
-            $this->setRegistroFuncionario($linha->Responsavel);
-            $this->setidDescricao($linha->idDescricao);
-        }
-        return $this;
-
-    }
     public function listarEquipamento() 
     {
         $stmt = $this->banco->getConexao()->prepare("Select * from Equipamento");
@@ -99,7 +80,7 @@ class Equipamento implements JsonSerializable
             $resultados[$i]->setIdEquipamento($linha->IdEquipamento);
             $resultados[$i]->setnumPatrimonio($linha->numPatrimonio);
             $resultados[$i]->setIdsala($linha->Local);
-            $resultados[$i]->setidDescricao($linha->NumeroEquip);
+            $resultados[$i]->setNumeroEquip($linha->NumeroEquip);
             $resultados[$i]->setidDescricao($linha->Descricao);
             $resultados[$i]->setRegistroFuncionario($linha->Responsavel);
             $i++;

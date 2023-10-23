@@ -10,8 +10,6 @@ function carregarChamado(chamados=[]) {
     var chamadoConcluida = 0;
     objChamado.forEach(chamado => {
         const status = chamado.Status;
-        console.log(status)
-        console.log(options[0])
         if (status == options[0]){
           chamadoAberto += 1;
         }else if (status == options[1]){
@@ -55,7 +53,6 @@ function aceitacaoChamado(chamados=[]) {
 }
 aceitacaoChamado(aceitos)
 carregarChamado(chamados);
-console.log(chamados)
 const ctx1 = document.getElementById('chart2');
 const ctx2 = document.getElementById('chart3');
 new Chart(ctx1, {

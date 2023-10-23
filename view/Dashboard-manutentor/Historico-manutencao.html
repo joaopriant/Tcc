@@ -2,19 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historico</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/tipografia.css">
     <link rel="stylesheet" href="assets/css/tabelas.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Univap - Manutenções</title>
+    <title>Dashboard Manutenção</title>
 </head>
 <body onload="onload()">
     <header>
@@ -36,12 +28,13 @@
     
     <section id="chart-section">
         <div class="chart-box">
-            <canvas id="chart1"></canvas>
-        </div>
-        <div class="chart-box">
+            <h3>Status de Manutenções</h3>
             <canvas id="chart2"></canvas>
         </div>
-
+        <div class="chart-box">
+            <h3>Equipamentos Disponiveis</h3>
+            <canvas id="chart3"></canvas>
+        </div>
     </section>
 
 
@@ -81,22 +74,16 @@
     </div>
 </section>    
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/js/index.js"></script>
 <script src="assets/js/listagem-abertos.js"></script>
-<script src="assets/js/listagem-pendente.js"></script>
 <script src="assets/js/historico.js"></script>
+<script src="assets/js/charts.js"></script>
 <script src="assets/js/auth.js"></script>
 <script>
     carregarManutencao("abertos-manutencao");
     carregarPendente("pendente-manutencao");
     carregarHistorico("tabela-historico");
 </script>
-</body>
-<script>
-
-</script>
-</html>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include "banco.php";
+require_once "banco.php";
 class Descricao implements JsonSerializable
 {
     private $idDescricao;

@@ -159,7 +159,7 @@ function carregarEquipamentos(){
 }).then((response) => {
         return response.json()
     }).then((res) => {
-        let tabela = "<table><th>ID Equipamento</th><th>Num patrimonio</th><th>Local</th><th>Descrição</th><th>Responsavel</th><th>Num Equip</th>";
+        let tabela = "<table><th>ID Equipamento</th><th>Num patrimonio</th><th>Local</th><th>Num Equip</th>";
         for(var k in res) {
             const idequipamento = res[k].IdEquipamento;
             const numpatrimonio = res[k].numPatrimonio;
@@ -181,14 +181,6 @@ function carregarEquipamentos(){
                 
                 tabela+="<td onclick=\""+meuClick+"\">";
                 tabela+=local;
-                tabela+="</td>";
-                
-                tabela+="<td onclick=\""+meuClick+"\">";
-                tabela+=descricao;
-                tabela+="</td>";
-                
-                tabela+="<td onclick=\""+meuClick+"\">";
-                tabela+=responsavel;
                 tabela+="</td>";
 
                 tabela+="<td onclick=\""+meuClick+"\">";
@@ -263,7 +255,7 @@ function carregarDescricao() {
             cbotipoequip.add(novaOpcao);
         });
     }
-    xmlhttp.open("GET", "descricoes");
+    xmlhttp.open("GET", "/descricoes");
     xmlhttp.send();
 
 }

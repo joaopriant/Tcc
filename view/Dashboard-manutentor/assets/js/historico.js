@@ -16,7 +16,7 @@ function carregarHistorico(divid){
             const Datainicio = res[k].DataInicio;
             const Status = res[k].Status;
             
-            if(Status== "Concluida"){     
+            if(Status== "Concluida" || Status== "Recusada"){     
 
             tabela+="<tr>";
                tabela+="<td>";

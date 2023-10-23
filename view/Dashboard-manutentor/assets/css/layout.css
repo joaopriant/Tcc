@@ -63,16 +63,20 @@ section#chart-section{
 }
 div.chart-box{
     margin: 25px;
-    width: 500px;
-    max-height: 600px;
-    height: 100%;
-    padding: 20px 40px ;
+    width: 400px;
+    max-height: 350px;
+    height: 130%;
+    padding: 20px 0 60px 0;
     border-radius: 20px;
     background-color: #ffffff;
     box-shadow: 5px 10px 20px 10px #0000003c; 
 }
-
 canvas{
-    width: 100px;
-    height: 100px;
+    margin: auto;
+    width: 80%;
+    height: 50px;
+    
+}
+#chart-section{
+    width: 100%;   
 }
